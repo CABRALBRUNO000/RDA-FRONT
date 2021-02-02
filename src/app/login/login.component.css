@@ -15,42 +15,28 @@
   max-height: 94vh;
 }
 
-.titleAndForm{
+.titleAndForm {
   margin: 30px;
-
 }
 
-.formLogin{
-
+.formLogin {
   width: 20vw;
 }
-.labelCel{
+.labelCel {
   display: none;
 }
 
 @media (max-width: 585px) {
-  .formLogin{
-    background-color: red;
-    
-  }
-
-  .labelAll{
-   
+  .labelAll {
     display: none;
-    
-    
-    
   }
-  .labelCel{
+  .labelCel {
     display: block;
   }
-  
 }
 
 @media (max-width: 795px) {
-
-
-.labelAll{
-  font-size: xx-small;
-}
+  .labelAll {
+    font-size: x-small;
+  }
 }
