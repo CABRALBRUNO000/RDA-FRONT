@@ -10,7 +10,7 @@ import { VoluntaryModel } from 'src/app/shared/voluntary.model';
 
 @Injectable()
 export class VoluntaryService {
-  private readonly API = ' http://localhost:3000/volunteers'
+  private readonly API = 'https://api-rda.vercel.app/volunteers'
   constructor(private http: HttpClient) {}
 
   // pega todos os voluntários
