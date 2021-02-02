@@ -1,47 +1,54 @@
-<div class="">
-  <div class="contents">
-    <div class="titleAndForm">
-      <div class="title mb-5 ">
-        <img src="./../../../assets/logo.svg" alt="logo" class="logo" />
-        <h1 class="login-title">Log in TESTES</h1>
+<body>
+  <main>
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-sm-6 login-section-wrapper">
+          <div class="brand-wrapper">
+            <img src="assets/images/logo.svg" alt="logo" class="logo" />
+          </div>
+          <div class="login-wrapper my-auto">
+            <h1 class="login-title">Log in</h1>
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  formControlName="nome"
+                  id="email"
+                  class="form-control"
+                  placeholder="email@example.com"
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  formControlName="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="enter your passsword"
+                />
+              </div>
+              <button
+                name="login"
+                id="login"
+                class="btn btn-success btn-lg mt-3 px-5"
+                type="submit"
+                value="Login"
+              >login</button>
+            </form>
+            <!-- <a href="#!" class="forgot-password-link">Forgot password?</a>
+            <p class="login-wrapper-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p> -->
+          </div>
+        </div>
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+          <img
+            src="./../../assets/login.jpg"
+            alt="login image"
+            class="login-img"
+          />
+        </div>
       </div>
-      <form class="formLogin" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-        
-        <div class="form-floating mb-3 campoLogin ">
-          <input
-          formControlName="nome"
-          type="email"
-          class="form-control"
-          id="floatingInput"
-          placeholder="name@example.com"
-          
-          />
-          <label for="floatingInput" class="labelCel">Email</label>
-          <label for="floatingInput" class="labelAll">Endereço de Email</label>
-        </div>
-        <div class="form-floating campoLogin">
-          <input
-          formControlName="password"
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-        
-          />
-          <label for="floatingPassword">Senha</label>
-        </div>
-
-        <button class="btn btn-success btn-lg mt-3 px-5" type="submit">
-          Entrar
-        </button>
-      </form>
     </div>
-    <picture class="imgLogin">
-      <img
-        class="img-fluid"
-        src="./../../../assets/LOGIN.rafaela-biazi.jpg"
-        alt=""
-      />
-    </picture>
-  </div>
-</div>
+  </main>
+</body>
