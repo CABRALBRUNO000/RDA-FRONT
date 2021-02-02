@@ -1,0 +1,72 @@
+<div class="testeC container">
+        <h2>Construa sua busca com filtros personalizados </h2>  
+    <div class="form-group">
+        <hr>
+        <fieldset>
+            <h3 class="mb-4">Busca</h3>
+            <div class="row form-row  mt-2 mb-2">
+                <div class="col-sm-4 campo mt-2 mb-2">
+                    <label for="exampleFormControlSelect1">Informação que será Filtrada</label>
+                    <select #campo class="form-control" id="exampleFormControlSelect1">
+                        <option value="nome">Nome</option>
+                        <option value="sexo">Sexo</option>
+                        <option value="nomeIg">Nome da Igreja</option>
+                        <option value="ufVo">Estado</option>
+                        <option value="profissao">Profissão</option>
+                        <option value="servicoOferecido">Serviço Oferecido</option>
+                        <option value="true">Ativo</option>
+                        <option value="false">Inativo</option>
+                    </select>
+                </div>    
+                <div class="col-sm-4 mt-2 mb-2">
+                    <label for="exampleFormControlSelect1">Digite o termo da sua busca</label>
+                    <input #termo type="text" class="form-control" name="" id="" >
+                </div>
+                <button type="button" class=" col-sm-4 btn btn-success mt-2 mb-2" (click)="filtrarApi(termo.value, campo.value)">Filtrar</button> 
+            </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <h3 class="mb-4">Resultado{{registros}}</h3>
+        <div class="form-row mb-4">
+            <div class="campo col ">
+                <div class="list-group "  *ngFor="let item of filteredVolunteers" >
+                    
+                    <a [routerLink]="['/voluntary',item._id]" class="list-group-item list-group-item-action  align-items-start" >
+                        <img class="imgV card-img-top" [src]="item.imgUrlPrincipal" alt="Imagem do voluntário">
+                      <div class="d-flex flex-column w-100 justify-content-between">
+                          <div class="d-flex  justify-content-between">
+                              <h5 class="mb-1">{{item.nome}}, {{item.dataNascimento | dataIdade }}</h5>
+                              <small> {{item.endereco.rua}}, {{item.endereco.numero}}, {{item.endereco.cidade}} -{{item.endereco.uf}}</small> 
+                          </div>
+                        <p class="mb-1">{{item.profissao}}  | auxiliando como {{item.especialidade}}  </p>
+                        <small>|{{item.nomeIg}}s</small>
+                        <small>| {{item.telefone}}  |  {{item.email}}</small>
+                       
+                      </div>
+                    </a>
+                    
+                  </div>
+            </div>
+        </div>
+     
+    </fieldset>
+    </div>
+</div>
+            
+
+
+
+<!-- 
+
+     <a href="#"   class="list-group-item list-group-item-action flex-row align-items-start ">
+        
+        <div class="d-flex flex-column w-100 justify-content-between">
+          <h5 class="mb-1">{{item.nome}}</h5>
+          <small>3 dias atrás</small>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <small>Donec id elit non mi porta.</small>
+        </div>
+      </a>
+ -->
+            

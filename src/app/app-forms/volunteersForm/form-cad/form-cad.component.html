@@ -1,0 +1,546 @@
+<div class="container mt-5 mb-5">
+  <div [@torrada]="alertState" class="alert">
+    <div [ngClass]="typeStyle()" class="borderAlert"></div>
+    <p id="text"></p>
+    <button (click)="toggle('hide')" class="closebtn">x</button>
+  </div>
+
+  <h1 *ngIf="!Voluntary._id">Novo Cadastro</h1>
+  <h1 *ngIf="Voluntary._id">Editar Cadastro</h1>
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <hr />
+
+    <fieldset class="form-group">
+      <h4 class="mb-4 ml-4">Voluntário</h4>
+      <div class="row d-flex-wrap m-3 mb-4">
+        <div class="col form-floating">
+          <input
+            [ngClass]="aplicaCss('nome')"
+            type="text"
+            id="inputName"
+            class="form-control"
+            formControlName="nome"
+            placeholder="Informe Seu nome completo:"
+          />
+          <label class="ml-5"  for="inputName">Nome Completo</label>
+          <small
+            *ngIf="
+              this.formulario.controls.nome.invalid &&
+              this.formulario.controls.nome.touched
+            "
+            class="text-formInvalid"
+          >
+            Este campo precisa ter pelo menos 3 caracteres...
+          </small>
+        </div>
+        <div class="form-floating col">
+          <input
+            [ngClass]="aplicaCss('dataNascimento')"
+            type="date"
+            id="inputLastname"
+            formControlName="dataNascimento"
+            class="form-control"
+          />
+          <label class="ml-3 ml-2" for="inputLastname">Nascimento</label>
+          <small
+            *ngIf="
+              this.formulario.controls.dataNascimento.invalid &&
+              this.formulario.controls.dataNascimento.touched
+            "
+            class="text-formInvalid"
+          >
+            insira sua data de Nascimento!
+          </small>
+        </div>
+        <div class="col-auto radioSexo">
+          <div
+            class="custom-control custom-radio"
+            [ngClass]="aplicaCss('sexo')"
+          >
+            <input
+              class="form-check-input mr-2"
+              type="radio"
+              formControlName="sexo"
+              name="sexo"
+              id="masculino"
+              value="M"
+            />
+            <label class="" class="form-check-label" for="masculino">
+              Masculino
+            </label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              class="form-check-input mr-2"
+              type="radio"
+              formControlName="sexo"
+              name="sexo"
+              id="feminino"
+              value="F"
+            />
+            <label class="" class="form-check-label" for="feminino">
+              Feminino
+            </label>
+          </div>
+          <small
+            *ngIf="
+              this.formulario.controls.sexo.invalid &&
+              this.formulario.controls.sexo.touched
+            "
+            class="text-formInvalid"
+          >
+            Não esqueça de marcar este item
+          </small>
+        </div>
+      </div>
+      <div formGroupName="endereco">
+        <div class="row m-3 mb-4">
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNumberC"
+              formControlName="rua"
+              placeholder="Informe o nome da sua rua"
+            />
+            <label class="ml-3" class="ml-3" for="inputNumberC">Rua</label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNumberC"
+              formControlName="numero"
+              placeholder="nº"
+            />
+            <label class="ml-3" class="ml-3" for="inputNumberC">Número</label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="bairro"
+              id="inputBairro"
+              placeholder="Informe seu Bairro:"
+            />
+            <label class="ml-3" class="ml-3" for="inputBairro">Bairro</label>
+          </div>
+        </div>
+
+        <div class="row m-3 mb-4">
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputCity"
+              formControlName="cidade"
+              placeholder="Informe sua cidade:"
+            />
+            <label class="ml-3" class="ml-3" for="inputCity">Cidade</label>
+          </div>
+          <div class="campo form-floating form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputComple"
+              formControlName="complemento"
+              placeholder="Casa / Apt"
+            />
+            <label class="ml-3" for="inputComple">Complemento</label>
+          </div>
+          <div class="campo form-floating form-group col">
+            <select formControlName="uf" id="inputEstado" class="form-control">
+              <option selected value="null">Escolha Estado...</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+            <label class="ml-3" for="inputEstado">Estado</label>
+          </div>
+          <div class="form-floating form-group col">
+            <input
+              type="cep"
+              class="form-control"
+              formControlName="CEP"
+              id="inputCEP"
+              placeholder="Informe seu CEP"
+            />
+            <label class="ml-3" for="inputCEP">CEP</label>
+          </div>
+        </div>
+      </div>
+      <div class="row m-3 mb-4">
+        <div class="form-floating form-group col">
+          <input
+            [ngClass]="aplicaCss('profissao')"
+            formControlName="profissao"
+            type="text"
+            class="form-control"
+            id="inputProf"
+            placeholder="Informe sua profissão"
+          />
+          <label class="ml-3" for="inputProf">Profissão</label>
+          <small
+            *ngIf="
+              this.formulario.controls.profissao.invalid &&
+              this.formulario.controls.profissao.touched
+            "
+            class="text-formInvalid"
+          >
+            Não esqueça de colocar sua profissão, isso é importante!
+          </small>
+        </div>
+
+        <div class="form-floating form-group col">
+          <input
+            formControlName="telefone"
+            type="tel"
+            class="form-control"
+            id="inputTel"
+            placeholder="Informe telefone para Contato"
+          />
+          <label class="ml-3" for="inputTel">Telefone Celular</label>
+        </div>
+        <div class="form-floating form-group col">
+          <input
+            formControlName="telefoneFx"
+            type="tel"
+            class="form-control"
+            id="inputTelFx"
+            placeholder="Informe telefone para Contato"
+          />
+          <label class="ml-3" for="inputTelFx">Telefone fixo</label>
+        </div>
+      </div>
+
+      <div class="row m-3 mb-4">
+        <div class="form-floating form-group col">
+          <select class="form-control" id="inputEstadoCivil">
+            <option value="null">Selecione</option>
+            <option value="Solteiro">Solteiro</option>
+            <option value="Casado">Casado</option>
+            <option value="Divorciado">Divorciado</option>
+            <option value="Viúvo">Viúvo</option>
+          </select>
+          <label class="ml-3" for="inputEstadoCivil">Estado Civil</label>
+        </div>
+        <div class="form-group form-floating col">
+          <input
+            [ngClass]="aplicaCss('email')"
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            placeholder="Informe seu E-mail"
+          />
+          <label class="ml-3" for="inputEmail">E-mail</label>
+          <small
+            *ngIf="
+              this.formulario.controls.email.invalid &&
+              this.formulario.controls.email.touched
+            "
+            class="text-formInvalid"
+          >
+            Este campo não pode ficar vazio! Não se esqueça, o email tem que ser
+            válido!
+          </small>
+        </div>
+        <div class="col imgUrlPrincipal">
+          <input
+            class="form-control form-control-sm file"
+            formControlName="imgUrlPrincipal"
+            id="formFile1"
+            type="file"
+          />
+        </div>
+      </div>
+      <hr />
+      <div class="row m-3 mb-4">
+        <div class="form-floating col">
+          <input
+            [ngClass]="aplicaCss('nomeIg')"
+            formControlName="nomeIg"
+            type="text"
+            id="inputNameIg"
+            class="form-control"
+            placeholder="Informe o nome da sua Igreja:"
+          />
+          <label class="ml-3" for="inputNameIg">Nome da Igreja</label>
+          <small
+            *ngIf="
+              this.formulario.controls.nomeIg.invalid &&
+              this.formulario.controls.nomeIg.touched
+            "
+            class="text-formInvalid"
+          >
+            Precisamos saber qual a sua igreja!
+          </small>
+        </div>
+        <div class="form-floating col">
+          <input
+            type="text"
+            formControlName="pastor"
+            id="inputNamePr"
+            class="form-control"
+            placeholder="Informe o nome do seu Pastor"
+            [ngClass]="aplicaCss('pastor')"
+          />
+          <label class="ml-3" for="inputNamePr">Nome do Pastor</label>
+          <small
+            *ngIf="
+              this.formulario.controls.nomeIg.invalid &&
+              this.formulario.controls.nomeIg.touched
+            "
+            class="text-formInvalid"
+          >
+            Não esqueça de informar o nome do seu Pastor!
+          </small>
+        </div>
+      </div>
+    </fieldset>
+
+    <hr />
+
+    <fieldset class="d-flex flex-column">
+      <h4 class="mb-4 ml-4">Desejo participar da Rede de Apoio:</h4>
+
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input px-3 py-2"
+          type="checkbox"
+          id="chekbox1"
+          formControlName="chekbox1Profissao"
+          (click)="setRadioProficional()"
+        />
+        <label class="form-check-label" for="chekbox1">
+          Cooperando com o Movimento
+          <i style="color: green; margin-left: 5px; margin-right: 5px"
+            >Cuidado Integral do Líder</i
+          >
+          através da minha <b class="ml-1"> Profissão </b>.
+        </label>
+      </div>
+
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input px-3 py-2"
+          type="checkbox"
+          id="chekbox2"
+          formControlName="chekbox2Intercessor"
+        />
+        <label class="form-check-label" for="chekbox2"
+          >Cooperando com o Movimento
+          <i style="color: green; margin-left: 5px; margin-right: 5px"
+            >Cuidado Integral do Líder</i
+          >
+          como um <b class="ml-1">Intercessor</b>.</label
+        >
+      </div>
+
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input px-3 py-2"
+          type="checkbox"
+          id="chekbox3"
+          formControlName="chekbox3Cuidador"
+          (click)="setRadioCuidador()"
+        />
+        <label class="form-check-label" for="chekbox3"
+          >Atuando como
+          <i style="color: green; margin-left: 5px; margin-right: 5px">
+            Pastor
+          </i>
+          <b> Cuidador </b>.</label
+        >
+      </div>
+
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input px-3 py-2"
+          type="checkbox"
+          id="chekbox4"
+          formControlName="chekbox4"
+        />
+        <label class="form-check-label" for="chekbox4"
+          >Atuando como Discipulador, Mentor, Aconselheiro Bíblico
+          <small>
+            (Pastores, Diaconos, Líderes de Ministério, Membro da igreja local
+            capacidado)</small
+          ></label
+        >
+      </div>
+    </fieldset>
+
+    <fieldset
+      class="mt-2 fieldsetIF pb-4"
+      *ngIf="Voluntary.chekbox1Profissao || fieldsetProfissionaisFIF"
+    >
+      <h5 class="mb-4 ml-4">
+        Para quem deseja atuar através da sua Profissão:
+      </h5>
+
+      <div class="ml-4">
+        <div class="form-floating mb-3 col-md">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Qual a especialidade?"
+            formControlName="especialidade"
+          />
+          <label for="floatingInput">Qual a especialidade?</label>
+        </div>
+
+        <div class="form-floating mb-3 col-md">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="o que pode oferecer aos missionários?"
+            formControlName="servicoOferecido"
+          />
+          <label for="floatingInput"
+            >O que pode oferecer aos missionários?</label
+          >
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset
+      class="mt-2 fieldsetIF pb-5"
+      *ngIf="Voluntary.chekbox3Cuidador || fieldsetCuidadoresFIF"
+    >
+      <h5 class="mb-4 ml-4">Somente para Cuidadores:</h5>
+
+      <div class="form-check form-switch mb-4">
+        <input
+          class="form-check-input px-3 py-2"
+          type="checkbox"
+          id="chekbox5"
+          formControlName="chekbox5Aconselhamento"
+        />
+        <label class="form-check-label" for="chekbox5"
+          >Possui Curso de
+          <b style="color: green; margin-left: 5px; margin-right: 5px"
+            >Aconselhamento Biblico
+          </b>
+          ?</label
+        >
+      </div>
+
+      <div class="row ml-4" formGroupName="imagesDocUrl">
+        <div class="col-md-6">
+          <label for="formFile2" class="form-label"
+            >Anexe - RG (frente e verso)</label
+          >
+          <input
+            class="form-control file"
+            id="formFile2"
+            type="file"
+            formControlName="imgRG"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="formFile3" class="form-label">Anexe - CPF </label>
+          <input
+            class="form-control"
+            id="formFile3"
+            type="file"
+            formControlName="imgCPF"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="5" class="form-label"
+            >Anexe - Comprovante de residência</label
+          >
+          <input
+            class="form-control"
+            id="formFile5"
+            type="file"
+            formControlName="imgComprovResidencia"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="formFile4" class="form-label"
+            >Anexe - Carta de recomendação da igreja</label
+          >
+          <input
+            class="form-control"
+            id="formFile4"
+            type="file"
+            formControlName="imgCartaIgreja"
+          />
+        </div>
+      </div>
+    </fieldset>
+    <hr />
+
+    <div class="d-flex justify-content-center mt-4">
+      <button
+        type="submit"
+        class="btn btn-success btn-lg pr-5 pl-5"
+        *ngIf="Voluntary._id"
+      >
+        Salvar dados Alterados
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success btn-lg pr-5 pl-5"
+        *ngIf="!Voluntary._id"
+      >
+        Cadastrar Voluntário
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- <ng-template *ngIf="alertSuccess">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Excelente!</strong> {{alertMessage}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</ng-template>
+
+<ng-template *ngIf="alertDanger">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Atenção!</strong> {{alertMessage}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</ng-template> -->

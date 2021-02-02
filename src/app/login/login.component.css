@@ -1,0 +1,26 @@
+.container-fluid {
+  padding: none;
+  margin: none;
+}
+.contents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imgLogin img {
+  overflow: hidden;
+  max-height: 94vh;
+}
+
+.titleAndForm{
+  margin: 30px;
+
+}
+
+.formLogin{
+
+  width: 20vw;
+}

@@ -1,0 +1,92 @@
+<div class="container shadow p-3 mb-5 bg-white rounded">
+  <div class="card">
+    <div class="card-header">Detalhes do Voluntário</div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <div class="list-group">
+          <div
+            class="list-group-item d-flex align-items-center bg-success text-white"
+          >
+            <div class="justify-content-start">
+              <div *ngIf="Voluntary">
+                <img class="" [src]="Voluntary.imgUrlPrincipal" alt="" />
+              </div>
+            </div>
+            <div class="dadosCabec d-flex flex-column">
+              <h1 class="ml-4">{{ Voluntary.nome }}</h1>
+              <h3 class="ml-4">{{ Voluntary.dataNascimento | dataIdade }}</h3>
+              <div class="d-felx ml-4 mb-n4">
+                <small class="text-white text"
+                  >Telefone: {{ Voluntary.telefone }},
+                </small>
+                <small class="text-white ml-3"
+                  >{{ Voluntary.endereco.rua }}, número
+                  {{ Voluntary.endereco.numero }}, Cidade
+                  {{ Voluntary.endereco.cidade }}
+                </small>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <div>
+            <div
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between"></div>
+              <p class="mb-1">{{ Voluntary.nomeIg }}</p>
+              <div class="d-felx"></div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <div
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1">Pastor</h4>
+              </div>
+              <p class="mb-1">{{ Voluntary.pastor }}</p>
+              <div class="d-felx"></div>
+            </div>
+          </div>
+          <br />
+
+          <div>
+            <div
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1">Outras Informações</h4>
+              </div>
+              <p class="mb-1">Atua como: {{ Voluntary.servicoOferecido }}</p>
+              <p class="mb-1">Email: {{ Voluntary.email }}</p>
+              <div class="d-felx"></div>
+            </div>
+          </div>
+          <br />
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button
+            type="submit"
+            class="btn btn-success btn-lg"
+            [routerLink]="['/formCadVoluntary', Voluntary._id]"
+          >
+            Atualizar
+          </button>
+        </div>
+        <footer class="blockquote-footer">
+          <cite title="Título da fonte"
+            >Data de Cadastro: seg, 25 de mai, 2020
+          </cite>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+
