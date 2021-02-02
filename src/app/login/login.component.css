@@ -24,3 +24,33 @@
 
   width: 20vw;
 }
+.labelCel{
+  display: none;
+}
+
+@media (max-width: 585px) {
+  .formLogin{
+    background-color: red;
+    
+  }
+
+  .labelAll{
+   
+    display: none;
+    
+    
+    
+  }
+  .labelCel{
+    display: block;
+  }
+  
+}
+
+@media (max-width: 795px) {
+
+
+.labelAll{
+  font-size: xx-small;
+}
+}

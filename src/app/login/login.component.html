@@ -7,18 +7,19 @@
       </div>
       <form class="formLogin" [formGroup]="formulario" (ngSubmit)="onSubmit()">
         
-        <div class="form-floating mb-3 ">
+        <div class="form-floating mb-3 campoLogin ">
           <input
           formControlName="nome"
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-    
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+          
           />
-          <label for="floatingInput">Endereço de Email</label>
+          <label for="floatingInput" class="labelCel">Email</label>
+          <label for="floatingInput" class="labelAll">Endereço de Email</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating campoLogin">
           <input
           formControlName="password"
             type="password"
