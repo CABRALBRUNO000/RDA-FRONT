@@ -1,54 +1,66 @@
-<body>
-  <main>
-    <div class="col-xs-12">
-      <div class="row">
-        <div class="col-sm-6 login-section-wrapper">
+<body style="background-color: #666666">
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form
+          class="login100-form"
+          [formGroup]="formulario"
+          (ngSubmit)="onSubmit()"
+        >
+       
           <div class="brand-wrapper">
-            <img src="assets/images/logo.svg" alt="logo" class="logo" />
-          </div>
-          <div class="login-wrapper my-auto">
-            <h1 class="login-title">Log in</h1>
-            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  formControlName="nome"
-                  id="email"
-                  class="form-control"
-                  placeholder="email@example.com"
-                />
-              </div>
-              <div class="form-group mb-4">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  formControlName="password"
-                  id="password"
-                  class="form-control"
-                  placeholder="enter your passsword"
-                />
-              </div>
-              <button
-                name="login"
-                id="login"
-                class="btn btn-success btn-lg mt-3 px-5"
-                type="submit"
-                value="Login"
-              >login</button>
-            </form>
-            <!-- <a href="#!" class="forgot-password-link">Forgot password?</a>
-            <p class="login-wrapper-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p> -->
-          </div>
+            <img src="./../../assets/imagemCIM.png" alt="logo" class="logo" />
+          
+         
         </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img
-            src="./../../assets/login.jpg"
-            alt="login image"
-            class="login-img"
-          />
-        </div>
+          <span class="login100-form-title mb-4"> login </span>
+
+          <div class="form-floating mb-3 wrap-input100">
+            <input
+              type="email"
+              class="form-control input100"
+              id="email"
+              formControlName="email"
+            />
+            <span class="focus-input100"></span>
+            <label for="email">Email </label>
+          </div>
+          <div class="form-floating wrap-input100">
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control input100"
+              id="floatingPassword"
+             
+            />
+            <span class="focus-input100"></span>
+            <label for="floatingPassword">Password</label>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn">Login</button>
+          </div>
+
+          <div class="text-center p-t-46 p-b-20">
+            <span class="txt2"> or sign up using </span>
+          </div>
+
+          <div class="login100-form-social flex-c-m">
+            <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+              <i class="fa fa-facebook-f" aria-hidden="true"></i>
+            </a>
+
+            <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+          </div>
+        </form>
+
+        <div
+          class="login100-more"
+          style="background-image: url('./../../assets/priscilla-du-preez-bgLogin.jpg')"
+        ></div>
       </div>
     </div>
-  </main>
+  </div>
 </body>

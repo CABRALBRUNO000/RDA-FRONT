@@ -86,7 +86,8 @@ font-size: 12px;
 }
 
 .text-formInvalid {
-  color: rgb(128, 19, 19);
+  color: rgb(172, 0, 0);
+  font-size: medium;
   line-height: 1px;
 }
 
@@ -188,4 +189,13 @@ select {
 }
 label{
  margin-left: 10px;
+}
+
+.is-validRadios{
+border: 1px solid green;
+}
+
+.is-invalidRadios{
+  border: 1px solid red;
+  
 }

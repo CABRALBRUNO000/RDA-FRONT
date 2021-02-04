@@ -11,7 +11,7 @@
     <hr />
 
     <fieldset class="form-group">
-      <h4 class="mb-4 ml-4">Voluntário</h4>
+      <h4 class="mb-4 ml-4">Voluntário</h4> 
       <div class="row d-flex-wrap m-3 mb-4">
         <div class="col form-floating">
           <input
@@ -324,10 +324,10 @@
     </fieldset>
 
     <hr />
-
-    <fieldset class="d-flex flex-column">
+     
+    <fieldset class="d-flex flex-column"     [ngClass]="{ 'is-validRadios': brandRadiosValidator == true, 'is-invalidRadios': brandRadiosValidator == false }" >
       <h4 class="mb-4 ml-4">Desejo participar da Rede de Apoio:</h4>
-
+      
       <div class="form-check form-switch">
         <input
           class="form-check-input px-3 py-2"
@@ -335,13 +335,15 @@
           id="chekbox1"
           formControlName="chekbox1Profissao"
           (click)="setRadioProficional()"
+          (change)="brandRadios()"
+
         />
         <label class="form-check-label" for="chekbox1">
           Cooperando com o Movimento
           <i style="color: green; margin-left: 5px; margin-right: 5px"
             >Cuidado Integral do Líder</i
           >
-          através da minha <b class="ml-1"> Profissão </b>.
+          através da minha <b style="margin-left: 2px;"> Profissão </b>.
         </label>
       </div>
 
@@ -351,6 +353,7 @@
           type="checkbox"
           id="chekbox2"
           formControlName="chekbox2Intercessor"
+          (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox2"
           >Cooperando com o Movimento
@@ -368,6 +371,7 @@
           id="chekbox3"
           formControlName="chekbox3Cuidador"
           (click)="setRadioCuidador()"
+          (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox3"
           >Atuando como
@@ -384,6 +388,7 @@
           type="checkbox"
           id="chekbox4"
           formControlName="chekbox4"
+          (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox4"
           >Atuando como Discipulador, Mentor, Aconselheiro Bíblico
@@ -392,9 +397,16 @@
             capacidado)</small
           ></label
         >
+        <small
+        *ngIf="brandRadiosValidator === false"
+        class="text-formInvalid" 
+      >
+        é necessário escolher pelo  menos um das opções!
+      </small>
       </div>
-    </fieldset>
 
+     
+    </fieldset>
     <fieldset
       class="mt-2 fieldsetIF pb-4"
       *ngIf="Voluntary.chekbox1Profissao || fieldsetProfissionaisFIF"
@@ -521,26 +533,3 @@
   </form>
 </div>
 
-<!-- <ng-template *ngIf="alertSuccess">
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Excelente!</strong> {{alertMessage}}
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="alert"
-      aria-label="Close"
-    ></button>
-  </div>
-</ng-template>
-
-<ng-template *ngIf="alertDanger">
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Atenção!</strong> {{alertMessage}}
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="alert"
-      aria-label="Close"
-    ></button>
-  </div>
-</ng-template> -->

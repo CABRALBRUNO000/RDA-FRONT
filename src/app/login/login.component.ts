@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      nome: null,
+      email: null,
       password: [null, [Validators.required, Validators.minLength(3)]],
     });
   }

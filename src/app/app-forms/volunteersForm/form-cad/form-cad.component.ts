@@ -17,18 +17,19 @@ import { AlertService } from '../../../services/alert.service';
 export class FormCadComponent implements OnInit {
   alertState: string = 'hide';
 
-  public Voluntary!: VoluntaryModel;
-  public formulario!: FormGroup; // formulario em questão
+  public Voluntary: VoluntaryModel;
+  public formulario: FormGroup; // formulario em questão
 
   fieldsetProfissionaisFIF: boolean = false;
   fieldsetCuidadoresFIF: boolean = false;
 
   alertSuccess: boolean = true;
-  alertDanger!: boolean;
-  alertMessage!: string;
+  alertDanger: boolean;
+  alertMessage: string;
   alertActivated: any;
   alertStyle: any;
   style: any;
+  brandRadiosValidator: boolean = undefined
 
   constructor(
     private voluntaryService: VoluntaryService,
@@ -63,7 +64,7 @@ export class FormCadComponent implements OnInit {
         CEP: [this.Voluntary.endereco.CEP],
       }),
       profissao: [this.Voluntary.profissao, [Validators.required]],
-      telefone: [this.Voluntary.telefone],
+      telefone: [this.Voluntary.telefone, [Validators.required]],
       telefoneFx: [this.Voluntary.telefoneFx],
       email: [this.Voluntary.email, [Validators.required, Validators.email]],
       nomeIg: [this.Voluntary.nomeIg, [Validators.required]],
@@ -85,28 +86,34 @@ export class FormCadComponent implements OnInit {
       dataCad: [this.Voluntary.dataCad],
       status: [this.Voluntary.status],
     });
+    console.log(this.formulario);
   }
 
-  setRadioProficional() { // nos casos em que está sendo feito a atualização de um formulário, é verificado se o radio está ativo e ativa o o radio do fomulário que será atualizado
+  setRadioProficional() {
+    // nos casos em que está sendo feito a atualização de um formulário, é verificado se o radio está ativo e ativa o o radio do fomulário que será atualizado
     this.fieldsetProfissionaisFIF =
       this.formulario.value.chekbox1Profissao === true ? false : true;
   }
-  setRadioCuidador() {  // nos casos em que está sendo feito a atualização de um formulário, é verificado se o radio está ativo e ativa o o radio do fomulário que será atualizado
-    this.fieldsetProfissionaisFIF =
-    this.fieldsetCuidadoresFIF =
+  setRadioCuidador() {
+    // nos casos em que está sendo feito a atualização de um formulário, é verificado se o radio está ativo e ativa o o radio do fomulário que será atualizado
+    this.fieldsetProfissionaisFIF = this.fieldsetCuidadoresFIF =
       this.formulario.value.chekbox3Cuidador === true ? false : true;
   }
 
-  async onSubmit() {  // função executada no clicar do botão principal
+  async onSubmit() {
+    // função executada no clicar do botão principal
+    this.brandRadios(); // verifica se todos os radios foram marcados
+    if (this.formulario.valid && this.brandRadiosValidator) {
+      //só entra neste if se passar por todas as validações
 
-    if (this.formulario.valid) {  //só entra neste if se passar por todas as validações
-
-      if (!this.Voluntary._id) {  // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
-        this.salveVoluntaryCTRL();  // função que cria um novo voluntário nas bases de dados
+      if (!this.Voluntary._id) {
+        // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
+        this.salveVoluntaryCTRL(); // função que cria um novo voluntário nas bases de dados
       } else {
         this.UpdateVoluntaryCTRL(this.formulario.value); // função que atualiza os dados de uma base existente
       }
-    } else {  // se não passar pelas validações
+    } else {
+      // se não passar pelas validações
       this.activAlert('danger', 'Atenção, preencha os campos obrigatórios');
       console.log('formulario invalido');
       Object.keys(this.formulario.controls).forEach((campo) => {
@@ -116,23 +123,29 @@ export class FormCadComponent implements OnInit {
     }
   }
 
-  //atualiza os dados dos
+  //atualiza os dados dos voluntarios
   public UpdateVoluntaryCTRL(VoluntaryDataFormUpdated: VoluntaryModel) {
     this.voluntaryService.updateVoluntaryID(VoluntaryDataFormUpdated).subscribe(
       (voluntary) => {
         this.activAlert(
           'success',
           `Os dados do ${this.formulario.value.nome} foram alterados com sucesso`
-          );
+        );
 
-        console.log(`Os dados do ${this.Voluntary.nome} foram alterados com sucesso`);
+        console.log(
+          `Os dados do ${this.Voluntary.nome} foram alterados com sucesso`
+        );
       },
-      (error) =>{
-        this.activAlert('danger', `Os dados do ${this.formulario.value.nome} não puderam ser alterados`)
+      (error) => {
+        this.activAlert(
+          'danger',
+          `Os dados do ${this.formulario.value.nome} não puderam ser alterados`
+        );
 
         console.error(
           `Os dados do ${this.Voluntary.nome} não puderam ser alterados: => Relatório: ${error}`
-        )}
+        );
+      }
     );
   }
   public salveVoluntaryCTRL() {
@@ -166,13 +179,12 @@ export class FormCadComponent implements OnInit {
   public activAlert(typeAlert: string, mensagem: string) {
     (this.alertState = this.alertService.toggle('show')),
       this.alertService.content(mensagem),
-      (this.style = this.alertService.style(typeAlert))
+      (this.style = this.alertService.style(typeAlert));
 
-      setTimeout(() => {  //fecha o alert após 7 segundos
-        this.toggle('hide')
-      }, 7000);
-
-
+    setTimeout(() => {
+      //fecha o alert após 7 segundos
+      this.toggle('hide');
+    }, 7000);
   }
   // FUNÇÃO DE ESTILIZAÇÃO DE ALERTS
   public typeStyle() {
@@ -192,9 +204,22 @@ export class FormCadComponent implements OnInit {
         this.formulario.get(campo).invalid &&
         (this.formulario.get(campo).touched ||
           this.formulario.get(campo).dirty),
-      'is-valid': this.formulario.get(campo).valid
+      'is-valid': this.formulario.get(campo).valid,
     };
   }
+  public brandRadios() {
+    if (
+      this.formulario.value.chekbox1Profissao |
+      this.formulario.value.chekbox2Intercessor |
+      this.formulario.value.chekbox3Cuidador |
+      this.formulario.value.chekbox4
+    ) {
+       (this.brandRadiosValidator = true);
+    } else {
+       (this.brandRadiosValidator = false);
+    } 
+  }
+
 
   // quando o cliente clica para atualizar ou cadastrar um voluntário a aplicação chama o guard para
 }
