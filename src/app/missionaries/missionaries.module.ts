@@ -5,7 +5,7 @@ import { MyPageMissionariesComponent } from './myPageMissionaries/myPageMissiona
 import { ListMissionariesComponent } from './listMissionaries/listMissionaries.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [ListMissionariesComponent, MyPageMissionariesComponent],
+  imports: [CommonModule, ],
+  declarations: [ListMissionariesComponent, MyPageMissionariesComponent ],
 })
 export class MissionariesModule {}

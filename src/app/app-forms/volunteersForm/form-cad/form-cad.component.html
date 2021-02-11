@@ -217,6 +217,7 @@
 
         <div class="form-floating form-group col">
           <input
+          [ngClass]="aplicaCss('telefone')"
             formControlName="telefone"
             type="tel"
             class="form-control"
@@ -224,6 +225,15 @@
             placeholder="Informe telefone para Contato"
           />
           <label class="ml-3" for="inputTel">Telefone Celular</label>
+          <small
+            *ngIf="
+              this.formulario.controls.telefone.invalid &&
+              this.formulario.controls.telefone.touched
+            "
+            class="text-formInvalid"
+          >
+            Não esqueça de informar o seu telefone celular!
+          </small>
         </div>
         <div class="form-floating form-group col">
           <input
@@ -269,13 +279,16 @@
             válido!
           </small>
         </div>
-        <div class="col imgUrlPrincipal">
-          <input
+        <div class="col imgFilePrincipal">
+
+          <app-upload-file formControlName="imgFilePrincipal" (change)="uploadFiles('imgFilePrincipal')"></app-upload-file>
+          <!-- <input
             class="form-control form-control-sm file"
-            formControlName="imgUrlPrincipal"
+            formControlName="imgFilePrincipal"
             id="formFile1"
             type="file"
-          />
+            
+          /> -->
         </div>
       </div>
       <hr />
@@ -464,51 +477,55 @@
         >
       </div>
 
-      <div class="row ml-4" formGroupName="imagesDocUrl">
+      <div class="row ml-4" formGroupName="imgFile">
         <div class="col-md-6">
           <label for="formFile2" class="form-label"
             >Anexe - RG (frente e verso)</label
           >
-          <input
+          <app-upload-file formControlName="imgFileRG" (change)="uploadFiles('imgFileRG')"></app-upload-file>
+          <!-- <input
             class="form-control file"
             id="formFile2"
             type="file"
             formControlName="imgRG"
-          />
+          /> -->
         </div>
 
         <div class="col-md-6">
           <label for="formFile3" class="form-label">Anexe - CPF </label>
-          <input
+          <app-upload-file formControlName="imgFileCPF" (change)="uploadFiles('imgFileCPF')"></app-upload-file>
+          <!-- <input
             class="form-control"
             id="formFile3"
             type="file"
             formControlName="imgCPF"
-          />
+          /> -->
         </div>
 
         <div class="col-md-6">
           <label for="5" class="form-label"
             >Anexe - Comprovante de residência</label
           >
-          <input
+          <app-upload-file formControlName="imgFileComprovResidencia" (change)="uploadFiles('imgFileComprovResidencia')"></app-upload-file>
+          <!-- <input
             class="form-control"
             id="formFile5"
             type="file"
             formControlName="imgComprovResidencia"
-          />
+          /> -->
         </div>
 
         <div class="col-md-6">
           <label for="formFile4" class="form-label"
             >Anexe - Carta de recomendação da igreja</label
           >
-          <input
+          <app-upload-file formControlName="imgFileCartaIgreja" (change)="uploadFiles('imgFileCartaIgreja')"></app-upload-file>
+          <!-- <input
             class="form-control"
             id="formFile4"
             type="file"
             formControlName="imgCartaIgreja"
-          />
+          /> -->
         </div>
       </div>
     </fieldset>

@@ -1,6 +1,4 @@
-
 export interface VoluntaryModel {
-
   _id: string;
   nome: string;
   dataNascimento: string;
@@ -19,6 +17,7 @@ export interface VoluntaryModel {
   telefoneFx: string;
   email: string;
   imgUrlPrincipal: string;
+  imgFilePrincipal: File;
   nomeIg: string;
   pastor: string;
   chekbox1Profissao: boolean;
@@ -34,9 +33,12 @@ export interface VoluntaryModel {
     imgComprovResidencia: string;
     imgCartaIgreja: string;
   };
+  imgFile: {
+    imgFileRG: File;
+    imgFileCPF: File;
+    imgFileComprovResidencia: File;
+    imgFileCartaIgreja: File;
+  };
   dataCad: string;
   status: string;
-
-  
 }
-

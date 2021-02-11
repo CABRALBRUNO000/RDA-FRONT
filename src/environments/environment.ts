@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API: 'http://localhost:3000/volunteers',
+  PUBLICKEY: ' public_IbxahIOtljwWt0cQXY+fdYm0kYY=',
+  PRIVATEKEY: 'private_J7ty6K/3AxhD8dac2NDc7c8a2uU=',
+  URLENDPOINT: 'https://ik.imagekit.io/cimrda',
+  IMAGEKITID: 'cimrda',
+  authenticationEndpoint:'http://localhost:3000/crypt'
 };
 
 /*

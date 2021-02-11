@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -10,7 +11,7 @@ import { VoluntaryModel } from 'src/app/shared/voluntary.model';
 
 @Injectable()
 export class VoluntaryService {
-  private readonly API = 'https://api-rda.vercel.app/volunteers'
+  private readonly API = environment.API;
   constructor(private http: HttpClient) {}
 
   // pega todos os voluntários
@@ -41,10 +42,14 @@ export class VoluntaryService {
 
   // CADASTRO VOLUNTÁRIOS
   public saveVoluntary(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
+    const formData:FormData = new FormData()
+      formData.append('img', voluntary.imgFilePrincipal)
+    
     return this.http
       .post<VoluntaryModel>(`${this.API}`, JSON.stringify(voluntary),this.httpOptions)
       .pipe(retry(2), catchError(this.handleError))
       .pipe(take(1));
+     
   }
 
   // Atualiza um voluntário

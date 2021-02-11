@@ -48,6 +48,7 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
       telefoneFx: '',
       email: '',
       imgUrlPrincipal: '',
+      imgFilePrincipal:null,
       nomeIg: '',
       pastor: '',
       chekbox1Profissao: false,
@@ -62,6 +63,13 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
         imgCPF: '',
         imgComprovResidencia: '',
         imgCartaIgreja: '',
+      },
+      imgFile:{
+        
+        imgFileRG:null,
+        imgFileCPF:null,
+        imgFileComprovResidencia:null,
+        imgFileCartaIgreja:null,
       },
       dataCad: '',
       status: ''

@@ -11,7 +11,7 @@ import { ListVolunteersComponent } from './listVolunteers/listVolunteers.compone
 
 @NgModule({
   imports: [CommonModule, RouterModule,  PipesModule, VolunteersRoutingModule],
-  declarations: [ListVolunteersComponent, MypageComponent, ],
+  declarations: [ListVolunteersComponent, MypageComponent ],
   providers: [VoluntaryService],
 })
 export class VolunteersModule {}

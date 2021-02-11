@@ -1,3 +1,4 @@
+import { UploadImageService } from './../../services/upload-image.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -6,6 +7,7 @@ import { VoluntaryService } from 'src/app/volunteers/services/voluntary.service'
 import { VoluntaryModel } from 'src/app/shared/voluntary.model';
 import { alertAnimation } from '../../../services/alert.service';
 import { AlertService } from '../../../services/alert.service';
+import { requiredFileType } from './requiredFileType';
 
 @Component({
   selector: 'app-form-cad',
@@ -29,13 +31,16 @@ export class FormCadComponent implements OnInit {
   alertActivated: any;
   alertStyle: any;
   style: any;
-  brandRadiosValidator: boolean = undefined
-
+  brandRadiosValidator: boolean = undefined;
+  progress = 0;
+  percentDone: any;
   constructor(
     private voluntaryService: VoluntaryService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private uploadImageService:UploadImageService,
+
   ) {}
 
   public toggle(view?: String) {
@@ -77,11 +82,18 @@ export class FormCadComponent implements OnInit {
       especialidade: [this.Voluntary.especialidade],
       servicoOferecido: [this.Voluntary.servicoOferecido],
       imgUrlPrincipal: [null], //this.Voluntary.imgUrlPrincipal
+      imgFilePrincipal: [null, [Validators.required, requiredFileType('jpeg')]],
       imagesDocUrl: this.formBuilder.group({
         imgRG: [null], //this.Voluntary.imagesDocUrl.imgRG
         imgCPF: [null], //this.Voluntary.imagesDocUrl.imgCPF
         imgComprovResidencia: [null], //this.Voluntary.imagesDocUrl.imgComprovResidencia
         imgCartaIgreja: [null], //this.Voluntary.imagesDocUrl.imgCartaIgreja
+      }),
+      imgFile: this.formBuilder.group({
+        imgFileRG: [null],
+        imgFileCPF: [null],
+        imgFileComprovResidencia: [null],
+        imgFileCartaIgreja: [null],
       }),
       dataCad: [this.Voluntary.dataCad],
       status: [this.Voluntary.status],
@@ -105,12 +117,18 @@ export class FormCadComponent implements OnInit {
     this.brandRadios(); // verifica se todos os radios foram marcados
     if (this.formulario.valid && this.brandRadiosValidator) {
       //só entra neste if se passar por todas as validações
-
+      
       if (!this.Voluntary._id) {
+        if(this.formulario.value.imgFilePrincipal){
+
+          
+        }
         // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
         this.salveVoluntaryCTRL(); // função que cria um novo voluntário nas bases de dados
       } else {
         this.UpdateVoluntaryCTRL(this.formulario.value); // função que atualiza os dados de uma base existente
+       
+
       }
     } else {
       // se não passar pelas validações
@@ -150,6 +168,7 @@ export class FormCadComponent implements OnInit {
   }
   public salveVoluntaryCTRL() {
     if (this.formulario !== undefined) {
+      
       this.voluntaryService.saveVoluntary(this.formulario.value).subscribe(
         (voluntary) => {
           this.activAlert(
@@ -171,6 +190,7 @@ export class FormCadComponent implements OnInit {
           );
         }
       );
+
     }
   }
 
@@ -214,12 +234,28 @@ export class FormCadComponent implements OnInit {
       this.formulario.value.chekbox3Cuidador |
       this.formulario.value.chekbox4
     ) {
-       (this.brandRadiosValidator = true);
+      this.brandRadiosValidator = true;
     } else {
-       (this.brandRadiosValidator = false);
-    } 
+      this.brandRadiosValidator = false;
+    }
   }
 
+ 
+public uploadFiles(formControlName:string){
+  this.uploadImageService.upload(this.formulario, formControlName).pipe(
+    this.uploadImageService.uploadProgress(progress => (this.percentDone = progress)),
+    this.uploadImageService.toResponseBody()
 
+  ).subscribe(pathNameImage => {
+    this.progress = 0;
+    this.formulario.reset();
+    console.log(pathNameImage);
+    
+    // do something with the response
+  });
+}
+  
+ 
+    
   // quando o cliente clica para atualizar ou cadastrar um voluntário a aplicação chama o guard para
 }

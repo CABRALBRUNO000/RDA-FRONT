@@ -556,6 +556,13 @@ input.input100 {
     margin-left: 0;
   }
 }
+@media (max-width: 768px) {
+  .brand-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+}
 
 @media (max-width: 768px) {
   .login100-form {

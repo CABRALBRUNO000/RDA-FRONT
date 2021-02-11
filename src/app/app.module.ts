@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-
 import { AdminUsersModule } from './adminUsers/adminUsers.module';
 import { VolunteersModule } from './volunteers/volunteers.module';
 import { AppFormsModule } from './app-forms/app-forms.module';
@@ -21,14 +20,13 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { BirthdayListComponent } from './components/birthdayList/birthdayList.component';
 
-import { FiltroPersonalizadoService } from './app-forms/volunteersForm/filtro-personalizado.service';
+import { FiltroPersonalizadoService } from './app-forms/services/filtro-personalizado.service';
 import { VoluntaryService } from './volunteers/services/voluntary.service';
 import { InteractionsBetweenUsersComponent } from './components/interactions-between-users/interactions-between-users.component';
 import { PeriodWithoutInteractionsComponent } from './components/period-without-interactions/period-without-interactions.component';
 import { AuthService } from './login/auth.service';
-
-
-
+import { ImagekitioAngularModule } from 'imagekitio-angular';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,11 +38,15 @@ import { AuthService } from './login/auth.service';
     LoginComponent,
     BirthdayListComponent,
     InteractionsBetweenUsersComponent,
-    PeriodWithoutInteractionsComponent
-
-   ],
+    PeriodWithoutInteractionsComponent,
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    ImagekitioAngularModule.forRoot({
+      publicKey: environment.PUBLICKEY,
+      urlEndpoint: environment.URLENDPOINT,
+      authenticationEndpoint: environment.authenticationEndpoint
+    }),
     AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
@@ -55,9 +57,13 @@ import { AuthService } from './login/auth.service';
     FormsModule,
     VolunteersModule,
     BrowserAnimationsModule,
-
   ],
-  providers: [VoluntaryService, FiltroPersonalizadoService, AuthService, AuthGuard],
+  providers: [
+    VoluntaryService,
+    FiltroPersonalizadoService,
+    AuthService,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent],
   exports: [MainComponent, BirthdayListComponent],
 })

@@ -1,3 +1,4 @@
+import { UploadFileComponent } from './upload-file/upload-file.component';
 import { FormCadAdminUsersComponent } from './adminUsersForm/formCadAdminUsers/formCadAdminUsers.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,9 +14,9 @@ import { FormCadComponent } from './volunteersForm/form-cad/form-cad.component';
 
 
 @NgModule({
-  imports: [CommonModule, FormsModule, AppRoutingModule, ReactiveFormsModule, PipesModule],
+  imports: [CommonModule, FormsModule, AppRoutingModule, ReactiveFormsModule, PipesModule ],
 
-  declarations: [FiltrosComponent, FormCadComponent,FormCadPartnersComponent, FormCadMissionariesComponent, FormCadAdminUsersComponent],
+  declarations: [FiltrosComponent, FormCadComponent,FormCadPartnersComponent, FormCadMissionariesComponent, FormCadAdminUsersComponent, UploadFileComponent],
 
   exports: [FiltrosComponent, FormCadComponent],
 })
