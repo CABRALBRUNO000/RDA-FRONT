@@ -4,15 +4,22 @@
 
 export const environment = {
   production: false,
-  API: 'http://localhost:3000/volunteers',
+  PUBLICKEY: ' public_IbxahIOtljwWt0cQXY+fdYm0kYY=',
+  PRIVATEKEY: 'private_J7ty6K/3AxhD8dac2NDc7c8a2uU=',
+  URLENDPOINT: 'https://ik.imagekit.io/cimrda',
+  IMAGEKITID: 'cimrda',
+  authenticationEndpoint:'https://api-rda.vercel.app/crypt' 
+};
+
+/*
+ API: 'http://localhost:3000/volunteers',
   PUBLICKEY: ' public_IbxahIOtljwWt0cQXY+fdYm0kYY=',
   PRIVATEKEY: 'private_J7ty6K/3AxhD8dac2NDc7c8a2uU=',
   URLENDPOINT: 'https://ik.imagekit.io/cimrda',
   IMAGEKITID: 'cimrda',
   authenticationEndpoint:'http://localhost:3000/crypt'
-};
 
-/*
+
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
