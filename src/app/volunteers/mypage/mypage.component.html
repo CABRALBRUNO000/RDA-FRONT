@@ -5,23 +5,31 @@
       <blockquote class="blockquote mb-0">
         <div class="list-group">
           <div
-            class="list-group-item d-flex align-items-center bg-success text-white"
+            class="list-group-item d-flex align-items-start bg-success text-white"
           >
-            <div class="justify-content-start">
-              <div *ngIf="Voluntary">
-                <img class="" [src]="Voluntary.imgUrlPrincipal" alt="" />
-              </div>
+            <div *ngIf="Voluntary" class="divImg">
+              <ik-image
+                [src]="Voluntary.imgUrlPrincipal"
+                [transformation]="transformationImg"
+                class="img-fluid imgPrincipal"
+              ></ik-image>
             </div>
             <div class="dadosCabec d-flex flex-column">
               <h1 class="ml-4">{{ Voluntary.nome }}</h1>
               <h3 class="ml-4">{{ Voluntary.dataNascimento | dataIdade }}</h3>
-              <div class="d-felx ml-4 mb-n4">
+              <div class="dadosHeader2 d-felx ml-4 mb-n4">
                 <small class="text-white text"
                   >Telefone: {{ Voluntary.telefone }},
                 </small>
-                <small class="text-white ml-3"
-                  >{{ Voluntary.endereco.rua }}, número
-                  {{ Voluntary.endereco.numero }}, Cidade
+                <small class="text-white ml-3">
+                  Endereço: {{ Voluntary.endereco.rua }},
+                </small>
+                <small class="text-white ml-3">
+                  número
+                  {{ Voluntary.endereco.numero }},
+                </small>
+                <small class="text-white ml-3">
+                  Cidade
                   {{ Voluntary.endereco.cidade }}
                 </small>
               </div>
@@ -70,7 +78,7 @@
           <br />
         </div>
 
-        <div class="d-flex justify-content-end">
+        <div class="button mb-5 d-flex justify-content-end">
           <button
             type="submit"
             class="btn btn-success btn-lg"
@@ -88,5 +96,3 @@
     </div>
   </div>
 </div>
-
-

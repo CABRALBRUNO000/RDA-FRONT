@@ -20,14 +20,16 @@
       </li>
       <div class="open-close-container">
         <li>
+          <i class="bi bi-speedometer2 " style="font-size: 2rem; color: cornflowerblue; margin-left: -25px;"></i>
           <a routerLink="/Dashboard">Dashboard</a>
         </li>
 
         <li
-          class="d-flex justify-content-between li"
+          class="d-flex justify-content-start li"
           routerLink="/listVolunteers"
           (click)="toggleVolunters()"
         >
+        <i class="bi bi-speedometer2 " style="font-size: 2rem; color: cornflowerblue; margin-left: -25px;"></i>
           <a>Voluntários</a>
           <div
             style="margin-right: 10px"
@@ -47,10 +49,12 @@
         </li>
 
         <li
-          class="d-flex justify-content-between li"
+        
+          class="d-flex justify-content-start li"
           routerLink="/listMissionaries"
           (click)="toggleMissionaries()"
         >
+        <i class="bi bi-speedometer2 " style="font-size: 2rem; color: cornflowerblue; margin-left: -25px;"></i>
           <a>Missionários</a>
           <div
             style="margin-right: 10px"
@@ -59,6 +63,7 @@
               upArrow: expandableMenuMissionaries == true,
               downArrow: expandableMenuMissionaries == false
             }"
+            
           ></div>
         </li>
         <li
@@ -71,10 +76,11 @@
         </li>
 
         <li
-          class="d-flex justify-content-between li"
+          class="d-flex justify-content-start li"
           routerLink="/listPartners"
           (click)="togglePartners()"
         >
+        <i class="bi bi-speedometer2 " style="font-size: 2rem; color: cornflowerblue; margin-left: -25px;"></i>
           <a>Parceiros</a>
           <div
             style="margin-right: 10px"
@@ -94,10 +100,11 @@
           <a class="disabled">Relatórios</a>
         </li>
         <li
-          class="d-flex justify-content-between li"
+          class="d-flex justify-content-start li"
           routerLink="/listAdminUsers"
           (click)="toggleAdminUsers()"
         >
+        <i class="bi bi-speedometer2 " style="font-size: 2rem; color: cornflowerblue; margin-left: -25px;"></i>
           <a>Usuários</a>
           <div
             style="margin-right: 10px"

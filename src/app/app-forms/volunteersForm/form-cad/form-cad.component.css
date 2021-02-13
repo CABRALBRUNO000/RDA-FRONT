@@ -86,9 +86,10 @@ font-size: 12px;
 }
 
 .text-formInvalid {
-  color: rgb(172, 0, 0);
+  color: #DC3545;
   font-size: medium;
   line-height: 1px;
+  text-overflow: ellipsis
 }
 
 .form-check-input,
@@ -198,4 +199,19 @@ border: 1px solid green;
 .is-invalidRadios{
   border: 1px solid red;
   
+}
+@media (max-width: 987px){
+  .fieldInvalidSexo {
+    margin-top: 25px;
+      min-width: 200px;
+  }
+
+  .radioSexo {
+    margin-top: 10px;
+    display: flex;
+    }
+
+    .radioSexo div{
+      margin-left: 30px;
+    }
 }

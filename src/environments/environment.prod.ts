@@ -3,10 +3,10 @@ export const environment = {
   API:'https://api-rda.vercel.app/volunteers',
   
   PUBLICKEY: ' public_IbxahIOtljwWt0cQXY+fdYm0kYY=',
-  PRIVATEKEY: 'private_J7ty6K/3AxhD8dac2NDc7c8a2uU=',
-  URLENDPOINT: 'https://ik.imagekit.io/cimrda',
+  PRIVATEKEY: 'private_NXH5tlpCiAYoPOzICzZvdk8US68=',
+  URL_ENDPOINT: 'https://ik.imagekit.io/cimrda/volunteers',
   IMAGEKITID: 'cimrda',
-  authenticationEndpoint:'https://api-rda.vercel.app/crypt' 
+  authenticationEndpoint:'https://api-rda2.vercel.app/crypt' 
   
 
 };

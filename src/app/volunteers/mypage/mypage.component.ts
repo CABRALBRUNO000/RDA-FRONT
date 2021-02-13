@@ -16,7 +16,9 @@ export class MypageComponent implements OnInit {
   public Voluntary: VoluntaryModel;
   public idVoluntary: number;
   img: any;
+  transformationImg = [{ "height": "300", "width": "400" }];
 
+  
   constructor(
     private VoluntaryService: VoluntaryService,
     private route: ActivatedRoute
@@ -26,20 +28,7 @@ export class MypageComponent implements OnInit {
     this.Voluntary = this.route.snapshot.data['voluntary'];
     console.log('o que vem do guard', this.Voluntary);
 
-  //  this.getVoluntaryMyPage();
+  
   }
 
-  // public async getVoluntaryMyPage() {
-  //   this.idVoluntary = await this.route.snapshot.params['id'];
-  //   try {
-  //     await this.VoluntaryService.getVolunteersPorId(
-  //       this.idVoluntary
-  //     ).subscribe(
-  //       (resposta) => (this.Voluntary = resposta),
-  //       (error) => error
-  //     );
-  //   } catch (error) {
-  //     (error) => error;
-  //   }
-  // }
 }

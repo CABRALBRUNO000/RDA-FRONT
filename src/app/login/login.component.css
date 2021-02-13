@@ -45,21 +45,21 @@
 body {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
-  background-color: #666666 ;
-
+  background-color: #666666;
   margin: -25px 0px -110px -300px;
 }
 
 /*---------------------------------------------*/
 .brand-wrapper {
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
   padding-top: 7px;
-  padding-bottom: 8px; }
-  .brand-wrapper .logo {
-    
-    height: 50px; }
-
-
+  padding-bottom: 8px;
+}
+.brand-wrapper .logo {
+  height: 80px;
+}
 
 a {
   font-family: Poppins-Regular;
@@ -552,12 +552,12 @@ input.input100 {
 }
 
 @media (max-width: 768px) {
-  body{
+  body {
     margin-left: 0;
   }
 }
 @media (max-width: 768px) {
-  .brand-wrapper{
+  .brand-wrapper {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
@@ -614,4 +614,15 @@ input.input100 {
 input:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
+}
+
+@media (max-width: 412px) {
+  .brand-wrapper .logo {
+    
+    height: 65px; }
+}
+@media (max-width: 320px) {
+  .brand-wrapper .logo {
+    
+    height: 45px; }
 }

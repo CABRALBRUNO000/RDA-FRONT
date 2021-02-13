@@ -87,9 +87,9 @@
               this.formulario.controls.sexo.invalid &&
               this.formulario.controls.sexo.touched
             "
-            class="text-formInvalid"
+            class="text-formInvalid fieldInvalidSexo col-sm-3"
           >
-            Não esqueça de marcar este item
+             Selecione um dos ítens
           </small>
         </div>
       </div>
@@ -281,7 +281,12 @@
         </div>
         <div class="col imgFilePrincipal">
 
-          <app-upload-file formControlName="imgFilePrincipal" (change)="uploadFiles('imgFilePrincipal')"></app-upload-file>
+         
+          <ik-upload fileName="voluntary" [useUniqueFileName]="true" (onSuccess)="handleUploadSuccess($event)" (onError)="handleUploadError($event)"></ik-upload>
+          
+          
+
+          
           <!-- <input
             class="form-control form-control-sm file"
             formControlName="imgFilePrincipal"
@@ -352,11 +357,7 @@
 
         />
         <label class="form-check-label" for="chekbox1">
-          Cooperando com o Movimento
-          <i style="color: green; margin-left: 5px; margin-right: 5px"
-            >Cuidado Integral do Líder</i
-          >
-          através da minha <b style="margin-left: 2px;"> Profissão </b>.
+          Atuando voluntáriamente com minha profisão.
         </label>
       </div>
 
@@ -369,11 +370,7 @@
           (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox2"
-          >Cooperando com o Movimento
-          <i style="color: green; margin-left: 5px; margin-right: 5px"
-            >Cuidado Integral do Líder</i
-          >
-          como um <b class="ml-1">Intercessor</b>.</label
+          > Atuando voluntáriamente como um intercessor.</label
         >
       </div>
 
@@ -387,11 +384,7 @@
           (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox3"
-          >Atuando como
-          <i style="color: green; margin-left: 5px; margin-right: 5px">
-            Pastor
-          </i>
-          <b> Cuidador </b>.</label
+          > Atuando voluntáriamente como Pastor Cuidador (conselheiro).</label
         >
       </div>
 
@@ -404,11 +397,8 @@
           (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox4"
-          >Atuando como Discipulador, Mentor, Aconselheiro Bíblico
-          <small>
-            (Pastores, Diaconos, Líderes de Ministério, Membro da igreja local
-            capacidado)</small
-          ></label
+          >Disponibilizando como parceria minha prorpiedade como Local de Descanso.
+          </label
         >
         <small
         *ngIf="brandRadiosValidator === false"
@@ -482,7 +472,7 @@
           <label for="formFile2" class="form-label"
             >Anexe - RG (frente e verso)</label
           >
-          <app-upload-file formControlName="imgFileRG" (change)="uploadFiles('imgFileRG')"></app-upload-file>
+          <app-upload-file ></app-upload-file>
           <!-- <input
             class="form-control file"
             id="formFile2"
@@ -493,7 +483,7 @@
 
         <div class="col-md-6">
           <label for="formFile3" class="form-label">Anexe - CPF </label>
-          <app-upload-file formControlName="imgFileCPF" (change)="uploadFiles('imgFileCPF')"></app-upload-file>
+          <app-upload-file ></app-upload-file>
           <!-- <input
             class="form-control"
             id="formFile3"
@@ -506,7 +496,7 @@
           <label for="5" class="form-label"
             >Anexe - Comprovante de residência</label
           >
-          <app-upload-file formControlName="imgFileComprovResidencia" (change)="uploadFiles('imgFileComprovResidencia')"></app-upload-file>
+          <app-upload-file ></app-upload-file>
           <!-- <input
             class="form-control"
             id="formFile5"
@@ -519,7 +509,7 @@
           <label for="formFile4" class="form-label"
             >Anexe - Carta de recomendação da igreja</label
           >
-          <app-upload-file formControlName="imgFileCartaIgreja" (change)="uploadFiles('imgFileCartaIgreja')"></app-upload-file>
+          <app-upload-file ></app-upload-file>
           <!-- <input
             class="form-control"
             id="formFile4"

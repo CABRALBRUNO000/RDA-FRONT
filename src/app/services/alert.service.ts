@@ -13,14 +13,17 @@ export let alertAnimation: AnimationTriggerMetadata = trigger('torrada', [
   state(
     'show',
     style({
+      visibility: 'visible',
       right: '1%',
       top: '50%',
+
     })
   ),
   state(
     'hide',
     style({
-      right: '-50%',
+      right: '-80%',
+      visibility: 'hidden'
     })
   ),
   transition('hide => show', animate('1s ease')),

@@ -26,7 +26,8 @@ import { InteractionsBetweenUsersComponent } from './components/interactions-bet
 import { PeriodWithoutInteractionsComponent } from './components/period-without-interactions/period-without-interactions.component';
 import { AuthService } from './login/auth.service';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
-import { environment } from 'src/environments/environment';
+
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -39,14 +40,11 @@ import { environment } from 'src/environments/environment';
     BirthdayListComponent,
     InteractionsBetweenUsersComponent,
     PeriodWithoutInteractionsComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    ImagekitioAngularModule.forRoot({
-      publicKey: environment.PUBLICKEY,
-      urlEndpoint: environment.URLENDPOINT,
-      authenticationEndpoint: environment.authenticationEndpoint
-    }),
+   
     AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
@@ -57,6 +55,7 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     VolunteersModule,
     BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     VoluntaryService,
@@ -65,6 +64,6 @@ import { environment } from 'src/environments/environment';
     AuthGuard,
   ],
   bootstrap: [AppComponent],
-  exports: [MainComponent, BirthdayListComponent],
+  exports: [MainComponent, BirthdayListComponent,ImagekitioAngularModule ],
 })
 export class AppModule {}

@@ -81,8 +81,8 @@ export class FormCadComponent implements OnInit {
       chekbox5Aconselhamento: [this.Voluntary.chekbox5Aconselhamento],
       especialidade: [this.Voluntary.especialidade],
       servicoOferecido: [this.Voluntary.servicoOferecido],
-      imgUrlPrincipal: [null], //this.Voluntary.imgUrlPrincipal
-      imgFilePrincipal: [null, [Validators.required, requiredFileType('jpeg')]],
+      imgUrlPrincipal: [''], //this.Voluntary.imgUrlPrincipal
+      imgFilePrincipal: [null, ],
       imagesDocUrl: this.formBuilder.group({
         imgRG: [null], //this.Voluntary.imagesDocUrl.imgRG
         imgCPF: [null], //this.Voluntary.imagesDocUrl.imgCPF
@@ -241,20 +241,22 @@ export class FormCadComponent implements OnInit {
   }
 
  
-public uploadFiles(formControlName:string){
-  this.uploadImageService.upload(this.formulario, formControlName).pipe(
-    this.uploadImageService.uploadProgress(progress => (this.percentDone = progress)),
-    this.uploadImageService.toResponseBody()
+  handleUploadSuccess(res) {
+    console.log('File upload success with response: ', res);
+    if(res){
+      this.formulario.get('imgUrlPrincipal').setValue(res.url)
+    }
 
-  ).subscribe(pathNameImage => {
-    this.progress = 0;
-    this.formulario.reset();
-    console.log(pathNameImage);
-    
-    // do something with the response
-  });
-}
-  
+    console.log('informação setada no formulario :::',this.formulario.value.imgUrlPrincipal)
+  }
+
+  handleUploadError(err) {
+    console.log('There was an error in upload: ', err);
+  }
+
+  handleFileInput(event) {
+    console.log('This is the event on file change: ', event);
+  }
  
     
   // quando o cliente clica para atualizar ou cadastrar um voluntário a aplicação chama o guard para
