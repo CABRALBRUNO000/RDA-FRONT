@@ -42,9 +42,7 @@ export class VoluntaryService {
 
   // CADASTRO VOLUNTÁRIOS
   public saveVoluntary(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
-    const formData:FormData = new FormData()
-      formData.append('img', voluntary.imgFilePrincipal)
-    
+   
     return this.http
       .post<VoluntaryModel>(`${this.API}`, JSON.stringify(voluntary),this.httpOptions)
       .pipe(retry(2), catchError(this.handleError))

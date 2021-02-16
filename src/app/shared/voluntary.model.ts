@@ -17,7 +17,6 @@ export interface VoluntaryModel {
   telefoneFx: string;
   email: string;
   imgUrlPrincipal: string;
-  imgFilePrincipal: File;
   nomeIg: string;
   pastor: string;
   chekbox1Profissao: boolean;
@@ -27,18 +26,6 @@ export interface VoluntaryModel {
   chekbox5Aconselhamento: boolean;
   especialidade: string;
   servicoOferecido: string;
-  imagesDocUrl: {
-    imgRG: string;
-    imgCPF: string;
-    imgComprovResidencia: string;
-    imgCartaIgreja: string;
-  };
-  imgFile: {
-    imgFileRG: File;
-    imgFileCPF: File;
-    imgFileComprovResidencia: File;
-    imgFileCartaIgreja: File;
-  };
   dataCad: string;
   status: string;
 }

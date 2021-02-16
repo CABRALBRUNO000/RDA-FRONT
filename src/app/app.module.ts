@@ -18,12 +18,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { BirthdayListComponent } from './components/birthdayList/birthdayList.component';
 
 import { FiltroPersonalizadoService } from './app-forms/services/filtro-personalizado.service';
 import { VoluntaryService } from './volunteers/services/voluntary.service';
-import { InteractionsBetweenUsersComponent } from './components/interactions-between-users/interactions-between-users.component';
-import { PeriodWithoutInteractionsComponent } from './components/period-without-interactions/period-without-interactions.component';
+
 import { AuthService } from './login/auth.service';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 
@@ -37,9 +35,7 @@ import { SharedModule } from './shared/shared.module';
     MainComponent,
     Erro404Component,
     LoginComponent,
-    BirthdayListComponent,
-    InteractionsBetweenUsersComponent,
-    PeriodWithoutInteractionsComponent,
+  
     
   ],
   imports: [
@@ -64,6 +60,6 @@ import { SharedModule } from './shared/shared.module';
     AuthGuard,
   ],
   bootstrap: [AppComponent],
-  exports: [MainComponent, BirthdayListComponent,ImagekitioAngularModule ],
+  exports: [MainComponent,ImagekitioAngularModule ],
 })
 export class AppModule {}

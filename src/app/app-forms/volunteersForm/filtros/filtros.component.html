@@ -32,7 +32,7 @@
             <div class="campo col ">
                 <div class="list-group "  *ngFor="let item of filteredVolunteers" >
                     
-                    <a [routerLink]="['/voluntary',item._id]" class="list-group-item list-group-item-action  align-items-start" >
+                    <a [routerLink]="['/sideBar/voluntary',item._id]" class="list-group-item list-group-item-action  align-items-start" >
                         <img class="imgV card-img-top" [src]="item.imgUrlPrincipal" alt="Imagem do voluntário">
                       <div class="d-flex flex-column w-100 justify-content-between">
                           <div class="d-flex  justify-content-between">

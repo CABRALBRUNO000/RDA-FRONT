@@ -77,24 +77,11 @@ export class FormCadComponent implements OnInit {
       chekbox1Profissao: [this.Voluntary.chekbox1Profissao],
       chekbox2Intercessor: [this.Voluntary.chekbox2Intercessor],
       chekbox3Cuidador: [this.Voluntary.chekbox3Cuidador],
-      chekbox4: [this.Voluntary.chekbox4],
+      chekbox4: [this.Voluntary.chekbox4], // este chekbox precisa ser ajustado o controlname dele está errado propositalmente(faz sentido neste momento)
       chekbox5Aconselhamento: [this.Voluntary.chekbox5Aconselhamento],
       especialidade: [this.Voluntary.especialidade],
       servicoOferecido: [this.Voluntary.servicoOferecido],
-      imgUrlPrincipal: [''], //this.Voluntary.imgUrlPrincipal
-      imgFilePrincipal: [null, ],
-      imagesDocUrl: this.formBuilder.group({
-        imgRG: [null], //this.Voluntary.imagesDocUrl.imgRG
-        imgCPF: [null], //this.Voluntary.imagesDocUrl.imgCPF
-        imgComprovResidencia: [null], //this.Voluntary.imagesDocUrl.imgComprovResidencia
-        imgCartaIgreja: [null], //this.Voluntary.imagesDocUrl.imgCartaIgreja
-      }),
-      imgFile: this.formBuilder.group({
-        imgFileRG: [null],
-        imgFileCPF: [null],
-        imgFileComprovResidencia: [null],
-        imgFileCartaIgreja: [null],
-      }),
+      imgUrlPrincipal: [''], 
       dataCad: [this.Voluntary.dataCad],
       status: [this.Voluntary.status],
     });
@@ -239,7 +226,7 @@ export class FormCadComponent implements OnInit {
       this.brandRadiosValidator = false;
     }
   }
-
+// funções de upload de imagens 
  
   handleUploadSuccess(res) {
     console.log('File upload success with response: ', res);

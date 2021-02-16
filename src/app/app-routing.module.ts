@@ -1,3 +1,4 @@
+import { SideBarComponent } from './adminUsers/sideBar/sideBar.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -24,8 +25,8 @@ const routes: Routes = [];
     AdminUsersRoutingModule,
     RouterModule.forRoot(
       [
-        { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-        { path: 'Dashboard', component: MainComponent, canActivate:[AuthGuard] },
+        { path: '', redirectTo: 'sideBar', pathMatch: 'full' },
+        
         { path: 'LoginUser', component: LoginComponent },
         { path: '**', component: Erro404Component, canActivate:[AuthGuard] },
         

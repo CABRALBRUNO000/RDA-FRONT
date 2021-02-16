@@ -109,6 +109,8 @@ select {
   min-width: 215px;
 }
 
+
+
 [type='radio'] {
   min-width: 20px !important;
   min-height: 20px !important;
@@ -119,11 +121,19 @@ select {
   min-height: 25px;
 }
 
-[type='file']::-webkit-file-upload-button {
-  visibility: hidden;
+.imgFilePrincipal{
+  position: relative; 
+    overflow: hidden; 
+    margin: 10px; 
 }
 
-[type='file']::before {
+
+
+/* ik-upload::-webkit-file-upload-button {
+ display: none;
+}
+
+ik-upload::before {
   content: 'Selecione um arquivo';
   display: inline-block;
   background-image: url(./../../../../assets/001-upload.svg);
@@ -148,7 +158,7 @@ select {
   font-size: 10pt;
 }
 
-[type='file']:hover::before {
+ik-upload:hover::before {
   border-color: #157347;
   background-size: 18px;
   transition: 0.3s;
@@ -157,11 +167,11 @@ select {
   background-position-x: 170px;
 }
 
-[type='file']:hover::before {
+ik-upload:hover::before {
   color: #157347;
   background-size: 18px;
   transition: 0.5s;
-}
+} */
 
 .fieldsetIF:active::before {
   transition: 1s;

@@ -11,7 +11,7 @@
     <hr />
 
     <fieldset class="form-group">
-      <h4 class="mb-4 ml-4">Voluntário</h4> 
+      <h4 class="mb-4 ml-4">Voluntário</h4>
       <div class="row d-flex-wrap m-3 mb-4">
         <div class="col form-floating">
           <input
@@ -22,7 +22,7 @@
             formControlName="nome"
             placeholder="Informe Seu nome completo:"
           />
-          <label class="ml-5"  for="inputName">Nome Completo</label>
+          <label class="ml-5" for="inputName">Nome Completo</label>
           <small
             *ngIf="
               this.formulario.controls.nome.invalid &&
@@ -89,7 +89,7 @@
             "
             class="text-formInvalid fieldInvalidSexo col-sm-3"
           >
-             Selecione um dos ítens
+            Selecione um dos ítens
           </small>
         </div>
       </div>
@@ -217,7 +217,7 @@
 
         <div class="form-floating form-group col">
           <input
-          [ngClass]="aplicaCss('telefone')"
+            [ngClass]="aplicaCss('telefone')"
             formControlName="telefone"
             type="tel"
             class="form-control"
@@ -266,6 +266,7 @@
             class="form-control"
             id="inputEmail"
             placeholder="Informe seu E-mail"
+            
           />
           <label class="ml-3" for="inputEmail">E-mail</label>
           <small
@@ -280,20 +281,14 @@
           </small>
         </div>
         <div class="col imgFilePrincipal">
-
-         
-          <ik-upload fileName="voluntary" [useUniqueFileName]="true" (onSuccess)="handleUploadSuccess($event)" (onError)="handleUploadError($event)"></ik-upload>
+          <ik-upload
+            class="form-control "
           
-          
-
-          
-          <!-- <input
-            class="form-control form-control-sm file"
-            formControlName="imgFilePrincipal"
-            id="formFile1"
-            type="file"
-            
-          /> -->
+            fileName="voluntary"
+            [useUniqueFileName]="true"
+            (onSuccess)="handleUploadSuccess($event)"
+            (onError)="handleUploadError($event)"
+          >upload</ik-upload>
         </div>
       </div>
       <hr />
@@ -342,10 +337,16 @@
     </fieldset>
 
     <hr />
-     
-    <fieldset class="d-flex flex-column"     [ngClass]="{ 'is-validRadios': brandRadiosValidator == true, 'is-invalidRadios': brandRadiosValidator == false }" >
+
+    <fieldset
+      class="d-flex flex-column"
+      [ngClass]="{
+        'is-validRadios': brandRadiosValidator == true,
+        'is-invalidRadios': brandRadiosValidator == false
+      }"
+    >
       <h4 class="mb-4 ml-4">Desejo participar da Rede de Apoio:</h4>
-      
+
       <div class="form-check form-switch">
         <input
           class="form-check-input px-3 py-2"
@@ -354,7 +355,6 @@
           formControlName="chekbox1Profissao"
           (click)="setRadioProficional()"
           (change)="brandRadios()"
-
         />
         <label class="form-check-label" for="chekbox1">
           Atuando voluntáriamente com minha profisão.
@@ -369,8 +369,8 @@
           formControlName="chekbox2Intercessor"
           (change)="brandRadios()"
         />
-        <label class="form-check-label" for="chekbox2"
-          > Atuando voluntáriamente como um intercessor.</label
+        <label class="form-check-label" for="chekbox2">
+          Atuando voluntáriamente como um intercessor.</label
         >
       </div>
 
@@ -383,8 +383,8 @@
           (click)="setRadioCuidador()"
           (change)="brandRadios()"
         />
-        <label class="form-check-label" for="chekbox3"
-          > Atuando voluntáriamente como Pastor Cuidador (conselheiro).</label
+        <label class="form-check-label" for="chekbox3">
+          Atuando voluntáriamente como Pastor Cuidador (conselheiro).</label
         >
       </div>
 
@@ -397,18 +397,13 @@
           (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox4"
-          >Disponibilizando como parceria minha prorpiedade como Local de Descanso.
-          </label
-        >
-        <small
-        *ngIf="brandRadiosValidator === false"
-        class="text-formInvalid" 
-      >
-        é necessário escolher pelo  menos um das opções!
-      </small>
+          >Disponibilizando como parceria minha prorpiedade como Local de
+          Descanso.
+        </label>
+        <small *ngIf="brandRadiosValidator === false" class="text-formInvalid">
+          é necessário escolher pelo menos um das opções!
+        </small>
       </div>
-
-     
     </fieldset>
     <fieldset
       class="mt-2 fieldsetIF pb-4"
@@ -466,58 +461,6 @@
           ?</label
         >
       </div>
-
-      <div class="row ml-4" formGroupName="imgFile">
-        <div class="col-md-6">
-          <label for="formFile2" class="form-label"
-            >Anexe - RG (frente e verso)</label
-          >
-          <app-upload-file ></app-upload-file>
-          <!-- <input
-            class="form-control file"
-            id="formFile2"
-            type="file"
-            formControlName="imgRG"
-          /> -->
-        </div>
-
-        <div class="col-md-6">
-          <label for="formFile3" class="form-label">Anexe - CPF </label>
-          <app-upload-file ></app-upload-file>
-          <!-- <input
-            class="form-control"
-            id="formFile3"
-            type="file"
-            formControlName="imgCPF"
-          /> -->
-        </div>
-
-        <div class="col-md-6">
-          <label for="5" class="form-label"
-            >Anexe - Comprovante de residência</label
-          >
-          <app-upload-file ></app-upload-file>
-          <!-- <input
-            class="form-control"
-            id="formFile5"
-            type="file"
-            formControlName="imgComprovResidencia"
-          /> -->
-        </div>
-
-        <div class="col-md-6">
-          <label for="formFile4" class="form-label"
-            >Anexe - Carta de recomendação da igreja</label
-          >
-          <app-upload-file ></app-upload-file>
-          <!-- <input
-            class="form-control"
-            id="formFile4"
-            type="file"
-            formControlName="imgCartaIgreja"
-          /> -->
-        </div>
-      </div>
     </fieldset>
     <hr />
 
@@ -539,4 +482,3 @@
     </div>
   </form>
 </div>
-

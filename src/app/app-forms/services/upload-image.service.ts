@@ -16,60 +16,21 @@ import { filter, map, tap } from 'rxjs/operators';
 export class UploadImageService {
   constructor(private http: HttpClient) {}
 
-  public upload(formulario: FormGroup, formControlName: string) {
-    return this.http.post(
-      'http://localhost:3000/img',
-      this.toFormData(formulario, formControlName),
-      {
-        reportProgress: true,
-        observe: 'events',
-      }
-    );
-  }
-
-  public toFormData<T>(formValue: FormGroup, formControlName: string) {
+  // public upload(formulario: FormGroup, formControlName: string) {
+  //   return this.http.post(
+  //     'http://localhost:3000/img',
+  //     this.toFormData(formulario, formControlName),
+  //     {
+  //       reportProgress: true,
+  //       observe: 'events',
+  //     }
+  //   );
+  // }
 
 
-    const formData = new FormData();
+  // Este componente deverá ser utilizado para criação das requições de delete de imagens do banco de imagens, isso deverá ser relizado fazendo uma requisição para o bakend para o mesmo 
+  //chamar a api do banco de imagens e realizar o delete da imagem dentro do banco
 
-    switch (formControlName) {
-      case 'imgFilePrincipal':
-        formData.append('image', formValue.value.imgFilePrincipal);
-        break;
-      case 'imgFileCartaIgreja':
-        formData.append('image', formValue.value.imgFile.imgFileCartaIgreja);
-        break;
-      case 'imgFileComprovResidencia':
-        formData.append('image', formValue.value.imgFile.imgFileComprovResidencia);
-        break;
-      case 'imgFileCPF':
-        formData.append('image', formValue.value.imgFile.imgFileCPF);
-        break;
-      case 'imgFileRG':
-        formData.append('image', formValue.value.imgFile.imgFileRG); 
-        break;
-
-      default:
-        console.log(`formControlName RECEBIDO: ${formControlName} :::  não foi identificado o formControlName da imagem adicionada!`);
-        
-        break;
-    }
-
-    return formData;
-  }
-
-  public toResponseBody<T>() {
-    return pipe(
-      filter((event: HttpEvent<T>) => event.type === HttpEventType.Response),
-      map((res: HttpResponse<T>) => res.body)
-    );
-  }
-
-  public uploadProgress<T>(cb: (progress: number) => void) {
-    return tap((event: HttpEvent<T>) => {
-      if (event.type === HttpEventType.UploadProgress) {
-        cb(Math.round((100 * event.loaded) / event.total));
-      }
-    });
-  }
+  
+  
 }

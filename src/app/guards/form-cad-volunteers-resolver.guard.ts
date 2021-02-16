@@ -9,24 +9,21 @@ import { Observable, of } from 'rxjs';
 import { VoluntaryModel } from '../shared/voluntary.model';
 import { VoluntaryService } from '../volunteers/services/voluntary.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
-
   constructor(private voluntaryService: VoluntaryService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):  Observable<VoluntaryModel>  {
-    const idVoluntary = route.params['id']
+  ): Observable<VoluntaryModel> {
+    const idVoluntary = route.params['id'];
     console.log(idVoluntary);
 
     if (route.params && idVoluntary) {
-
-     return this.voluntaryService.getVolunteersPorId(idVoluntary)
+      return this.voluntaryService.getVolunteersPorId(idVoluntary);
     }
 
     return of({
@@ -48,7 +45,6 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
       telefoneFx: '',
       email: '',
       imgUrlPrincipal: '',
-      imgFilePrincipal:null,
       nomeIg: '',
       pastor: '',
       chekbox1Profissao: false,
@@ -58,21 +54,8 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
       chekbox5Aconselhamento: false,
       especialidade: '',
       servicoOferecido: '',
-      imagesDocUrl: {
-        imgRG: '',
-        imgCPF: '',
-        imgComprovResidencia: '',
-        imgCartaIgreja: '',
-      },
-      imgFile:{
-        
-        imgFileRG:null,
-        imgFileCPF:null,
-        imgFileComprovResidencia:null,
-        imgFileCartaIgreja:null,
-      },
       dataCad: '',
-      status: ''
-     });
+      status: '',
+    });
   }
 }
