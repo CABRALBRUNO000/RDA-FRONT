@@ -2,7 +2,7 @@ import { FormCadAdminUsersComponent } from './adminUsersForm/formCadAdminUsers/f
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
-import { PipesModule } from './../pipes/pipes.module';
+import { PipesModule } from '../shared/pipes/pipes.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 

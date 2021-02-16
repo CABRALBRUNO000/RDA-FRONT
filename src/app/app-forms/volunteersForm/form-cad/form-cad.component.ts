@@ -4,9 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
 import { VoluntaryService } from 'src/app/volunteers/services/voluntary.service';
-import { VoluntaryModel } from 'src/app/shared/voluntary.model';
-import { alertAnimation } from '../../../services/alert.service';
-import { AlertService } from '../../../services/alert.service';
+import { VoluntaryModel } from './../../../shared/voluntary.model';
+import { alertAnimation } from './../../../shared/services/alert-animation';
+import { AlertService } from './../../../shared/services/alert.service';
 import { requiredFileType } from './requiredFileType';
 
 @Component({

@@ -1,6 +1,6 @@
 
 import { AuthService } from './../../login/auth.service';
-import { expandableMenu } from './../../services/alert-animation';
+import { expandableMenu } from './../../shared/services/alert-animation';
 import { Component } from '@angular/core';
 
 @Component({

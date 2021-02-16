@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../guards/auth.guard';
+import { AuthGuard } from './../shared/guards/auth.guard';
 
-import { FormCadVolunteersResolverGuard } from '../guards/form-cad-volunteers-resolver.guard';
-import { ListVolunteersComponent } from './listVolunteers/listVolunteers.component';
-import { MypageComponent } from './mypage/mypage.component';
+import { FormCadVolunteersResolverGuard } from './../shared/guards/form-cad-volunteers-resolver.guard';
+import { ListVolunteersComponent } from '../adminUsers/volunteers/listVolunteers/listVolunteers.component';
+import { MypageComponent } from './../adminUsers/volunteers/mypage/mypage.component';
 
 const routes: Routes = [];
 

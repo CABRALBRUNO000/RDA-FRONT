@@ -1,5 +1,5 @@
 import { SideBarComponent } from './adminUsers/sideBar/sideBar.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { PartnersRoutingModule } from './partners/partners.routing.module';
 import { MissionariesRoutingModule } from './missionaries/missionaries.routing.module';
 
 import { MainComponent } from './main/main.component';
-import { Erro404Component } from './erro404/erro404.component';
+import { Erro404Component } from './shared/erro404/erro404.component';
 import { LoginComponent } from './login/login.component';
 
 

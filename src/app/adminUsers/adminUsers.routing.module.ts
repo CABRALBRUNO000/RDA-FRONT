@@ -4,18 +4,18 @@ import { MyPageAdminUsersComponent } from './myPageAdminUsers/myPageAdminUsers.c
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListAdminUsersComponent } from './listAdminUsers/listAdminUsers.component';
-import { AuthGuard } from '../guards/auth.guard';
-import { ListMissionariesComponent } from '../missionaries/listMissionaries/listMissionaries.component';
-import { ListVolunteersComponent } from '../volunteers/listVolunteers/listVolunteers.component';
-import { MypageComponent } from '../volunteers/mypage/mypage.component';
-import { FormCadVolunteersResolverGuard } from '../guards/form-cad-volunteers-resolver.guard';
+import { AuthGuard } from './../shared/guards/auth.guard';
+import { ListMissionariesComponent } from '../adminUsers/missionaries/listMissionaries/listMissionaries.component';
+import { ListVolunteersComponent } from './volunteers/listVolunteers/listVolunteers.component';
+import { MypageComponent } from './../adminUsers/volunteers/mypage/mypage.component';
+import { FormCadVolunteersResolverGuard } from './../shared/guards/form-cad-volunteers-resolver.guard';
 import { FiltrosComponent } from '../app-forms/volunteersForm/filtros/filtros.component';
 import { FormCadComponent } from '../app-forms/volunteersForm/form-cad/form-cad.component';
 import { FormCadAdminUsersComponent } from '../app-forms/adminUsersForm/formCadAdminUsers/formCadAdminUsers.component';
 import { FormCadMissionariesComponent } from '../app-forms/missionariesForm/formCadMissionaries/formCadMissionaries.component';
 import { FormCadPartnersComponent } from '../app-forms/partnersForm/formCadPartners/formCadPartners.component';
-import { ListPartnersComponent } from '../partners/listPartners/listPartners.component';
-import { MyPagePartnersComponent } from '../partners/myPagePartners/myPagePartners.component';
+import { ListPartnersComponent } from './../adminUsers/partners/listPartners/listPartners.component';
+import { MyPagePartnersComponent } from './partners/myPagePartners/myPagePartners.component';
 
 const routes: Routes = [];
 

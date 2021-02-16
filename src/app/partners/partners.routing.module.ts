@@ -1,6 +1,6 @@
-import { AuthGuard } from './../guards/auth.guard';
-import { MyPagePartnersComponent } from './myPagePartners/myPagePartners.component';
-import { ListPartnersComponent } from './listPartners/listPartners.component';
+import { AuthGuard } from './../shared/guards/auth.guard';
+import { MyPagePartnersComponent } from '../adminUsers/partners/myPagePartners/myPagePartners.component';
+import { ListPartnersComponent } from './../adminUsers/partners/listPartners/listPartners.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

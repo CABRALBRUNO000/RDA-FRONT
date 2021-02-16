@@ -1,13 +1,13 @@
-import { ListVolunteersComponent } from './listVolunteers/listVolunteers.component';
+import { ListVolunteersComponent } from '../adminUsers/volunteers/listVolunteers/listVolunteers.component';
 import { VolunteersRoutingModule } from './volunteers.routing.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { PipesModule } from './../pipes/pipes.module';
+import { PipesModule } from '../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 
 import { VoluntaryService } from './services/voluntary.service';
-import { MypageComponent } from './mypage/mypage.component';
+import { MypageComponent } from './../adminUsers/volunteers/mypage/mypage.component';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 import { environment } from 'src/environments/environment';
 

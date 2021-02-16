@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { VoluntaryModel } from 'src/app/shared/voluntary.model';
-import {VoluntaryService} from '../services/voluntary.service'
+import {VoluntaryService} from '../../../volunteers/services/voluntary.service'
 
 
 @Component({
