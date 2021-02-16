@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private router:Router) {}
 
   public authenticateUser(usuario: Usuario) {
-    if (usuario.email === '0' && usuario.password === '0') {
+    if (usuario.email === 'admin' && usuario.password === '123') {
       this.authenticatedUser$.next(true) ;
       this.showMenuEmitter$.next(true)
       this.router.navigate(['/'])

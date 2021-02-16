@@ -5,21 +5,22 @@
 >
   <!-- Sidebar -->
 
-  
-  
-  
-  
+  <div *ngIf="toggledSideBar; then right; else left"></div>
+
   <div id="sidebar-wrapper">
-    <div *ngIf="toggledSideBar; then right; else left"></div>
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
         <a routerLink="/sideBar/Dashboard"> Voluntary </a>
       </li>
       <div class="open-close-container">
         <li class="d-flex justify-content-start">
-          <i class="bi bi-speedometer2 icon" routerLink="/sideBar/Dashboard" style="color: cornflowerblue"></i>
+          <i
+            class="bi bi-speedometer2 icon"
+            routerLink="/sideBar/Dashboard"
+            style="color: cornflowerblue"
+          ></i>
           <i class="bi bi-chevron-bar-contract" (click)="closeLists()"></i>
-          <a style="margin-top: 10px;" routerLink="/sideBar/Dashboard"
+          <a style="margin-top: 10px" routerLink="/sideBar/Dashboard"
             >Dashboard</a
           >
         </li>
@@ -27,11 +28,11 @@
         <li class="d-flex justify-content-start li" (click)="toggleVolunters()">
           <i class="bi bi-person-fill icon" style="color: #4e73df"></i>
 
-          <div *ngIf="expandableMenuVolunters; then thenBlock; else elseBlock"></div>
-          
+          <div
+            *ngIf="expandableMenuVolunters; then thenBlock; else elseBlock"
+          ></div>
 
           <a class="itemMenu">Voluntários</a>
-        
         </li>
         <li
           class="d-flex flex-column"
@@ -73,11 +74,11 @@
           (click)="toggleMissionaries()"
         >
           <i class="bi bi-person-fill icon" style="color: #1cc88a"></i>
-          <div *ngIf="expandableMenuMissionaries; then thenBlock; else elseBlock"></div>
-        
-          
+          <div
+            *ngIf="expandableMenuMissionaries; then thenBlock; else elseBlock"
+          ></div>
+
           <a class="itemMenu">Missionários</a>
-         
         </li>
         <li
           class="d-flex flex-column"
@@ -112,9 +113,9 @@
 
         <li class="d-flex justify-content-start li" (click)="togglePartners()">
           <i class="bi bi-person-fill icon" style="color: #36b9cc"></i>
-          <div *ngIf="expandableMenuPartners; then thenBlock; else elseBlock"></div>
-        
-      
+          <div
+            *ngIf="expandableMenuPartners; then thenBlock; else elseBlock"
+          ></div>
         </li>
         <li
           class="d-flex flex-column"
@@ -155,10 +156,11 @@
           (click)="toggleAdminUsers()"
         >
           <i class="bi bi-person-lines-fill icon" style="color: #6dcc36"></i>
-          <div *ngIf="expandableMenuAdminUsers; then thenBlock; else elseBlock"></div>
-         
+          <div
+            *ngIf="expandableMenuAdminUsers; then thenBlock; else elseBlock"
+          ></div>
+
           <a class="itemMenu">Admin</a>
-        
         </li>
         <li
           class="d-flex flex-column"
@@ -171,9 +173,7 @@
               routerLink="/sideBar/listAdminUsers"
               style="color: #6dcc36"
             ></i>
-            <a routerLink="/sideBar/listAdminUsers"
-              >Lista de Admin
-            </a>
+            <a routerLink="/sideBar/listAdminUsers">Lista de Admin </a>
           </div>
           <div class="d-flex align-items-center">
             <i
@@ -194,23 +194,24 @@
         </li>
       </div>
 
-
       <ng-template #thenBlock>
-        <i class="bi bi-chevron-up chevron" ></i>
+        <i class="bi bi-chevron-up chevron"></i>
       </ng-template>
       <ng-template #elseBlock>
-        <i class="bi bi-chevron-down chevron" ></i>
+        <i class="bi bi-chevron-down chevron"></i>
       </ng-template>
-
-
 
       <ng-template #right>
-        <i class="bi bi-chevron-right chevron-double "  
-        (click)="openSideBar($event)"></i>
+        <i
+          class="bi bi-chevron-right chevron-double"
+          (click)="openSideBar($event)"
+        ></i>
       </ng-template>
       <ng-template #left>
-        <i class="bi bi-chevron-left chevron-double "  
-        (click)="openSideBar($event)"></i>
+        <i
+          class="bi bi-chevron-left chevron-double"
+          (click)="openSideBar($event)"
+        ></i>
       </ng-template>
 
       <!-- <li>

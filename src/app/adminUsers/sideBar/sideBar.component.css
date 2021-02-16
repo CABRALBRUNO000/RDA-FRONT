@@ -147,7 +147,7 @@
 
 .chevron-double {
   z-index: 3000;
-  position: absolute;
+  position: fixed;
   background-color: transparent;
   border: none;
   outline: none;
