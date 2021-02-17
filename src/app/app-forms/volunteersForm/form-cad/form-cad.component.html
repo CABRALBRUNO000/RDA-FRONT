@@ -117,7 +117,8 @@
           </div>
           <div class="form-floating campo form-group col">
             <input
-              type="text"
+              type="number"
+              mask="0"
               class="form-control"
               formControlName="bairro"
               id="inputBairro"
@@ -188,6 +189,7 @@
               formControlName="CEP"
               id="inputCEP"
               placeholder="Informe seu CEP"
+              mask="00000-000"
             />
             <label class="ml-3" for="inputCEP">CEP</label>
           </div>
@@ -221,6 +223,8 @@
             formControlName="telefone"
             type="tel"
             class="form-control"
+            prefix="+55"
+            mask=" (00) 00000-0000"
             id="inputTel"
             placeholder="Informe telefone para Contato"
           />
@@ -238,6 +242,8 @@
         <div class="form-floating form-group col">
           <input
             formControlName="telefoneFx"
+            prefix="+55"
+            mask=" (00) 0000-0000"
             type="tel"
             class="form-control"
             id="inputTelFx"

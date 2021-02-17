@@ -1,3 +1,6 @@
+import { ListVolunteersComponent } from './volunteers/listVolunteers/listVolunteers.component';
+import { ListPartnersComponent } from './partners/listPartners/listPartners.component';
+import { ListMissionariesComponent } from './missionaries/listMissionaries/listMissionaries.component';
 import { PartnersModule } from './../partners/partners.module';
 import { VolunteersModule } from './../volunteers/volunteers.module';
 import { AppFormsModule } from './../app-forms/app-forms.module';
@@ -13,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListAdminUsersComponent } from './listAdminUsers/listAdminUsers.component';
 import { MyPageAdminUsersComponent } from './myPageAdminUsers/myPageAdminUsers.component';
+import { PipesModule } from '../shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -23,7 +27,8 @@ import { MyPageAdminUsersComponent } from './myPageAdminUsers/myPageAdminUsers.c
     AppFormsModule,
     VolunteersModule,
     MissionariesModule,
-    PartnersModule
+    PartnersModule,
+    PipesModule
 
   ],
   declarations: [
@@ -34,6 +39,9 @@ import { MyPageAdminUsersComponent } from './myPageAdminUsers/myPageAdminUsers.c
     InteractionsBetweenUsersComponent,
     PeriodWithoutInteractionsComponent,
     SideBarComponent,
+    ListMissionariesComponent,
+    ListPartnersComponent,
+    ListVolunteersComponent
     
   ],
   exports: [SideBarComponent],

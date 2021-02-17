@@ -1,4 +1,3 @@
-import { ListVolunteersComponent } from '../adminUsers/volunteers/listVolunteers/listVolunteers.component';
 import { VolunteersRoutingModule } from './volunteers.routing.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -21,7 +20,7 @@ import { environment } from 'src/environments/environment';
      RouterModule, 
      PipesModule, 
      VolunteersRoutingModule],
-  declarations: [ MypageComponent, ListVolunteersComponent],
+  declarations: [ MypageComponent, ],
   providers: [VoluntaryService],
 })
 export class VolunteersModule {}

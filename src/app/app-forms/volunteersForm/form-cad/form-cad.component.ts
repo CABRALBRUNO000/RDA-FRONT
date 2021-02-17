@@ -7,7 +7,6 @@ import { VoluntaryService } from 'src/app/volunteers/services/voluntary.service'
 import { VoluntaryModel } from './../../../shared/voluntary.model';
 import { alertAnimation } from './../../../shared/services/alert-animation';
 import { AlertService } from './../../../shared/services/alert.service';
-import { requiredFileType } from './requiredFileType';
 
 @Component({
   selector: 'app-form-cad',

@@ -11,6 +11,7 @@ import { FormCadPartnersComponent } from './partnersForm/formCadPartners/formCad
 import { FiltrosComponent } from './volunteersForm/filtros/filtros.component';
 import { FormCadComponent } from './volunteersForm/form-cad/form-cad.component';
 import { environment } from 'src/environments/environment';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { environment } from 'src/environments/environment';
       urlEndpoint: environment.URL_ENDPOINT,
       authenticationEndpoint: environment.authenticationEndpoint
     }),
+    NgxMaskModule.forChild()
   ],
 
   declarations: [

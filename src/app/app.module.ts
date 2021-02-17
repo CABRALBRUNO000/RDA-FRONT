@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AdminUsersModule } from './adminUsers/adminUsers.module';
 import { VolunteersModule } from './volunteers/volunteers.module';
@@ -35,12 +36,10 @@ import { SharedModule } from './shared/shared.module';
     MainComponent,
     Erro404Component,
     LoginComponent,
-  
-    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-   
+
     AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
@@ -51,7 +50,10 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     VolunteersModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: true,
+    }),
   ],
   providers: [
     VoluntaryService,
@@ -60,6 +62,6 @@ import { SharedModule } from './shared/shared.module';
     AuthGuard,
   ],
   bootstrap: [AppComponent],
-  exports: [MainComponent,ImagekitioAngularModule ],
+  exports: [MainComponent, ImagekitioAngularModule],
 })
 export class AppModule {}

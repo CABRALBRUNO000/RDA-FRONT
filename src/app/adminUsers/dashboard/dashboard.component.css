@@ -88,3 +88,7 @@
   .card .card-header[data-toggle="collapse"].collapsed::after {
     content: '\f105';
   }
+
+  .TitleDash{
+    margin-left: 20px ;
+  }
