@@ -40,12 +40,17 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 
 body {
+  overflow-x: hidden;
+  overflow-y: hidden;
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
   background-color: #666666;
+
 
 }
 
@@ -536,6 +541,21 @@ input.input100 {
   background: #006d59;
 }
 
+
+.imgContainner{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+  height: 300px;
+
+}
+.imgContainner img{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%;
+  height: 80%;
+  object-fit: fill;
+}
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
