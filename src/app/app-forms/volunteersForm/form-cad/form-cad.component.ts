@@ -1,4 +1,3 @@
-import { Voluntary } from './../../../../../../api-rda/src/shared/voluntary';
 import { UploadImageService } from './../../services/upload-image.service';
 import { Component, Input, OnInit } from '@angular/core';
 import {
