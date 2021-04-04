@@ -6,7 +6,6 @@ import { PipesModule } from '../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 
 import { VoluntaryService } from './services/voluntary.service';
-import { MypageComponent } from './../adminUsers/volunteers/mypage/mypage.component';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 import { environment } from 'src/environments/environment';
 
@@ -15,12 +14,12 @@ import { environment } from 'src/environments/environment';
     ImagekitioAngularModule.forRoot({
       publicKey: environment.PUBLICKEY,
       urlEndpoint: environment.URL_ENDPOINT,
-      authenticationEndpoint: environment.authenticationEndpoint     
     }),
      RouterModule, 
      PipesModule, 
-     VolunteersRoutingModule],
-  declarations: [ MypageComponent, ],
+     VolunteersRoutingModule, 
+    ],
+  declarations: [ ],
   providers: [VoluntaryService],
 })
 export class VolunteersModule {}

@@ -20,10 +20,23 @@ img {
 
 .divImg {
   margin: -9px 0px -17px -17px;
-  max-width: 300px;
-  max-height: auto;
+  max-width: auto;
+  max-height: 100%;
 }
-
+.tituloMyPage {
+  font-weight: 700;
+  margin-right: 5px;
+}
+.infoCacec{
+  font-weight: 600;
+  margin-right: 2px;
+}
+.carousel {
+  display: block;
+  height: 700px;
+  width: 100%;
+  padding: 2em;
+}
 @media (max-width: 540px) {
   .list-group-item {
     display: flex;
@@ -58,16 +71,19 @@ img {
   }
 }
 
+.cabecalhoMyPage{
+  max-height:221px
+}
 @media (max-width: 1223px) {
   .divImg {
     margin: 1px;
     max-width: 300px;
     max-height: auto;
   }
-  .list-group-item{
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
+  .list-group-item {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
   }
   .dadosCabec {
     padding: 5px 40px 5px 40px;
@@ -75,10 +91,8 @@ img {
   }
 }
 @media (max-width: 1087px) {
-    .divImg {
-        margin-top: 20px;
-        margin-left: 20px;
-      }
- 
+  .divImg {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 }
-

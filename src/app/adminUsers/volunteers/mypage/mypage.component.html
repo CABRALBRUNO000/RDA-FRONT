@@ -4,92 +4,104 @@
     <div class="card-body">
       <blockquote class="blockquote mb-0">
         <div class="list-group">
-          <div
-            class="list-group-item d-flex align-items-start bg-success text-white"
-          >
+          <div  class="list-group-item d-flex align-items-start bg-success text-white cabecalhoMyPage">
             <div *ngIf="Voluntary" class="divImg">
-              <ik-image
-                [src]="Voluntary.imgUrlPrincipal"
-                [transformation]="transformationImg"
-                class="img-fluid imgPrincipal"
-              ></ik-image>
+
+              <ik-image style="height: 50% !important; " class="img-fluid imgPrincipal" [src]="Voluntary.urlsImage.urlImgPrincipal"
+                [transformation]="transformationImg"></ik-image>
+
             </div>
             <div class="dadosCabec d-flex flex-column">
               <h1 class="ml-4">{{ Voluntary.nome }}</h1>
               <h3 class="ml-4">{{ Voluntary.dataNascimento | dataIdade }}</h3>
-              <div class="dadosHeader2 d-felx ml-4 mb-n4">
-                <small class="text-white text"
-                  >Telefone: {{ Voluntary.telefone }},
+              <div class="dadosHeader2 d-flex ml-4 mb-n4">
+                <small class="text-white ml-3 infoCacec">
+                   {{ Voluntary.profissao }},
                 </small>
-                <small class="text-white ml-3">
-                  Endereço: {{ Voluntary.endereco.rua }},
+                <small class="text-white ml-3 infoCacec">
+                  {{ Voluntary.cidade }} - {{Voluntary.uf}},  
                 </small>
-                <small class="text-white ml-3">
-                  número
-                  {{ Voluntary.endereco.numero }},
+                <small class="text-white text infoCacec"> {{ Voluntary.telefone }}
                 </small>
-                <small class="text-white ml-3">
-                  Cidade
-                  {{ Voluntary.endereco.cidade }}
-                </small>
+               
               </div>
             </div>
           </div>
           <br />
-
-          <div>
-            <div
-              href="#"
-              class="list-group-item list-group-item-action flex-column align-items-start"
-            >
-              <div class="d-flex w-100 justify-content-between"></div>
-              <p class="mb-1">{{ Voluntary.nomeIg }}</p>
-              <div class="d-felx"></div>
+       
+          <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h4 class="mb-1">Endereço</h4>
+            </div>
+            <div class="d-flex">
+             <p class="mb-1">  {{ Voluntary.rua }}</p>
+             <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.numero }}</p>
+             <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.complemento }}</p>
+             <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.bairro }}</p>
+             <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.cidade }}</p>
+             <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.uf }}</p>
+             <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.CEP }}</p>
+              
             </div>
           </div>
           <br />
+          <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h4 class="mb-1">Igreja</h4>
+            </div>
+            <p class="mb-1">{{ Voluntary.nomeIg }}</p>
+            <div class="d-flex"></div>
+          </div>
+
+          <br />
           <div>
-            <div
-              href="#"
-              class="list-group-item list-group-item-action flex-column align-items-start"
-            >
+            <div class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">Pastor</h4>
               </div>
               <p class="mb-1">{{ Voluntary.pastor }}</p>
-              <div class="d-felx"></div>
+              <div class="d-flex"></div>
             </div>
           </div>
           <br />
 
           <div>
-            <div
-              href="#"
-              class="list-group-item list-group-item-action flex-column align-items-start"
-            >
+            <div  class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">Outras Informações</h4>
               </div>
-              <p class="mb-1">Atua como: {{ Voluntary.servicoOferecido }}</p>
+              <p class="mb-1">Atua como: {{ Voluntary.especialidade }}</p>
               <p class="mb-1">Email: {{ Voluntary.email }}</p>
-              <div class="d-felx"></div>
+              <p class="mb-1">Profissao: {{ Voluntary.profissao }}</p>
+              <p class="mb-1">Celular: {{ Voluntary.telefone }}</p>
+              <p  *ngIf="Voluntary.telefoneFx" class="mb-1">Telefone Fixo: {{ Voluntary.telefone }}</p>
+              <p *ngIf="Voluntary.estadoCivil && Voluntary.estadoCivil != 'undefined'" class="mb-1">Estado Civil: {{ Voluntary.estadoCivil }}</p>
+              <p  *ngIf="Voluntary.chekbox1Profissao" class="mb-1">Atua Voluntariamente com sua Profissão</p>
+              <p  *ngIf="Voluntary.chekbox4CasaDescanso" class="mb-1">Atua Voluntariamente disponibilizando casa de descanso </p>
+              <p  *ngIf="Voluntary.chekbox2Intercessor" class="mb-1">Atua como Intercessor</p>
+              <p  *ngIf="Voluntary.chekbox3Cuidador" class="mb-1">Atua como Pastor Cuidador</p>
+              <p  *ngIf="Voluntary.chekbox5Aconselhamento" class="mb-1">Possui Curso de aconselhamento Bíblico</p>
+              <div class="d-flex"></div>
             </div>
           </div>
           <br />
+          
+          <div *ngIf="Voluntary.urlsImage.urlImgsCasaDescanso.length > 0" class="carousel">
+            
+            <app-carousel [slides]="slides"></app-carousel>
+         </div>
+
+
         </div>
 
         <div class="button mb-5 d-flex justify-content-end">
-          <button
-            type="submit"
-            class="btn btn-success btn-lg"
-            [routerLink]="['/sideBar/formCadVoluntary', Voluntary._id]"
-          >
+          <button type="submit" class="btn btn-success btn-lg"
+            [routerLink]="['/sideBar/formCadVoluntary', Voluntary._id]">
             Atualizar
           </button>
         </div>
         <footer class="blockquote-footer">
-          <cite title="Título da fonte"
-            >Data de Cadastro: seg, 25 de mai, 2020
+          <cite title="Título da fonte">Data de Cadastro:{{ Voluntary.dataCad }}
           </cite>
         </footer>
       </blockquote>

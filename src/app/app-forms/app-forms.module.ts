@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 
 import { FormCadMissionariesComponent } from './missionariesForm/formCadMissionaries/formCadMissionaries.component';
-import { FormCadPartnersComponent } from './partnersForm/formCadPartners/formCadPartners.component';
 import { FiltrosComponent } from './volunteersForm/filtros/filtros.component';
 import { FormCadComponent } from './volunteersForm/form-cad/form-cad.component';
 import { environment } from 'src/environments/environment';
@@ -23,15 +22,13 @@ import { NgxMaskModule } from 'ngx-mask';
     ImagekitioAngularModule.forRoot({
       publicKey: environment.PUBLICKEY,
       urlEndpoint: environment.URL_ENDPOINT,
-      authenticationEndpoint: environment.authenticationEndpoint
     }),
-    NgxMaskModule.forChild()
+    NgxMaskModule.forChild(),
   ],
 
   declarations: [
     FiltrosComponent,
     FormCadComponent,
-    FormCadPartnersComponent,
     FormCadMissionariesComponent,
     FormCadAdminUsersComponent,
   ],

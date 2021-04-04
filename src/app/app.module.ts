@@ -1,3 +1,4 @@
+
 import { AuthGuard } from './shared/guards/auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { AuthService } from './login/auth.service';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 
 import { SharedModule } from './shared/shared.module';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-
+    ImagekitioAngularModule.forRoot({
+      publicKey: environment.PUBLICKEY,
+      urlEndpoint: environment.URL_ENDPOINT,
+    }),
     AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
@@ -56,6 +61,7 @@ import { SharedModule } from './shared/shared.module';
     }),
   ],
   providers: [
+   
     VoluntaryService,
     FiltroPersonalizadoService,
     AuthService,

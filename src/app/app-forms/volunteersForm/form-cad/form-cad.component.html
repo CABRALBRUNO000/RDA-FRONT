@@ -93,21 +93,21 @@
           </small>
         </div>
       </div>
-      <div formGroupName="endereco">
+      <div >
         <div class="row m-3 mb-4">
           <div class="form-floating campo form-group col">
             <input
               type="text"
               class="form-control"
-              id="inputNumberC"
+              id="rua"
               formControlName="rua"
               placeholder="Informe o nome da sua rua"
             />
-            <label class="ml-3" class="ml-3" for="inputNumberC">Rua</label>
+            <label class="ml-3" class="ml-3" for="rua">Rua</label>
           </div>
           <div class="form-floating campo form-group col">
             <input
-              type="text"
+              type="number"
               class="form-control"
               id="inputNumberC"
               formControlName="numero"
@@ -117,8 +117,7 @@
           </div>
           <div class="form-floating campo form-group col">
             <input
-              type="number"
-              mask="0"
+              type="text"
               class="form-control"
               formControlName="bairro"
               id="inputBairro"
@@ -255,7 +254,7 @@
 
       <div class="row m-3 mb-4">
         <div class="form-floating form-group col">
-          <select class="form-control" id="inputEstadoCivil">
+          <select class="form-control" id="inputEstadoCivil" formControlName="EstadoCivil">
             <option value="null">Selecione</option>
             <option value="Solteiro">Solteiro</option>
             <option value="Casado">Casado</option>
@@ -264,6 +263,25 @@
           </select>
           <label class="ml-3" for="inputEstadoCivil">Estado Civil</label>
         </div>
+
+        <div class="col imgFilePrincipal">
+          <input
+            type="file"
+            [ngClass]="aplicaCss('imgFilePrincipal')"
+            name="imgFilePrincipal"
+            (change)="onFileSelect($event, 'imgFilePrincipal')"
+          />
+          <small
+          *ngIf="hasArchive !=null && hasArchive && formulario.controls.imgFilePrincipal.invalid"
+            class="text-formInvalid ml-1"
+          >
+            O ítem selecionado não é uma imagem, verifique e tente novamente.
+          </small>
+        </div>
+      </div>
+      
+      <hr />
+      <div class="row m-3 mb-4">
         <div class="form-group form-floating col">
           <input
             [ngClass]="aplicaCss('email')"
@@ -272,7 +290,6 @@
             class="form-control"
             id="inputEmail"
             placeholder="Informe seu E-mail"
-            
           />
           <label class="ml-3" for="inputEmail">E-mail</label>
           <small
@@ -286,17 +303,49 @@
             válido!
           </small>
         </div>
-        <div class="col imgFilePrincipal">
-          <ik-upload
-            class="form-control "
-          
-            fileName="voluntary"
-            [useUniqueFileName]="true"
-            (onSuccess)="handleUploadSuccess($event)"
-            (onError)="handleUploadError($event)"
-          >upload</ik-upload>
+
+        <div class="form-group form-floating col-3" *ngIf="!this.Voluntary._id">
+     
+          <input
+          [ngClass]="aplicaCss('password')"
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="imputPassword"
+            placeholder="Informe sua senha"
+    
+          />
+          <label class="ml-3" for="imputPassword">Senha</label>
+          <small
+            *ngIf=" this.formulario.controls.password.invalid &&
+            (this.formulario.controls.password.touched ||
+            this.formulario.controls.password.dirty),"
+            class="text-formInvalid"
+          >
+            Insira sua senha com pelo menos 8 digitos
+          </small>
+        </div>
+        <div class="form-group form-floating col-3" *ngIf="!this.Voluntary._id">
+          <input
+          formControlName="password2"
+          [ngClass]="aplicaCss('password2')"
+        
+            type="password"
+            class="form-control"
+            id="inputPassword2"
+            placeholder="Informe sua senha"
+          (input)="password2Comparator($event)"
+          />
+          <label class="ml-3" for="inputPassword2">Confirme a senha</label>
+          <small
+            *ngIf="!this.samePassword && this.formulario.controls.password2.dirty"
+            class="text-formInvalid"
+          >
+            As senhas estão diferentes, revise
+          </small>
         </div>
       </div>
+
       <hr />
       <div class="row m-3 mb-4">
         <div class="form-floating col">
@@ -359,7 +408,7 @@
           type="checkbox"
           id="chekbox1"
           formControlName="chekbox1Profissao"
-          (click)="setRadioProficional()"
+          (click)="setRadios($event, 'chekbox1Profissao')"
           (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox1">
@@ -374,6 +423,7 @@
           id="chekbox2"
           formControlName="chekbox2Intercessor"
           (change)="brandRadios()"
+          (click)="setRadios($event, 'chekbox2Intercessor')"
         />
         <label class="form-check-label" for="chekbox2">
           Atuando voluntáriamente como um intercessor.</label
@@ -386,8 +436,8 @@
           type="checkbox"
           id="chekbox3"
           formControlName="chekbox3Cuidador"
-          (click)="setRadioCuidador()"
           (change)="brandRadios()"
+          (click)="setRadios($event, 'chekbox3Cuidador')"
         />
         <label class="form-check-label" for="chekbox3">
           Atuando voluntáriamente como Pastor Cuidador (conselheiro).</label
@@ -399,7 +449,8 @@
           class="form-check-input px-3 py-2"
           type="checkbox"
           id="chekbox4"
-          formControlName="chekbox4"
+          formControlName="chekbox4CasaDescanso"
+          (click)="setRadios($event, 'chekbox4CasaDescanso')"
           (change)="brandRadios()"
         />
         <label class="form-check-label" for="chekbox4"
@@ -413,7 +464,7 @@
     </fieldset>
     <fieldset
       class="mt-2 fieldsetIF pb-4"
-      *ngIf="Voluntary.chekbox1Profissao || fieldsetProfissionaisFIF"
+      *ngIf="formulario.value.chekbox1Profissao"
     >
       <h5 class="mb-4 ml-4">
         Para quem deseja atuar através da sua Profissão:
@@ -424,7 +475,7 @@
           <input
             type="text"
             class="form-control"
-            id="floatingInput"
+            id="especialidade"
             placeholder="Qual a especialidade?"
             formControlName="especialidade"
           />
@@ -435,7 +486,7 @@
           <input
             type="text"
             class="form-control"
-            id="floatingInput"
+            id="servicoOferecido"
             placeholder="o que pode oferecer aos missionários?"
             formControlName="servicoOferecido"
           />
@@ -448,7 +499,7 @@
 
     <fieldset
       class="mt-2 fieldsetIF pb-5"
-      *ngIf="Voluntary.chekbox3Cuidador || fieldsetCuidadoresFIF"
+      *ngIf="formulario.value.chekbox3Cuidador"
     >
       <h5 class="mb-4 ml-4">Somente para Cuidadores:</h5>
 
@@ -467,6 +518,59 @@
           ?</label
         >
       </div>
+    </fieldset>
+    <fieldset
+      class="mt-2 fieldsetIF pb-5"
+      *ngIf="formulario.value.chekbox4CasaDescanso"
+    >
+      <h5 class="mb-4 ml-4">
+        Somente para quem deseja disponibiliar casa de descanso
+      </h5>
+
+      <div class="col imgFilePrincipal d-flex">
+        <input
+          type="file"
+          [ngClass]="aplicaCss('imgFileCasaDescansoPrincipal')"
+          name="imgFileCasaDescansoPrincipal"
+          (change)="onFileSelect($event, 'imgFileCasaDescansoPrincipal')"
+        />
+
+        <div class="labelTypeFile">
+          <p>
+            Aqui, adicione a imagem principal que deja mostrar sobre a casa, é
+            possivel adicionar somente uma imagem principal.
+          </p>
+        </div>
+      </div>
+      <small
+      *ngIf="hasArchive !=null && hasArchive && formulario.controls.imgFileCasaDescansoPrincipal.invalid"
+
+        class="text-formInvalid ml-1"
+      >
+        O ítem selecionado não é uma imagem, verifique e tente novamente.
+      </small>
+      <hr />
+      <div class="col imgFilePrincipal d-flex">
+        <input
+          type="file"
+          multiple
+          [ngClass]="aplicaCss('imgsCasaDescansoFile')"
+          name="imgsCasaDescansoFile"
+          (change)="onFileSelect($event, 'imgsCasaDescansoFile')"
+        />
+        <div class="labelTypeFile">
+          <p>
+            Aqui, adicione até 10 imagens da casa que deseja disponibilizar.
+          </p>
+        </div>
+      </div>
+      <small
+      *ngIf="hasArchive !=null && hasArchive && formulario.controls.imgsCasaDescansoFile.invalid"
+
+        class="text-formInvalid ml-1"
+      >
+        Algum ítem selecionado não é uma imagem, verifique e tente novamente.
+      </small>
     </fieldset>
     <hr />
 

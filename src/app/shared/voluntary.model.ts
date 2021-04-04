@@ -3,7 +3,7 @@ export interface VoluntaryModel {
   nome: string;
   dataNascimento: string;
   sexo: string;
-  endereco: {
+
     rua: string;
     numero: string;
     bairro: string;
@@ -11,20 +11,30 @@ export interface VoluntaryModel {
     complemento: string;
     uf: string;
     CEP: string;
-  };
+
   profissao: string;
   telefone: string;
   telefoneFx: string;
+  estadoCivil: string;
   email: string;
-  imgUrlPrincipal: string;
+  password: string,
+  password2: string,
+  imgFilePrincipal: File;
+  imgsCasaDescansoFile:File,
+  imgFileCasaDescansoPrincipal:File,
   nomeIg: string;
   pastor: string;
   chekbox1Profissao: boolean;
   chekbox2Intercessor: boolean;
   chekbox3Cuidador: boolean;
-  chekbox4: boolean;
+  chekbox4CasaDescanso: boolean;
   chekbox5Aconselhamento: boolean;
   especialidade: string;
+  urlsImage: {
+    urlImgPrincipal: string;
+    urlImgCasaDescansoPrincipal: string,
+    urlImgsCasaDescanso: []
+  };
   servicoOferecido: string;
   dataCad: string;
   status: string;

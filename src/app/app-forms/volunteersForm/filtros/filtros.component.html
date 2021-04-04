@@ -33,11 +33,11 @@
                 <div class="list-group "  *ngFor="let item of filteredVolunteers" >
                     
                     <a [routerLink]="['/sideBar/voluntary',item._id]" class="list-group-item list-group-item-action  align-items-start" >
-                        <img class="imgV card-img-top" [src]="item.imgUrlPrincipal" alt="Imagem do voluntário">
+                        <!-- <img class="imgV card-img-top" [src]="item.urlsImage.imgFilePrincipal" alt="Imagem do voluntário"> -->
                       <div class="d-flex flex-column w-100 justify-content-between">
                           <div class="d-flex  justify-content-between">
                               <h5 class="mb-1">{{item.nome}}, {{item.dataNascimento | dataIdade }}</h5>
-                              <small> {{item.endereco.rua}}, {{item.endereco.numero}}, {{item.endereco.cidade}} -{{item.endereco.uf}}</small> 
+                              <small> {{item.rua}}, {{item.numero}}, {{item.cidade}} -{{item.uf}}</small> 
                           </div>
                         <p class="mb-1">{{item.profissao}}  | auxiliando como {{item.especialidade}}  </p>
                         <small>|{{item.nomeIg}}s</small>

@@ -4,10 +4,11 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Injectable, Pipe } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, retry, catchError, take } from 'rxjs/operators';
 import { VoluntaryModel } from 'src/app/shared/voluntary.model';
+import { toFormData } from 'src/app/app-forms/fileUpload/toFormData';
 
 @Injectable()
 export class VoluntaryService {
@@ -16,13 +17,11 @@ export class VoluntaryService {
 
   // pega todos os voluntários
   public getVolunteers(): Observable<VoluntaryModel[]> {
-    return this.http.get<VoluntaryModel[]>(`${this.API}`)
-    .pipe( take(1))
+    return this.http.get<VoluntaryModel[]>(`${this.API}`).pipe(take(1));
   }
   // Busca os dados do voluntário pelo seu ID
   public getVolunteersPorId(id: string): Observable<VoluntaryModel> {
-    return this.http.get<VoluntaryModel>(`${this.API}/${id}`)
-    .pipe(take(1))
+    return this.http.get<VoluntaryModel>(`${this.API}/${id}`).pipe(take(1));
   }
 
   // CAMPO DE BUSCA na tela principal (precisa de ajuste)
@@ -35,25 +34,29 @@ export class VoluntaryService {
 
   // Headers para fazer o post de o put
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ "Content-Type": "multipart/form-data; boundary=<--- ::::>"}),
   };
-
-  // CHAMADAS CONSTRUIDAS PARA RESTORNOS QUE AINDA NÃO EXISTEM NA API
 
   // CADASTRO VOLUNTÁRIOS
   public saveVoluntary(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
-   
+
     return this.http
-      .post<VoluntaryModel>(`${this.API}`, JSON.stringify(voluntary),this.httpOptions)
+      .post<VoluntaryModel>(
+        `${this.API}`,
+        toFormData(voluntary)
+      )
       .pipe(retry(2), catchError(this.handleError))
-      .pipe(take(1));
-     
+      .pipe(take(1))
   }
 
   // Atualiza um voluntário
-  public updateVoluntaryID(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
-    return this.http.put<VoluntaryModel>(`${this.API}/${voluntary._id}`,JSON.stringify(voluntary),
-        this.httpOptions
+  public updateVoluntaryID(
+    voluntary: VoluntaryModel
+  ): Observable<VoluntaryModel> {
+    return this.http
+      .put<VoluntaryModel>(
+        `${this.API}/${voluntary._id}`,
+        toFormData(voluntary)
       )
       .pipe(retry(2), catchError(this.handleError))
       .pipe(take(1));
@@ -62,26 +65,25 @@ export class VoluntaryService {
   // deleta um voluntário
   public deleteVoluntary(voluntary: VoluntaryModel) {
     return this.http
-      .delete<VoluntaryModel>(
-        `${this.API}/${voluntary._id}`,
-        this.httpOptions
-      )
+      .delete<VoluntaryModel>(`${this.API}/${voluntary._id}`, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
       .pipe(take(1));
   }
 
   // Manipulação de erros
   public handleError(error: HttpErrorResponse) {
-    let errorMessage = '';
+    let errorMessage = {};
     if (error.error instanceof ErrorEvent) {
       // Erro ocorreu no lado do client
-      errorMessage = error.error.message;
+      Object.assign(errorMessage, { ErroMensagem: error.error.message })
+     
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage =
-        `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
+      Object.assign(errorMessage, { StatusCode: error.status })
+          //  `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
     }
-    console.log(errorMessage);
+
+    
     return throwError(errorMessage);
   }
 }

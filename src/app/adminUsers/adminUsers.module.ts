@@ -1,7 +1,7 @@
+import { MypageComponent } from './volunteers/mypage/mypage.component';
+import { SharedModule } from './../shared/shared.module';
 import { ListVolunteersComponent } from './volunteers/listVolunteers/listVolunteers.component';
-import { ListPartnersComponent } from './partners/listPartners/listPartners.component';
 import { ListMissionariesComponent } from './missionaries/listMissionaries/listMissionaries.component';
-import { PartnersModule } from './../partners/partners.module';
 import { VolunteersModule } from './../volunteers/volunteers.module';
 import { AppFormsModule } from './../app-forms/app-forms.module';
 import { MissionariesModule } from './../missionaries/missionaries.module';
@@ -17,9 +17,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListAdminUsersComponent } from './listAdminUsers/listAdminUsers.component';
 import { MyPageAdminUsersComponent } from './myPageAdminUsers/myPageAdminUsers.component';
 import { PipesModule } from '../shared/pipes/pipes.module';
+import { environment } from 'src/environments/environment';
+import { ImagekitioAngularModule } from 'imagekitio-angular';
 
 @NgModule({
   imports: [
+    ImagekitioAngularModule.forRoot({
+      publicKey: environment.PUBLICKEY,
+      urlEndpoint: environment.URL_ENDPOINT,
+    }),
     CommonModule,
     BrowserAnimationsModule,
     AdminUsersRoutingModule,
@@ -27,8 +33,8 @@ import { PipesModule } from '../shared/pipes/pipes.module';
     AppFormsModule,
     VolunteersModule,
     MissionariesModule,
-    PartnersModule,
-    PipesModule
+    PipesModule,
+    SharedModule
 
   ],
   declarations: [
@@ -40,8 +46,10 @@ import { PipesModule } from '../shared/pipes/pipes.module';
     PeriodWithoutInteractionsComponent,
     SideBarComponent,
     ListMissionariesComponent,
-    ListPartnersComponent,
-    ListVolunteersComponent
+    ListVolunteersComponent,
+    MypageComponent
+    
+ 
     
   ],
   exports: [SideBarComponent],

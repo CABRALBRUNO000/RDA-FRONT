@@ -111,47 +111,6 @@
           </div>
         </li>
 
-        <li class="d-flex justify-content-start li" (click)="togglePartners()">
-          <i class="bi bi-person-fill icon" style="color: #36b9cc"></i>
-          <div
-            *ngIf="expandableMenuPartners; then thenBlock; else elseBlock"
-          ></div>
-          <a class="itemMenu">Parceiros</a>
-        </li>
-        <li
-          class="d-flex flex-column"
-          *ngIf="expandableMenuPartners == true"
-          [@expandable]="expandableMenuPartners ? 'closed' : 'open'"
-        >
-          <div class="d-flex align-items-center">
-            <i
-              class="bi bi-card-list subIcon"
-              routerLink="/sideBar/listPartners"
-              style="color: #36b9cc"
-            ></i>
-            <a routerLink="/sideBar/listPartners" class="subItemMenu"
-              >Lista de Parceiros
-            </a>
-          </div>
-          <div class="d-flex align-items-center">
-            <i
-              class="bi bi-menu-app subIcon"
-              routerLink="/sideBar/formCadPartners"
-              style="color: #36b9cc"
-            ></i>
-            <a routerLink="/sideBar/formCadPartners" class="subItemMenu"
-              >Cadastro
-            </a>
-          </div>
-          <div class="d-flex align-items-center">
-            <i class="bi bi-funnel subIcon" style="color: #dbdbdb"></i>
-            <a class="disabled">Filtros</a>
-          </div>
-          <div class="d-flex align-items-center">
-            <i class="bi bi-file-text subIcon" style="color: #dbdbdb"></i>
-            <a class="disabled">Relatórios</a>
-          </div>
-        </li>
         <li
           class="d-flex justify-content-start li"
           (click)="toggleAdminUsers()"

@@ -22,9 +22,11 @@ export class ListVolunteersComponent implements OnInit {
   constructor( private VoluntaryService: VoluntaryService,
     private route: ActivatedRoute) { }
 
+    transformationImg = [{ "height": "300", "width": "400" }];
+
     ngOnInit(): void {
-    
       this.volunteers$ = this.VoluntaryService.getVolunteers();
+      
 
       this.volunteersObservable = this.subjectPesquisa
         .pipe(debounceTime(1000))

@@ -14,7 +14,9 @@
 
     <div *ngFor=" let item of volunteers$ |async" >
       <div class="card" style="width: 18rem;" >
-         <img class="imgV card-img-top" [src]="item.imgUrlPrincipal" alt="Imagem do voluntário">
+         <ik-image [src]="item.urlsImage.urlImgPrincipal" [transformation]="transformationImg" ></ik-image>
+
+       
         <div class="card-body" >
           <hr>
 

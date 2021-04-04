@@ -13,9 +13,6 @@ import { FiltrosComponent } from '../app-forms/volunteersForm/filtros/filtros.co
 import { FormCadComponent } from '../app-forms/volunteersForm/form-cad/form-cad.component';
 import { FormCadAdminUsersComponent } from '../app-forms/adminUsersForm/formCadAdminUsers/formCadAdminUsers.component';
 import { FormCadMissionariesComponent } from '../app-forms/missionariesForm/formCadMissionaries/formCadMissionaries.component';
-import { FormCadPartnersComponent } from '../app-forms/partnersForm/formCadPartners/formCadPartners.component';
-import { ListPartnersComponent } from './../adminUsers/partners/listPartners/listPartners.component';
-import { MyPagePartnersComponent } from './partners/myPagePartners/myPagePartners.component';
 
 const routes: Routes = [];
 
@@ -77,17 +74,7 @@ const routes: Routes = [];
               // voluntary: FormCadVolunteersResolverGuard,
             },
           },
-          // PARCEIROS 
-
-          { path: 'listPartners', component: ListPartnersComponent, canActivate:[AuthGuard] },
-      {
-        path: 'myPagePartners/:id',
-        component: MyPagePartnersComponent, canActivate:[AuthGuard],
-        resolve: {
-          // voluntary: FormCadVolunteersResolverGuard,
-        },
-      },
-      // prayerPartners
+         
 
           //FORMULÁRIOS
 
@@ -123,21 +110,6 @@ const routes: Routes = [];
             },
           },
 
-          {
-            path: 'formCadPartners',
-            component: FormCadPartnersComponent,
-            resolve: {
-              //  voluntary: FormCadAdminUsersResolverGuard,
-            },
-          },
-          {
-            path: 'formCadPartners/:id',
-            component: FormCadPartnersComponent,
-            canActivate: [AuthGuard],
-            resolve: {
-              // voluntary: FormCadAdminUsersResolverGuard,
-            },
-          },
           {
             path: 'formCadVoluntary',
             component: FormCadComponent,

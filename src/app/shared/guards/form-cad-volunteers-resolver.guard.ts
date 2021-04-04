@@ -20,7 +20,7 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
     state: RouterStateSnapshot
   ): Observable<VoluntaryModel> {
     const idVoluntary = route.params['id'];
-    console.log(idVoluntary);
+     console.log(idVoluntary);
 
     if (route.params && idVoluntary) {
       return this.voluntaryService.getVolunteersPorId(idVoluntary);
@@ -31,7 +31,6 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
       nome: '',
       dataNascimento: '',
       sexo: '',
-      endereco: {
         rua: '',
         numero: '',
         bairro: '',
@@ -39,20 +38,29 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
         complemento: '',
         uf: '',
         CEP: '',
-      },
       profissao: '',
       telefone: '',
       telefoneFx: '',
+      estadoCivil:'',
       email: '',
-      imgUrlPrincipal: '',
+      password:'',
+      password2:'',
+      imgFilePrincipal:null ,
+      imgsCasaDescansoFile:null,
+      imgFileCasaDescansoPrincipal:null,
       nomeIg: '',
       pastor: '',
       chekbox1Profissao: false,
       chekbox2Intercessor: false,
       chekbox3Cuidador: false,
-      chekbox4: false,
+      chekbox4CasaDescanso: false,
       chekbox5Aconselhamento: false,
       especialidade: '',
+      urlsImage: {
+        urlImgPrincipal: '',
+        urlImgCasaDescansoPrincipal: '',
+        urlImgsCasaDescanso:[]
+      },
       servicoOferecido: '',
       dataCad: '',
       status: '',
