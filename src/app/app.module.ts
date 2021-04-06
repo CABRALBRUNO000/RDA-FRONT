@@ -41,10 +41,10 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    ImagekitioAngularModule.forRoot({
-      publicKey: environment.PUBLICKEY,
-      urlEndpoint: environment.URL_ENDPOINT,
-    }),
+    // ImagekitioAngularModule.forRoot({
+    //   publicKey: environment.PUBLICKEY,
+    //   urlEndpoint: environment.URL_ENDPOINT,
+    // }),
     AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,

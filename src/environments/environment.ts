@@ -6,8 +6,8 @@ export const environment = {
   production: false,
 
   AMBIENTE: 'desenvolvimento',
-  API:'https://api-rda.vercel.app/volunteers',
-  // API:'http://localhost:3000/volunteers',
+
+  API:'http://localhost:3000/volunteers',
   PUBLICKEY: 'public_+hB40s/S9YExGhUnrP6lqyWo16Q=', 
   PRIVATEKEY: 'private_NXH5tlpCiAYoPOzICzZvdk8US68=', 
   URL_ENDPOINT: 'https://ik.imagekit.io/cimrda/', 

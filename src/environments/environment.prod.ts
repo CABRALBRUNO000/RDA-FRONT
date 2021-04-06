@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   AMBIENTE: 'production',
-  API:'https://api-rda.vercel.app/volunteers',
+  API:'https://back-rda.vercel.app/volunteers',
   
   PUBLICKEY: ' public_IbxahIOtljwWt0cQXY+fdYm0kYY=',
   PRIVATEKEY: 'private_NXH5tlpCiAYoPOzICzZvdk8US68=',
