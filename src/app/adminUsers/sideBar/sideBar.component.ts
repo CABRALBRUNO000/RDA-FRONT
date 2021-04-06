@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 
 import { AuthService } from './../../login/auth.service';
 import { expandableMenu } from './../../shared/services/alert-animation';
@@ -17,6 +18,7 @@ export class SideBarComponent {
   expandableMenuMissionaries = false;
   expandableMenuPartners = false;
   expandableMenuAdminUsers = false;
+  ambiente: any;
 
 
   public toggleVolunters() {
@@ -35,7 +37,7 @@ export class SideBarComponent {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-  
+  this.ambiente = environment.AMBIENTE
 
 
 

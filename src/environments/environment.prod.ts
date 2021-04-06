@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  AMBIENTE: 'production',
   API:'https://api-rda.vercel.app/volunteers',
   
   PUBLICKEY: ' public_IbxahIOtljwWt0cQXY+fdYm0kYY=',
