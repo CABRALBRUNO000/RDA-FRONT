@@ -8,148 +8,85 @@
   <h1 *ngIf="!Voluntary._id">Novo Cadastro</h1>
   <h1 *ngIf="Voluntary._id">Editar Cadastro</h1>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <hr />
-
-    <fieldset class="form-group">
+    <fieldset class="form-group mb-2">
       <h4 class="mb-4 ml-4">Voluntário</h4>
       <div class="row d-flex-wrap m-3 mb-4">
         <div class="col form-floating">
-          <input
-            [ngClass]="aplicaCss('nome')"
-            type="text"
-            id="inputName"
-            class="form-control"
-            formControlName="nome"
-            placeholder="Informe Seu nome completo:"
-          />
+          <input [ngClass]="aplicaCss('nome')" type="text" id="inputName" class="form-control" formControlName="nome"
+            placeholder="Informe Seu nome completo:" />
           <label class="ml-5" for="inputName">Nome Completo</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.nome.invalid &&
               this.formulario.controls.nome.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             Este campo precisa ter pelo menos 3 caracteres...
           </small>
         </div>
         <div class="form-floating col">
-          <input
-            [ngClass]="aplicaCss('dataNascimento')"
-            type="date"
-            id="inputLastname"
-            formControlName="dataNascimento"
-            class="form-control"
-          />
+          <input [ngClass]="aplicaCss('dataNascimento')" type="date" id="inputLastname" formControlName="dataNascimento"
+            class="form-control" />
           <label class="ml-3 ml-2" for="inputLastname">Nascimento</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.dataNascimento.invalid &&
               this.formulario.controls.dataNascimento.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             insira sua data de Nascimento!
           </small>
         </div>
-        <div class="col-auto radioSexo">
-          <div
-            class="custom-control custom-radio"
-            [ngClass]="aplicaCss('sexo')"
-          >
-            <input
-              class="form-check-input mr-2"
-              type="radio"
-              formControlName="sexo"
-              name="sexo"
-              id="masculino"
-              value="M"
-            />
+        <div class="col-auto radioSexo d-flex flex-wrap">
+          <div class="custom-control custom-radio" [ngClass]="aplicaCss('sexo')">
+            <input class="form-check-input mr-2" type="radio" formControlName="sexo" name="sexo" id="masculino"
+              value="M" />
             <label class="" class="form-check-label" for="masculino">
               Masculino
             </label>
           </div>
           <div class="custom-control custom-radio">
-            <input
-              class="form-check-input mr-2"
-              type="radio"
-              formControlName="sexo"
-              name="sexo"
-              id="feminino"
-              value="F"
-            />
+            <input class="form-check-input mr-2" type="radio" formControlName="sexo" name="sexo" id="feminino"
+              value="F" />
             <label class="" class="form-check-label" for="feminino">
               Feminino
             </label>
           </div>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.sexo.invalid &&
               this.formulario.controls.sexo.touched
-            "
-            class="text-formInvalid fieldInvalidSexo col-sm-3"
-          >
+            " class="text-formInvalid fieldInvalidSexo col-sm-3">
             Selecione um dos ítens
           </small>
         </div>
       </div>
-      <div >
+      <div>
         <div class="row m-3 mb-4">
           <div class="form-floating campo form-group col">
-            <input
-              type="text"
-              class="form-control"
-              id="rua"
-              formControlName="rua"
-              placeholder="Informe o nome da sua rua"
-            />
+            <input type="text" class="form-control" id="rua" formControlName="rua"
+              placeholder="Informe o nome da sua rua" />
             <label class="ml-3" class="ml-3" for="rua">Rua</label>
           </div>
           <div class="form-floating campo form-group col">
-            <input
-              type="number"
-              class="form-control"
-              id="inputNumberC"
-              formControlName="numero"
-              placeholder="nº"
-            />
+            <input type="number" class="form-control" id="inputNumberC" formControlName="numero" placeholder="nº" />
             <label class="ml-3" class="ml-3" for="inputNumberC">Número</label>
           </div>
           <div class="form-floating campo form-group col">
-            <input
-              type="text"
-              class="form-control"
-              formControlName="bairro"
-              id="inputBairro"
-              placeholder="Informe seu Bairro:"
-            />
+            <input type="text" class="form-control" formControlName="bairro" id="inputBairro"
+              placeholder="Informe seu Bairro:" />
             <label class="ml-3" class="ml-3" for="inputBairro">Bairro</label>
           </div>
         </div>
 
         <div class="row m-3 mb-4">
           <div class="form-floating campo form-group col">
-            <input
-              type="text"
-              class="form-control"
-              id="inputCity"
-              formControlName="cidade"
-              placeholder="Informe sua cidade:"
-            />
+            <input type="text" class="form-control" id="inputCity" formControlName="cidade"
+              placeholder="Informe sua cidade:" />
             <label class="ml-3" class="ml-3" for="inputCity">Cidade</label>
           </div>
           <div class="campo form-floating form-group col">
-            <input
-              type="text"
-              class="form-control"
-              id="inputComple"
-              formControlName="complemento"
-              placeholder="Casa / Apt"
-            />
+            <input type="text" class="form-control" id="inputComple" formControlName="complemento"
+              placeholder="Casa / Apt" />
             <label class="ml-3" for="inputComple">Complemento</label>
           </div>
-          <div class="campo form-floating form-group col">
-            <select formControlName="uf" id="inputEstado" class="form-control">
+          <div class="campo form-floating col">
+            <select formControlName="uf" id="inputEstado" class="form-select">
               <option selected value="null">Escolha Estado...</option>
               <option value="AC">Acre</option>
               <option value="AL">Alagoas</option>
@@ -182,79 +119,46 @@
             <label class="ml-3" for="inputEstado">Estado</label>
           </div>
           <div class="form-floating form-group col">
-            <input
-              type="cep"
-              class="form-control"
-              formControlName="CEP"
-              id="inputCEP"
-              placeholder="Informe seu CEP"
-              mask="00000-000"
-            />
+            <input type="cep" class="form-control" formControlName="CEP" id="inputCEP" placeholder="Informe seu CEP"
+              mask="00000-000" />
             <label class="ml-3" for="inputCEP">CEP</label>
           </div>
         </div>
       </div>
       <div class="row m-3 mb-4">
         <div class="form-floating form-group col">
-          <input
-            [ngClass]="aplicaCss('profissao')"
-            formControlName="profissao"
-            type="text"
-            class="form-control"
-            id="inputProf"
-            placeholder="Informe sua profissão"
-          />
+          <input [ngClass]="aplicaCss('profissao')" formControlName="profissao" type="text" class="form-control"
+            id="inputProf" placeholder="Informe sua profissão" />
           <label class="ml-3" for="inputProf">Profissão</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.profissao.invalid &&
               this.formulario.controls.profissao.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             Não esqueça de colocar sua profissão, isso é importante!
           </small>
         </div>
 
         <div class="form-floating form-group col">
-          <input
-            [ngClass]="aplicaCss('telefone')"
-            formControlName="telefone"
-            type="tel"
-            class="form-control"
-            prefix="+55"
-            mask=" (00) 00000-0000"
-            id="inputTel"
-            placeholder="Informe telefone para Contato"
-          />
+          <input [ngClass]="aplicaCss('telefone')" formControlName="telefone" type="tel" class="form-control"
+            prefix="+55" mask=" (00) 00000-0000" id="inputTel" placeholder="Informe telefone para Contato" />
           <label class="ml-3" for="inputTel">Telefone Celular</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.telefone.invalid &&
               this.formulario.controls.telefone.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             Não esqueça de informar o seu telefone celular!
           </small>
         </div>
         <div class="form-floating form-group col">
-          <input
-            formControlName="telefoneFx"
-            prefix="+55"
-            mask=" (00) 0000-0000"
-            type="tel"
-            class="form-control"
-            id="inputTelFx"
-            placeholder="Informe telefone para Contato"
-          />
+          <input formControlName="telefoneFx" prefix="+55" mask=" (00) 0000-0000" type="tel" class="form-control"
+            id="inputTelFx" placeholder="Informe telefone para Contato" />
           <label class="ml-3" for="inputTelFx">Telefone fixo</label>
         </div>
       </div>
 
-      <div class="row m-3 mb-4">
-        <div class="form-floating form-group col">
-          <select class="form-control" id="inputEstadoCivil" formControlName="EstadoCivil">
+      <div class="row m-3 mb-4 d-flex flex-wrap forcedResponsiveness">
+        <div class="form-floating col">
+          <select class="form-select" id="inputEstadoCivil" formControlName="EstadoCivil">
             <option value="null">Selecione</option>
             <option value="Solteiro">Solteiro</option>
             <option value="Casado">Casado</option>
@@ -263,84 +167,55 @@
           </select>
           <label class="ml-3" for="inputEstadoCivil">Estado Civil</label>
         </div>
-
-        <div class="col imgFilePrincipal">
-          <input
-            type="file"
-            [ngClass]="aplicaCss('imgFilePrincipal')"
-            name="imgFilePrincipal"
-            (change)="onFileSelect($event, 'imgFilePrincipal')"
-          />
-          <small
-          *ngIf="hasArchive !=null && hasArchive && formulario.controls.imgFilePrincipal.invalid"
-            class="text-formInvalid ml-1"
-          >
+        <div class="col d-flex flex-wrap">
+          <div class="col inputImg ">
+            <input  type="file" [ngClass]="aplicaCss('imgFilePrincipal')" name="imgFilePrincipal"
+              (change)="onFileSelect($event, 'imgFilePrincipal')" />
+          </div>
+          <small *ngIf="
+              hasArchive != null &&
+              hasArchive &&
+              formulario.controls.imgFilePrincipal.invalid
+            " class="text-formInvalid ml-1">
             O ítem selecionado não é uma imagem, verifique e tente novamente.
           </small>
         </div>
       </div>
-      
+
       <hr />
       <div class="row m-3 mb-4">
         <div class="form-group form-floating col">
-          <input
-            [ngClass]="aplicaCss('email')"
-            formControlName="email"
-            type="email"
-            class="form-control"
-            id="inputEmail"
-            placeholder="Informe seu E-mail"
-          />
+          <input [ngClass]="aplicaCss('email')" formControlName="email" type="email" class="form-control"
+            id="inputEmail" placeholder="Informe seu E-mail" />
           <label class="ml-3" for="inputEmail">E-mail</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.email.invalid &&
               this.formulario.controls.email.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             Este campo não pode ficar vazio! Não se esqueça, o email tem que ser
             válido!
           </small>
         </div>
 
-        <div class="form-group form-floating col-3" *ngIf="!this.Voluntary._id">
-     
-          <input
-          [ngClass]="aplicaCss('password')"
-            formControlName="password"
-            type="password"
-            class="form-control"
-            id="imputPassword"
-            placeholder="Informe sua senha"
-    
-          />
+        <div class="form-group form-floating col" *ngIf="!this.Voluntary._id">
+          <input [ngClass]="aplicaCss('password')" formControlName="password" type="password" class="form-control"
+            id="imputPassword" placeholder="Informe sua senha" />
           <label class="ml-3" for="imputPassword">Senha</label>
-          <small
-            *ngIf=" this.formulario.controls.password.invalid &&
-            (this.formulario.controls.password.touched ||
-            this.formulario.controls.password.dirty),"
-            class="text-formInvalid"
-          >
+          <small *ngIf="
+              this.formulario.controls.password.invalid &&
+              (this.formulario.controls.password.touched ||
+                this.formulario.controls.password.dirty)
+            " class="text-formInvalid">
             Insira sua senha com pelo menos 8 digitos
           </small>
         </div>
-        <div class="form-group form-floating col-3" *ngIf="!this.Voluntary._id">
-          <input
-          formControlName="password2"
-          [ngClass]="aplicaCss('password2')"
-        
-            type="password"
-            class="form-control"
-            id="inputPassword2"
-            placeholder="Informe sua senha"
-          (input)="password2Comparator($event)"
-          />
+        <div class="form-group form-floating col" *ngIf="!this.Voluntary._id">
+          <input formControlName="password2" [ngClass]="aplicaCss('password2')" type="password" class="form-control"
+            id="inputPassword2" placeholder="Informe sua senha" (input)="password2Comparator($event)" />
           <label class="ml-3" for="inputPassword2">Confirme a senha</label>
-          <small
-            *ngIf="!this.samePassword && this.formulario.controls.password2.dirty"
-            class="text-formInvalid"
-          >
+          <small *ngIf="
+              !this.samePassword && this.formulario.controls.password2.dirty
+            " class="text-formInvalid">
             As senhas estão diferentes, revise
           </small>
         </div>
@@ -349,112 +224,61 @@
       <hr />
       <div class="row m-3 mb-4">
         <div class="form-floating col">
-          <input
-            [ngClass]="aplicaCss('nomeIg')"
-            formControlName="nomeIg"
-            type="text"
-            id="inputNameIg"
-            class="form-control"
-            placeholder="Informe o nome da sua Igreja:"
-          />
+          <input [ngClass]="aplicaCss('nomeIg')" formControlName="nomeIg" type="text" id="inputNameIg"
+            class="form-control" placeholder="Informe o nome da sua Igreja:" />
           <label class="ml-3" for="inputNameIg">Nome da Igreja</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.nomeIg.invalid &&
               this.formulario.controls.nomeIg.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             Precisamos saber qual a sua igreja!
           </small>
         </div>
         <div class="form-floating col">
-          <input
-            type="text"
-            formControlName="pastor"
-            id="inputNamePr"
-            class="form-control"
-            placeholder="Informe o nome do seu Pastor"
-            [ngClass]="aplicaCss('pastor')"
-          />
+          <input type="text" formControlName="pastor" id="inputNamePr" class="form-control"
+            placeholder="Informe o nome do seu Pastor" [ngClass]="aplicaCss('pastor')" />
           <label class="ml-3" for="inputNamePr">Nome do Pastor</label>
-          <small
-            *ngIf="
+          <small *ngIf="
               this.formulario.controls.nomeIg.invalid &&
               this.formulario.controls.nomeIg.touched
-            "
-            class="text-formInvalid"
-          >
+            " class="text-formInvalid">
             Não esqueça de informar o nome do seu Pastor!
           </small>
         </div>
       </div>
     </fieldset>
-
-    <hr />
-
-    <fieldset
-      class="d-flex flex-column"
-      [ngClass]="{
+    <fieldset class="d-flex flex-column" [ngClass]="{
         'is-validRadios': brandRadiosValidator == true,
         'is-invalidRadios': brandRadiosValidator == false
-      }"
-    >
+      }">
       <h4 class="mb-4 ml-4">Desejo participar da Rede de Apoio:</h4>
 
       <div class="form-check form-switch">
-        <input
-          class="form-check-input px-3 py-2"
-          type="checkbox"
-          id="chekbox1"
-          formControlName="chekbox1Profissao"
-          (click)="setRadios($event, 'chekbox1Profissao')"
-          (change)="brandRadios()"
-        />
+        <input class="form-check-input px-3 py-2" type="checkbox" id="chekbox1" formControlName="chekbox1Profissao"
+          (click)="setRadios($event, 'chekbox1Profissao')" (change)="brandRadios()" />
         <label class="form-check-label" for="chekbox1">
           Atuando voluntáriamente com minha profisão.
         </label>
       </div>
 
       <div class="form-check form-switch">
-        <input
-          class="form-check-input px-3 py-2"
-          type="checkbox"
-          id="chekbox2"
-          formControlName="chekbox2Intercessor"
-          (change)="brandRadios()"
-          (click)="setRadios($event, 'chekbox2Intercessor')"
-        />
+        <input class="form-check-input px-3 py-2" type="checkbox" id="chekbox2" formControlName="chekbox2Intercessor"
+          (change)="brandRadios()" (click)="setRadios($event, 'chekbox2Intercessor')" />
         <label class="form-check-label" for="chekbox2">
-          Atuando voluntáriamente como um intercessor.</label
-        >
+          Atuando voluntáriamente como um intercessor.</label>
       </div>
 
       <div class="form-check form-switch">
-        <input
-          class="form-check-input px-3 py-2"
-          type="checkbox"
-          id="chekbox3"
-          formControlName="chekbox3Cuidador"
-          (change)="brandRadios()"
-          (click)="setRadios($event, 'chekbox3Cuidador')"
-        />
+        <input class="form-check-input px-3 py-2" type="checkbox" id="chekbox3" formControlName="chekbox3Cuidador"
+          (change)="brandRadios()" (click)="setRadios($event, 'chekbox3Cuidador')" />
         <label class="form-check-label" for="chekbox3">
-          Atuando voluntáriamente como Pastor Cuidador (conselheiro).</label
-        >
+          Atuando voluntáriamente como Pastor Cuidador (conselheiro).</label>
       </div>
 
       <div class="form-check form-switch">
-        <input
-          class="form-check-input px-3 py-2"
-          type="checkbox"
-          id="chekbox4"
-          formControlName="chekbox4CasaDescanso"
-          (click)="setRadios($event, 'chekbox4CasaDescanso')"
-          (change)="brandRadios()"
-        />
-        <label class="form-check-label" for="chekbox4"
-          >Disponibilizando como parceria minha prorpiedade como Local de
+        <input class="form-check-input px-3 py-2" type="checkbox" id="chekbox4" formControlName="chekbox4CasaDescanso"
+          (click)="setRadios($event, 'chekbox4CasaDescanso')" (change)="brandRadios()" />
+        <label class="form-check-label" for="chekbox4">Disponibilizando como parceria minha prorpiedade como Local de
           Descanso.
         </label>
         <small *ngIf="brandRadiosValidator === false" class="text-formInvalid">
@@ -462,78 +286,369 @@
         </small>
       </div>
     </fieldset>
-    <fieldset
-      class="mt-2 fieldsetIF pb-4"
-      *ngIf="formulario.value.chekbox1Profissao"
-    >
+    <fieldset class="mt-2 fieldsetIF pb-4" *ngIf="formulario.value.chekbox1Profissao">
       <h5 class="mb-4 ml-4">
         Para quem deseja atuar através da sua Profissão:
       </h5>
 
       <div class="ml-4">
         <div class="form-floating mb-3 col-md">
-          <input
-            type="text"
-            class="form-control"
-            id="especialidade"
-            placeholder="Qual a especialidade?"
-            formControlName="especialidade"
-          />
+          <input type="text" class="form-control" id="especialidade" placeholder="Qual a especialidade?"
+            formControlName="especialidade" />
           <label for="floatingInput">Qual a especialidade?</label>
         </div>
 
         <div class="form-floating mb-3 col-md">
-          <input
-            type="text"
-            class="form-control"
-            id="servicoOferecido"
-            placeholder="o que pode oferecer aos missionários?"
-            formControlName="servicoOferecido"
-          />
-          <label for="floatingInput"
-            >O que pode oferecer aos missionários?</label
-          >
+          <input type="text" class="form-control" id="servicoOferecido"
+            placeholder="o que pode oferecer aos missionários?" formControlName="servicoOferecido" />
+          <label for="floatingInput">O que pode oferecer aos missionários?</label>
         </div>
       </div>
     </fieldset>
 
-    <fieldset
-      class="mt-2 fieldsetIF pb-5"
-      *ngIf="formulario.value.chekbox3Cuidador"
-    >
+    <fieldset class="mt-2 fieldsetIF pb-5" *ngIf="formulario.value.chekbox3Cuidador">
       <h5 class="mb-4 ml-4">Somente para Cuidadores:</h5>
 
       <div class="form-check form-switch mb-4">
-        <input
-          class="form-check-input px-3 py-2"
-          type="checkbox"
-          id="chekbox5"
-          formControlName="chekbox5Aconselhamento"
-        />
-        <label class="form-check-label" for="chekbox5"
-          >Possui Curso de
-          <b style="color: green; margin-left: 5px; margin-right: 5px"
-            >Aconselhamento Biblico
+        <input class="form-check-input px-3 py-2" type="checkbox" id="chekbox5"
+          formControlName="chekbox5Aconselhamento" />
+        <label class="form-check-label" for="chekbox5">Possui Curso de
+          <b style="color: green; margin-left: 5px; margin-right: 5px">Aconselhamento Biblico
           </b>
-          ?</label
-        >
+          ?</label>
       </div>
     </fieldset>
-    <fieldset
-      class="mt-2 fieldsetIF pb-5"
-      *ngIf="formulario.value.chekbox4CasaDescanso"
-    >
+    <fieldset class="mt-2 fieldsetIF pb-5" *ngIf="formulario.value.chekbox4CasaDescanso">
       <h5 class="mb-4 ml-4">
-        Somente para quem deseja disponibiliar casa de descanso
+        Somente para quem deseja disponibiliar local de descanso
       </h5>
 
-      <div class="col imgFilePrincipal d-flex">
-        <input
-          type="file"
-          [ngClass]="aplicaCss('imgFileCasaDescansoPrincipal')"
-          name="imgFileCasaDescansoPrincipal"
-          (change)="onFileSelect($event, 'imgFileCasaDescansoPrincipal')"
-        />
+      <fieldset formGroupName="localDescanso" class="mb-2 d-flex flex-column" [ngClass]="{
+          'is-validRadios': brandRadiosValidatorLocalDescanso == true,
+          'is-invalidRadios': brandRadiosValidatorLocalDescanso == false
+        }">
+        <h5 class="mb-4 ml-4">Local de descanso</h5>
+        <div class="form-check form-switch">
+          <input class="form-check-input px-3 py-2" type="checkbox" id="casaDePraia" formControlName="casaDePraia"
+            (change)="setRadios($event, 'casaDePraia')" (change)="brandRadiosLocalDescanso()" />
+          <label class="form-check-label" for="casaDePraia">Casa de Praia</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input px-3 py-2" type="checkbox" id="casaDeCampo" formControlName="casaDeCampo"
+            (change)="setRadios($event, 'casaDeCampo')" (change)="brandRadiosLocalDescanso()" />
+          <label class="form-check-label" for="casaDeCampo">Casa de Campo</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input px-3 py-2" type="checkbox" id="pousada" formControlName="pousada"
+            (change)="setRadios($event, 'pousada')" (change)="brandRadiosLocalDescanso()" />
+          <label class="form-check-label" for="pousada">Pousada</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input px-3 py-2" type="checkbox" id="hotel" formControlName="hotel"
+            (change)="setRadios($event, 'hotel')" (change)="brandRadiosLocalDescanso()" />
+          <label class="form-check-label" for="hotel">Hotel</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input px-3 py-2" type="checkbox" id="outros" formControlName="outros"
+            (change)="setRadios($event, 'outros')" (change)="brandRadiosLocalDescanso()" />
+          <label class="form-check-label" for="outros">Outros</label>
+        </div>
+
+        <small *ngIf="brandRadiosValidatorLocalDescanso === false" class="text-formInvalid">
+          é necessário escolher pelo menos um das opções!
+        </small>
+      </fieldset>
+
+      <fieldset class="mb-2" formGroupName="localDescanso">
+        <h5 class="mb-4 ml-4">Dados</h5>
+        <div class="row d-flex-wrap m-3 mb-4">
+          <div class="col form-floating">
+            <input type="text" id="nomeLocalDescanso" class="form-control" formControlName="nomeLocalDescanso"
+              placeholder="Informe o nome do local de descanso" />
+            <label class="ml-5" for="inputName">Nome do local</label>
+          </div>
+          <div class="col form-floating" *ngIf="
+              this.formulario.value.localDescanso.hotel ||
+              this.formulario.value.localDescanso.pousada
+            ">
+            <input type="text" id="CNPJLocalDescanso" class="form-control" formControlName="CNPJLocalDescanso"
+              placeholder="se tiver, informe seu CNPJ" />
+            <label class="ml-5" for="CNPJLocalDescanso">CNPJ</label>
+          </div>
+        </div>
+
+        <div>
+          <div class="row m-3 mb-4">
+            <div class="form-floating campo form-group col">
+              <input type="text" class="form-control" id="ruaLocalDescanso" formControlName="ruaLocalDescanso"
+                placeholder="Informe a rua do estabelecimento" />
+              <label class="ml-3" class="ml-3" for="ruaLocalDescanso">Endereço</label>
+            </div>
+            <div class="form-floating campo form-group col">
+              <input type="number" class="form-control" id="numeroLocalDescanso" formControlName="numeroLocalDescanso"
+                placeholder="nº" />
+              <label class="ml-3" class="ml-3" for="numeroLocalDescanso">Número</label>
+            </div>
+            <div class="form-floating campo form-group col">
+              <input type="text" class="form-control" formControlName="bairroLocalDescanso" id="bairroLocalDescanso"
+                placeholder="Informe o Bairro:" />
+              <label class="ml-3" class="ml-3" for="bairroLocalDescanso">Bairro</label>
+            </div>
+          </div>
+
+          <div class="row m-3 mb-4">
+            <div class="form-floating campo form-group col">
+              <input type="text" class="form-control" id="cidadeLocalDescanso" formControlName="cidadeLocalDescanso"
+                placeholder="Informe a cidade:" />
+              <label class="ml-3" class="ml-3" for="cidadeLocalDescanso">Cidade</label>
+            </div>
+            <div class="campo form-floating form-group col">
+              <input type="text" class="form-control" id="complementoLocalDescanso"
+                formControlName="complementoLocalDescanso" placeholder="qualquer informações pertinente" />
+              <label class="ml-3" for="complementoLocalDescanso">Complemento</label>
+            </div>
+            <div class="campo form-floating col">
+              <select formControlName="ufLocalDescanso" id="ufLocalDescanso" class="form-select">
+                <option selected>Escolha Estado...</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+              <label class="ml-3" for="ufLocalDescanso">Estado</label>
+            </div>
+            <div class="form-floating form-group col">
+              <input type="cep" class="form-control" formControlName="CEPLocalDescanso" id="CEPLocalDescanso"
+                placeholder="Informe CEP do estabelecimento" mask="00000-000" />
+              <label class="ml-3" for="CEPLocalDescanso">CEP</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="mb-2" formGroupName="localDescanso">
+        <h5 class="mb-4 ml-4">Disponibilidade do local de descanso</h5>
+
+        <div class="row d-flex-wrap m-3 mb-4">
+          <div class="form-check form-switch col-auto">
+            <input class="form-check-input px-3 py-2" type="checkbox" id="disponibilidadeDuranteAno"
+              formControlName="disponibilidadeDuranteAno" (ngModelChange)="setMensagem('disponibilidadeDuranteAno')" />
+            <label class="form-check-label" for="disponibilidadeDuranteAno">{{
+              disponibilidadeAno
+              }}</label>
+          </div>
+
+          <div *ngIf="!formulario.value.localDescanso.disponibilidadeDuranteAno" class="col">
+            <p class="mb-2">
+              Quais os períodos/meses que NÃO estará disponível?
+            </p>
+            <div class="campo form-floating col">
+              <select formControlName="mesesNaoDisponivel" id="mesesNaoDisponivel" class="form-select">
+                <option value="0">Prefiro Escrever</option>
+                <option value="1">Um Mês</option>
+                <option value="2">Dois Meses</option>
+                <option value="3">Três Meses</option>
+                <option value="4">Quatro Meses</option>
+                <option value="5">Cinco Meses</option>
+                <option value="6">Seis Meses</option>
+                <option value="7">Sete Meses</option>
+                <option value="8">Oito Meses</option>
+                <option value="9">Nove Meses</option>
+                <option value="10">Dez Meses</option>
+                <option value="11">Onze Meses</option>
+              </select>
+              <label class="ml-3" for="mesesNaoDisponivel">Meses Disponível</label>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="
+            formulario.value.localDescanso.mesesNaoDisponivel == '0' &&
+            !formulario.value.localDescanso.disponibilidadeDuranteAno
+          " class="row d-flex-wrap m-3 mb-4 form-floating col">
+          <div class="form-floating campo form-group">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+              formControlName="mesesNaoDisponivelDescrito"></textarea>
+            <label for="floatingTextarea">Descreva</label>
+          </div>
+        </div>
+        <div class="row d-flex-wrap m-3 mb-4">
+          <div class="form-floating campo form-group col">
+            <input type="number" class="form-control heightInput" id="maximoDiariaPg" formControlName="maximoDiariaPg"
+              placeholder="nº" />
+            <label class="ml-3 labelText" for="maximoDiariaPg">Qual o máximo de diárias para cada agendamento?</label>
+          </div>
+
+          <div class="form-floating campo form-group col">
+            <input type="number" class="form-control heightInput" id="maximoHospedesPorVez" formControlName="maximoHospedesPorVez"
+              placeholder="nº" />
+            <label class="ml-3 labelText" for="maximoHospedesPorVez">Qual o número máximo de hóspedes que o local pode
+              receber (de uma
+              vez)?
+            </label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input type="number" class="form-control heightInput" id="qtFamiliaMes" formControlName="qtFamiliaMes"
+              placeholder="nº" />
+            <label class="ml-3" for="qtFamiliaMes">Quantas famílias por mês poderão ser agendadas?
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="mb-2" formGroupName="localDescanso">
+        <h5 class="mb-4 ml-4">Custo Hospedagem e Alimentação</h5>
+        <div class="row d-flex-wrap m-3 mb-4">
+          <!-- <p style="font-weight: 500; margin-left: 30px;" class="mr-5">Haverá algum custo de hospedagem? </p> -->
+          <div class="form-check form-switch col-auto">
+            <input class="form-check-input px-3 py-2" type="checkbox" id="custoHospedagem"
+              formControlName="custoHospedagem" (ngModelChange)="setMensagem('custoHospedagem')" />
+            <label class="form-check-label" for="custoHospedagem">{{
+              custoHospedagem
+              }}</label>
+          </div>
+          <div *ngIf="formulario.value.localDescanso.custoHospedagem"
+            class="row d-flex-wrap m-3 mb-4 form-floating col">
+            <div class="form-floating campo form-group col">
+              <input type="text" class="form-control" id="valorHospedagem" formControlName="valorHospedagem" prefix="R$"
+                mask="separator" thousandSeparator="." suffix=",00" placeholder="nº" />
+              <label class="ml-3" for="valorHospedagem">Qual será o valor da Hopedagem?
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex-wrap m-3 mb-4">
+          <!-- <p style="font-weight: 500; margin-left: 30px;" class="mr-5">O local providencia algum tipo de alimentação?
+          </p> -->
+          <div class="form-check form-switch col-auto">
+            <input class="form-check-input px-3 py-2" type="checkbox" id="alimentacao" formControlName="alimentacao"
+              (ngModelChange)="setMensagem('alimentacao')" />
+            <label class="form-check-label" for="alimentacao">{{
+              comercioAlimetacao
+              }}</label>
+          </div>
+        </div>
+        <div class="row d-flex-wrap m-3 mb-4">
+          <div class="form-check form-switch col-auto" *ngIf="formulario.value.localDescanso.alimentacao">
+            <input class="form-check-input px-3 py-2" type="checkbox" id="custoAlimentacao"
+              formControlName="custoAlimentacao" (ngModelChange)="setMensagem('custoAlimentacao')" />
+            <label class="form-check-label" for="custoAlimentacao">{{
+              custoAlimetacao
+              }}</label>
+          </div>
+          <div *ngIf="formulario.value.localDescanso.custoAlimentacao"
+            class="row d-flex-wrap m-3 mb-4 form-floating col">
+            <div class="form-floating campo form-group col">
+              <input type="text" class="form-control" id="valorRefeicoes" formControlName="valorRefeicoes" prefix="R$"
+                mask="separator" thousandSeparator="." suffix=",00" placeholder="nº" />
+              <label class="ml-3" for="valorRefeicoes">Qual será o valor das refeições (café, almoço e jantar)?
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="mb-2" formGroupName="localDescanso">
+        <h5 class="mb-4 ml-4">Acomodações</h5>
+        <div class="row d-flex-wrap m-3 mb-4">
+          <div class="form-check form-switch col-auto">
+            <input class="form-check-input px-3 py-2" type="checkbox" id="roupaCama" formControlName="roupaCama"
+              (ngModelChange)="setMensagem('roupaCama')" />
+            <label class="form-check-label" for="roupaCama">O local disponibilizará roupa de cama e banho?</label>
+          </div>
+
+          <div class="form-floating campo form-group col">
+            <input type="number" class="form-control heightInput" id="qtQuartos" formControlName="qtQuartos" placeholder="nº" />
+            <label class="ml-3 labelText" for="qtQuartos">O local possui quantos quartos?
+            </label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input type="number" class="form-control heightInput" id="qtSuites" formControlName="qtSuites" placeholder="nº" />
+            <label class="ml-3 labelText" for="qtSuites">O local possui quantos suítes?
+            </label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input type="number" class="form-control heightInput" id="qtCamas" formControlName="qtCamas" placeholder="nº" />
+            <label class="ml-3 labelText" for="qtCamas">O local possui quantas camas (casal/solteiro)?
+            </label>
+          </div>
+        </div>
+        <hr />
+        <h5>O que o local de descanso disponibiliza?</h5>
+        <div formGroupName="servicosDisponibilizados" class="d-flex flex-wrap">
+          <div class="d-flex flex-column">
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="piscina" formControlName="piscina"
+                (ngModelChange)="setMensagem('piscina')" />
+              <label class="form-check-label" for="piscina">Piscina</label>
+            </div>
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="quadra" formControlName="quadra"
+                (ngModelChange)="setMensagem('quadra')" />
+              <label class="form-check-label" for="quadra">Quadra</label>
+            </div>
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="restaurante" formControlName="restaurante"
+                (ngModelChange)="setMensagem('restaurante')" />
+              <label class="form-check-label" for="restaurante">Restaurante</label>
+            </div>
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="TV" formControlName="TV"
+                (ngModelChange)="setMensagem('TV')" />
+              <label class="form-check-label" for="TV">TV</label>
+            </div>
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="internet" formControlName="internet"
+                (ngModelChange)="setMensagem('internet')" />
+              <label class="form-check-label" for="internet">Internet</label>
+            </div>
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="garagem" formControlName="garagem"
+                (ngModelChange)="setMensagem('garagem')" />
+              <label class="form-check-label" for="garagem">Garagem</label>
+            </div>
+            <div class="form-check form-switch col-auto">
+              <input class="form-check-input px-3 py-2" type="checkbox" id="outrosServicosOferecidos"
+                formControlName="outrosServicosOferecidos" (ngModelChange)="setMensagem('outrosServicosOferecidos')" />
+              <label class="form-check-label" for="outrosServicosOferecidos">Outros</label>
+            </div>
+          </div>
+          <div *ngIf="
+              formulario.value.localDescanso.servicosDisponibilizados
+                .outrosServicosOferecidos
+            " class="form-floating campo form-group col px-5 py-4">
+            <textarea class="form-control" placeholder="Leave a comment here" id="outrosServicosOferecidosDescrito"
+              formControlName="outrosServicosOferecidosDescrito"></textarea>
+            <label class="px-5 py-4" for="outrosServicosOferecidosDescrito">Descreva</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="col d-flex flex-wrap ">
+        <input class="inputImg" type="file" [ngClass]="aplicaCss('imgFileCasaDescansoPrincipal')" name="imgFileCasaDescansoPrincipal"
+          (change)="onFileSelect($event, 'imgFileCasaDescansoPrincipal')" />
 
         <div class="labelTypeFile">
           <p>
@@ -542,53 +657,48 @@
           </p>
         </div>
       </div>
-      <small
-      *ngIf="hasArchive !=null && hasArchive && formulario.controls.imgFileCasaDescansoPrincipal.invalid"
-
-        class="text-formInvalid ml-1"
-      >
+      <small *ngIf="
+          hasArchive != null &&
+          hasArchive &&
+          formulario.controls.imgFileCasaDescansoPrincipal.invalid
+        " class="text-formInvalid ml-1">
         O ítem selecionado não é uma imagem, verifique e tente novamente.
       </small>
       <hr />
-      <div class="col imgFilePrincipal d-flex">
-        <input
-          type="file"
-          multiple
-          [ngClass]="aplicaCss('imgsCasaDescansoFile')"
-          name="imgsCasaDescansoFile"
-          (change)="onFileSelect($event, 'imgsCasaDescansoFile')"
-        />
+      <div class="col d-flex flex-wrap ">
+        <input class="inputImg" type="file" multiple [ngClass]="aplicaCss('imgsCasaDescansoFile')" name="imgsCasaDescansoFile"
+          (change)="onFileSelect($event, 'imgsCasaDescansoFile')" />
         <div class="labelTypeFile">
           <p>
             Aqui, adicione até 10 imagens da casa que deseja disponibilizar.
           </p>
         </div>
       </div>
-      <small
-      *ngIf="hasArchive !=null && hasArchive && formulario.controls.imgsCasaDescansoFile.invalid"
-
-        class="text-formInvalid ml-1"
-      >
+      <small *ngIf="
+          hasArchive != null &&
+          hasArchive &&
+          formulario.controls.imgsCasaDescansoFile.invalid
+        " class="text-formInvalid ml-1">
         Algum ítem selecionado não é uma imagem, verifique e tente novamente.
       </small>
     </fieldset>
     <hr />
 
     <div class="d-flex justify-content-center mt-4">
-      <button
-        type="submit"
-        class="btn btn-success btn-lg pr-5 pl-5"
-        *ngIf="Voluntary._id"
-      >
+      <button type="submit" class="btn btn-success btn-lg pr-5 pl-5" *ngIf="Voluntary._id">
         Salvar dados Alterados
       </button>
-      <button
-        type="submit"
-        class="btn btn-success btn-lg pr-5 pl-5"
-        *ngIf="!Voluntary._id"
-      >
+      <button type="submit" class="btn btn-success btn-lg pr-5 pl-5" *ngIf="!Voluntary._id">
         Cadastrar Voluntário
       </button>
+    </div>
+    <div class="d-flex flex-column">
+      <p>VALUE</p>
+      {{ formulario.value.localDescanso | json }}
+    </div>
+    <div>
+      <p>VALID</p>
+      {{ formulario.get(["localDescanso", "custoAlimentacao"]).value | json }}
     </div>
   </form>
 </div>

@@ -1,29 +1,22 @@
-import { UploadImageService } from './../../services/upload-image.service';
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  ValidationErrors,
-  FormControl,
-} from '@angular/forms';
-
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { VoluntaryService } from 'src/app/volunteers/services/voluntary.service';
-import { VoluntaryModel } from './../../../shared/voluntary.model';
+
+import { requiredFileTypeImg } from '../../fileUpload/requiredFileType';
 import { alertAnimation } from './../../../shared/services/alert-animation';
 import { AlertService } from './../../../shared/services/alert.service';
-import { requiredFileTypeImg } from '../../fileUpload/requiredFileType';
-import { timeStamp } from 'console';
+import { VoluntaryModel } from './../../../shared/voluntary.model';
+import { UploadImageService } from './../../services/upload-image.service';
 
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
-  styleUrls: ['./../../../app.component.css', './form-cad.component.css'],
+  styleUrls: ['./form-cad.component.css'],
   providers: [VoluntaryService],
   animations: [alertAnimation],
 })
-export class FormCadComponent implements OnInit {
+export class FormCadComponent implements OnInit, OnChanges {
   alertState: string = 'hide';
 
   public Voluntary: VoluntaryModel;
@@ -36,11 +29,18 @@ export class FormCadComponent implements OnInit {
   alertStyle: any;
   style: any;
   brandRadiosValidator: boolean = undefined;
+  brandRadiosValidatorLocalDescanso: boolean = undefined;
   samePassword: boolean = null;
   inputPasswordValidity: any;
+  disponibilidadeAno: string =
+    'Sim, o local estará disponível durante todo o ano';
+    // custoHospedagem: string = 'Não, o local será disponibilizado gratuitamente';
+    custoHospedagem: string = 'Haverá algum custo de hospedagem?';
+    comercioAlimetacao: string = 'O local providencia algum tipo de alimentação?';
+  custoAlimetacao: string = 'haverá algum custo de alimentação?';
 
   hasArchive: boolean = null;
-  isCasaDescanso: boolean
+  isCasaDescanso: boolean;
 
   constructor(
     private voluntaryService: VoluntaryService,
@@ -48,7 +48,49 @@ export class FormCadComponent implements OnInit {
     private route: ActivatedRoute,
     private alertService: AlertService,
     private uploadImageService: UploadImageService
-  ) { }
+  ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
+  setMensagem(field: string) {
+    if (field == 'disponibilidadeDuranteAno') {
+      this.disponibilidadeAno =
+        this.formulario.value.localDescanso.disponibilidadeDuranteAno == true
+          ? ' Sim, o local estará disponível durante todo o ano'
+          : 'Não, o local não estará disponível durante todo o ano';
+      if (this.formulario.value.localDescanso.disponibilidadeDuranteAno) {
+        this.formulario
+          .get(['localDescanso', 'mesesNaoDisponivel'])
+          .setValue('');
+        this.formulario
+          .get(['localDescanso', 'mesesNaoDisponivelDescrito'])
+          .setValue('');
+      }
+    }
+    if (field == 'custoHospedagem') {
+      this.custoHospedagem =
+        this.formulario.value.localDescanso.custoHospedagem == false
+          ? 'Não, o local será disponibilizado gratuitamente'
+          : 'Sim, o Missionário terá custos de Hospedagem';
+      if (!this.formulario.value.localDescanso.custoHospedagem) {
+        this.formulario.get(['localDescanso', 'valorHospedagem']).setValue('');
+      }
+    }
+    if (field == 'alimentacao') {
+      this.comercioAlimetacao =
+        this.formulario.value.localDescanso.alimentacao == true
+          ? 'Sim, o local Comercializa alimentos'
+          : 'Não, o local não Comercializa alimentos';
+    }
+    if (field == 'custoAlimentacao') {
+      this.custoAlimetacao =
+        this.formulario.value.localDescanso.custoAlimentacao == true
+          ? 'Sim, Será cobrado o que for consumido'
+          : 'Não, para este hóspede não haverão custos de alimentação';
+
+    }
+  }
 
   public toggle(view?: String) {
     this.alertState = this.alertService.toggle(view);
@@ -81,10 +123,17 @@ export class FormCadComponent implements OnInit {
       EstadoCivil: [this.Voluntary.estadoCivil],
       //imgFilePrincipal: [null, [Validators.required, requiredFileTypeImg()]],
       imgFilePrincipal: [
-        null,this.Voluntary._id? requiredFileTypeImg(): [Validators.required, requiredFileTypeImg()],
+        null,
+        this.Voluntary._id
+          ? requiredFileTypeImg()
+          : [Validators.required, requiredFileTypeImg()],
       ],
       email: [this.Voluntary.email, [Validators.required, Validators.email]],
-      password: [null,this.Voluntary._id? '': [Validators.required, Validators.minLength(8)],
+      password: [
+        null,
+        this.Voluntary._id
+          ? ''
+          : [Validators.required, Validators.minLength(8)],
       ],
       password2: [null, this.Voluntary._id ? '' : [Validators.required]],
       nomeIg: [this.Voluntary.nomeIg, [Validators.required]],
@@ -92,7 +141,7 @@ export class FormCadComponent implements OnInit {
       chekbox1Profissao: [this.Voluntary.chekbox1Profissao],
       chekbox2Intercessor: [this.Voluntary.chekbox2Intercessor],
       chekbox3Cuidador: [this.Voluntary.chekbox3Cuidador],
-      chekbox4CasaDescanso: [this.Voluntary.chekbox4CasaDescanso],
+      chekbox4CasaDescanso: [true], //this.Voluntary.chekbox4CasaDescanso],
       chekbox5Aconselhamento: [this.Voluntary.chekbox5Aconselhamento],
       especialidade: [this.Voluntary.especialidade],
       servicoOferecido: [this.Voluntary.servicoOferecido],
@@ -102,14 +151,83 @@ export class FormCadComponent implements OnInit {
       // imgFileCasaDescansoPrincipal: [null,  this.isCasaDescanso? [Validators.required, requiredFileTypeImg()]: ''],
       dataCad: [this.Voluntary.dataCad],
       status: [this.Voluntary.status],
+      localDescanso: this.formBuilder.group({
+        casaDePraia: [this.Voluntary.localDescanso.casaDePraia],
+        casaDeCampo: [this.Voluntary.localDescanso.casaDeCampo],
+        pousada: [this.Voluntary.localDescanso.pousada],
+        hotel: [this.Voluntary.localDescanso.hotel],
+        outros: [this.Voluntary.localDescanso.outros],
+        nomeLocalDescanso: [this.Voluntary.localDescanso.nomeLocalDescanso],
+        CNPJLocalDescanso: [this.Voluntary.localDescanso.CNPJLocalDescanso],
+        ruaLocalDescanso: [this.Voluntary.localDescanso.ruaLocalDescanso],
+        numeroLocalDescanso: [this.Voluntary.localDescanso.numeroLocalDescanso],
+        complementoLocalDescanso: [
+          this.Voluntary.localDescanso.complementoLocalDescanso,
+        ],
+        CEPLocalDescanso: [this.Voluntary.localDescanso.CEPLocalDescanso],
+        bairroLocalDescanso: [this.Voluntary.localDescanso.bairroLocalDescanso],
+        cidadeLocalDescanso: [this.Voluntary.localDescanso.cidadeLocalDescanso],
+        ufLocalDescanso: [this.Voluntary.localDescanso.ufLocalDescanso],
+        disponibilidadeDuranteAno: [
+          this.Voluntary.localDescanso.disponibilidadeDuranteAno,
+        ], //switch
+        mesesNaoDisponivel: [this.Voluntary.localDescanso.mesesNaoDisponivel], // tentar criar um select que possa selecionar mais de um ítem
+        mesesNaoDisponivelDescrito: [
+          this.Voluntary.localDescanso.mesesNaoDisponivelDescrito,
+        ], // tentar criar um select que possa selecionar mais de um ítem
+        maximoDiariaPg: [this.Voluntary.localDescanso.maximoDiariaPg], // tipo moeda
+        maximoHospedesPorVez: [
+          this.Voluntary.localDescanso.maximoHospedesPorVez,
+        ], //number
+        qtFamiliaMes: [this.Voluntary.localDescanso.qtFamiliaMes], // number
+        custoHospedagem: [this.Voluntary.localDescanso.custoHospedagem], //switch
+        valorHospedagem: [this.Voluntary.localDescanso.valorHospedagem], // if custoHospedagem
+        alimentacao: [this.Voluntary.localDescanso.alimentacao], //switch
+        custoAlimentacao: [this.Voluntary.localDescanso.custoAlimentacao], // if alimentacao //switch
+        valorRefeicoes: [this.Voluntary.localDescanso.valorRefeicoes], // if alimentacao
+        roupaCama: [this.Voluntary.localDescanso.roupaCama], //switch
+        qtQuartos: [this.Voluntary.localDescanso.qtQuartos], //number
+        qtSuites: [this.Voluntary.localDescanso.qtSuites], //number
+        qtCamas: [this.Voluntary.localDescanso.qtCamas], //number
+        servicosDisponibilizados: this.formBuilder.group({
+          // todos switch
+          piscina: [
+            this.Voluntary.localDescanso.servicosDisponibilizados.piscina,
+          ],
+          quadra: [
+            this.Voluntary.localDescanso.servicosDisponibilizados.quadra,
+          ],
+          restaurante: [
+            this.Voluntary.localDescanso.servicosDisponibilizados.restaurante,
+          ],
+          TV: [this.Voluntary.localDescanso.servicosDisponibilizados.TV],
+          internet: [
+            this.Voluntary.localDescanso.servicosDisponibilizados.internet,
+          ],
+          garagem: [
+            this.Voluntary.localDescanso.servicosDisponibilizados.garagem,
+          ],
+          outrosServicosOferecidos: [
+            this.Voluntary.localDescanso.servicosDisponibilizados.outros,
+          ],
+          outrosServicosOferecidosDescrito: [
+            this.Voluntary.localDescanso.servicosDisponibilizados
+              .outrosServicosOferecidos,
+          ], //if outros
+        }),
+      }),
     });
+    console.log(this.formulario.controls);
   }
- 
 
   async onSubmit() {
     // função executada no clicar do botão principal
     this.brandRadios(); // se pelo menos um radio foi marcado
-    if (this.formulario.valid && this.brandRadiosValidator) {
+    if (
+      this.formulario.valid &&
+      this.brandRadiosValidator &&
+      this.brandRadiosValidatorLocalDescanso
+    ) {
       //só entra neste if se passar por todas as validações
       if (!this.Voluntary._id) {
         // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
@@ -126,8 +244,8 @@ export class FormCadComponent implements OnInit {
         const controle = this.formulario.get(campo);
         controle.markAsTouched();
       });
-  
-  //    this.hasArchive = true;
+
+      //    this.hasArchive = true;
     }
   }
 
@@ -168,8 +286,8 @@ export class FormCadComponent implements OnInit {
   }
   public salveVoluntaryCTRL() {
     if (this.formulario !== undefined) {
-      this.settingRegistrationDate()
-      this.addingStatusToVolunteer()
+      this.settingRegistrationDate();
+      this.addingStatusToVolunteer();
 
       this.voluntaryService.saveVoluntary(this.formulario.value).subscribe(
         (voluntary) => {
@@ -227,10 +345,8 @@ export class FormCadComponent implements OnInit {
       campo == 'imgsCasaDescansoFile'
     ) {
       return {
-        'FileIs-invalid':
-          this.hasArchive && this.formulario.get(campo).invalid,
-        'FileIs-valid':
-          !this.formulario.get(campo).invalid && this.hasArchive,
+        'FileIs-invalid': this.hasArchive && this.formulario.get(campo).invalid,
+        'FileIs-valid': !this.formulario.get(campo).invalid && this.hasArchive,
       };
     }
     if (campo == 'password2') {
@@ -251,8 +367,7 @@ export class FormCadComponent implements OnInit {
     };
   }
 
-
-  // controle radios 
+  // controle radios
   public brandRadios() {
     if (
       this.formulario.value.chekbox1Profissao |
@@ -266,15 +381,48 @@ export class FormCadComponent implements OnInit {
       console.log('nenhum radio foi selecionado');
     }
   }
-  setRadios(e: any, namefield: string) {
-    // Pega o valor que está no chekbox e guarda dentro do fomulario para ser submetido quando for concluido o cadastro
-    this.formulario.get(namefield).setValue(e.target.checked);
-    this.isCasaDescanso = e.target.checked
-    console.log("isCasaDescanso", this.isCasaDescanso);
-    
+
+  brandRadiosLocalDescanso() {
+    if (
+      this.formulario.value.localDescanso.casaDePraia |
+      this.formulario.value.localDescanso.casaDeCampo |
+      this.formulario.value.localDescanso.pousada |
+      this.formulario.value.localDescanso.hotel |
+      this.formulario.value.localDescanso.outros
+    ) {
+      this.brandRadiosValidatorLocalDescanso = true;
+    } else {
+      this.brandRadiosValidatorLocalDescanso = false;
+      console.log('nenhum radio local de descanso foi selecionado');
+    }
   }
 
-    // função compara se o valor inserido este neste input password2 é igual ao inserido no input password
+  setRadios(e: any, namefield: string) {
+    // Pega o valor que está no chekbox e guarda dentro do fomulario para ser submetido quando for concluido o cadastro
+    if (
+      namefield == 'casaDePraia' ||
+      namefield == 'casaDeCampo' ||
+      namefield == 'pousada' ||
+      namefield == 'hotel' ||
+      namefield == 'outros'
+    ) {
+      if (namefield == 'casaDePraia')
+        console.log(this.formulario.controls.localDescanso);
+      if (namefield == 'casaDeCampo')
+        console.log(this.formulario.value.localDescanso.casaDeCampo);
+      if (namefield == 'pousada')
+        console.log(this.formulario.value.localDescanso.pousada);
+      if (namefield == 'hotel')
+        console.log(this.formulario.value.localDescanso.hotel);
+      if (namefield == 'outros')
+        console.log(this.formulario.value.localDescanso.outros);
+    } else {
+      this.formulario.get(namefield).setValue(e.target.checked);
+      this.isCasaDescanso = e.target.checked;
+    }
+  }
+
+  // função compara se o valor inserido este neste input password2 é igual ao inserido no input password
   password2Comparator(e) {
     let password2 = e.target.value;
     if (this.formulario.value.password === password2) {
@@ -297,11 +445,13 @@ export class FormCadComponent implements OnInit {
 
   settingRegistrationDate() {
     let data = new Date();
-    let dataCad = `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
+    let dataCad = `${data.getDate()}/${
+      data.getMonth() + 1
+    }/${data.getFullYear()}`;
     this.formulario.controls.dataCad.setValue(dataCad);
   }
   addingStatusToVolunteer() {
-    let VoluntaryActive = 'ACTIVE'
+    let VoluntaryActive = 'ACTIVE';
     this.formulario.controls.status.setValue(VoluntaryActive);
   }
 

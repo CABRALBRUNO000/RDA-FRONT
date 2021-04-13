@@ -119,7 +119,7 @@ select {
   min-height: 25px;
 }
 
-.imgFilePrincipal {
+.inputImg {
   position: relative;
   overflow: hidden;
 
@@ -176,7 +176,7 @@ select {
   display: flex;
   align-items: center;
   font-size: 15px;
-  
+
 }
 
 .labelTypeFile p {
@@ -276,6 +276,17 @@ select {
   padding: 4px 0 4px 7px;
 }
 
+.labelText {
+  margin-top: -10px;
+  font-size:13px;
+  text-overflow: ellipsis !important;
+}
+.heightInput{
+  height: 70px;
+  padding-bottom: -10px;
+}
+
+
 @media only screen and (max-width: 991px) {
   input,
   select {
@@ -294,6 +305,13 @@ select {
     grid-column: 2;
     min-width: 100px;
   }
+  .labelText {
+    height: 50px;
+    margin-top: -5px;
+    font-size: small;
+    text-overflow: ellipsis !important;
+  }
+
 }
 label {
   margin-left: 10px;
@@ -321,8 +339,17 @@ label {
     margin-left: 30px;
   }
 
-  .imgFilePrincipal {
+  /* .imgFilePrincipal {
     display: grid;
     grid-column: 12fr;
+  } */
+  .heightInput{
+    height: 100px;
+    padding-bottom: -10px;
   }
+}
+.forcedResponsiveness
+{
+  display: flex;
+  flex-wrap: wrap;
 }

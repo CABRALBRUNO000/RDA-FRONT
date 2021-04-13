@@ -38,4 +38,45 @@ export interface VoluntaryModel {
   servicoOferecido: string;
   dataCad: string;
   status: string;
+  localDescanso: {
+    casaDePraia: boolean;
+    casaDeCampo: boolean;
+    pousada: boolean;
+    hotel: boolean;
+    outros: boolean;
+    nomeLocalDescanso:string,
+        CNPJLocalDescanso:string,
+        ruaLocalDescanso:string,
+        numeroLocalDescanso:string,
+        complementoLocalDescanso:string,
+        CEPLocalDescanso:string,
+        bairroLocalDescanso:string,
+        cidadeLocalDescanso:string,
+        ufLocalDescanso:string,
+        disponibilidadeDuranteAno:boolean,
+        mesesNaoDisponivel:string,
+        mesesNaoDisponivelDescrito:string,
+        maximoDiariaPg:string,
+        maximoHospedesPorVez:string,
+        qtFamiliaMes:string,
+        custoHospedagem:string,
+        valorHospedagem:string,
+        alimentacao:boolean,
+        custoAlimentacao:string,
+        valorRefeicoes:string,
+        roupaCama:boolean,
+        qtQuartos:string,
+        qtSuites:string,
+        qtCamas:string,
+        servicosDisponibilizados:{
+          piscina:boolean,
+          quadra:boolean,
+          restaurante:boolean,
+          TV:boolean,
+          internet:boolean,
+          garagem:boolean,
+          outros:boolean,
+          outrosServicosOferecidos:string,
+        }
+  }
 }
