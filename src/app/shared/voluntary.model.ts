@@ -3,7 +3,7 @@ export interface VoluntaryModel {
   nome: string;
   dataNascimento: string;
   sexo: string;
-
+  endereco: {
     rua: string;
     numero: string;
     bairro: string;
@@ -11,72 +11,80 @@ export interface VoluntaryModel {
     complemento: string;
     uf: string;
     CEP: string;
-
+  };
   profissao: string;
   telefone: string;
   telefoneFx: string;
   estadoCivil: string;
   email: string;
-  password: string,
-  password2: string,
+  password: string;
+  password2: string;
   imgFilePrincipal: File;
-  imgsCasaDescansoFile:File,
-  imgFileCasaDescansoPrincipal:File,
+  imgsCasaDescansoFile: File;
+  imgFileCasaDescansoPrincipal: File;
   nomeIg: string;
   pastor: string;
-  chekbox1Profissao: boolean;
-  chekbox2Intercessor: boolean;
-  chekbox3Cuidador: boolean;
-  chekbox4CasaDescanso: boolean;
+
+  typeVoluntary: {
+    chekbox1Profissao: boolean;
+    chekbox2Intercessor: boolean;
+    chekbox3Cuidador: boolean;
+    chekbox4CasaDescanso: boolean;
+  };
+
   chekbox5Aconselhamento: boolean;
   especialidade: string;
   urlsImage: {
     urlImgPrincipal: string;
-    urlImgCasaDescansoPrincipal: string,
-    urlImgsCasaDescanso: []
+    urlImgCasaDescansoPrincipal: string;
+    urlImgsCasaDescanso: [];
   };
   servicoOferecido: string;
   dataCad: string;
   status: string;
   localDescanso: {
-    casaDePraia: boolean;
-    casaDeCampo: boolean;
-    pousada: boolean;
-    hotel: boolean;
-    outros: boolean;
-    nomeLocalDescanso:string,
-        CNPJLocalDescanso:string,
-        ruaLocalDescanso:string,
-        numeroLocalDescanso:string,
-        complementoLocalDescanso:string,
-        CEPLocalDescanso:string,
-        bairroLocalDescanso:string,
-        cidadeLocalDescanso:string,
-        ufLocalDescanso:string,
-        disponibilidadeDuranteAno:boolean,
-        mesesNaoDisponivel:string,
-        mesesNaoDisponivelDescrito:string,
-        maximoDiariaPg:string,
-        maximoHospedesPorVez:string,
-        qtFamiliaMes:string,
-        custoHospedagem:string,
-        valorHospedagem:string,
-        alimentacao:boolean,
-        custoAlimentacao:string,
-        valorRefeicoes:string,
-        roupaCama:boolean,
-        qtQuartos:string,
-        qtSuites:string,
-        qtCamas:string,
-        servicosDisponibilizados:{
-          piscina:boolean,
-          quadra:boolean,
-          restaurante:boolean,
-          TV:boolean,
-          internet:boolean,
-          garagem:boolean,
-          outros:boolean,
-          outrosServicosOferecidos:string,
-        }
-  }
+    typeLocalDescanso: {
+      casaDePraia: boolean;
+      casaDeCampo: boolean;
+      pousada: boolean;
+      hotel: boolean;
+      outros: boolean;
+    };
+    nomeLocalDescanso: string;
+    CNPJLocalDescanso: string;
+    enderecoLocalDescanso: {
+      ruaLocalDescanso: string;
+      numeroLocalDescanso: string;
+      complementoLocalDescanso: string;
+      CEPLocalDescanso: string;
+      bairroLocalDescanso: string;
+      cidadeLocalDescanso: string;
+      ufLocalDescanso: string;
+    };
+    disponibilidadeDuranteAno: boolean;
+    mesesNaoDisponivel: string;
+    mesesNaoDisponivelDescrito: string;
+    maximoDiariaPg: string;
+    maximoHospedesPorVez: string;
+    qtFamiliaMes: string;
+    custoHospedagem: string;
+    valorHospedagem: string;
+    alimentacao: boolean;
+    custoAlimentacao: string;
+    valorRefeicoes: string;
+    roupaCama: boolean;
+    qtQuartos: string;
+    qtSuites: string;
+    qtCamas: string;
+    servicosDisponibilizados: {
+      piscina: boolean;
+      quadra: boolean;
+      restaurante: boolean;
+      TV: boolean;
+      internet: boolean;
+      garagem: boolean;
+      outrosServicosOferecidos: boolean;
+      outrosServicosOferecidosDescrito: string;
+    };
+  };
 }

@@ -1,16 +1,18 @@
-export function toFormData<T>(formValue) {
+import { VoluntaryModel } from 'src/app/shared/voluntary.model';
+
+export function toFormData<T>(formValue: VoluntaryModel): FormData {
   const formData = new FormData();
 
   formData.append('nome', formValue.nome);
   formData.append('dataNascimento', formValue.dataNascimento);
   formData.append('sexo', formValue.sexo);
-  formData.append('rua', formValue.rua);
-  formData.append('numero', formValue.numero);
-  formData.append('bairro', formValue.bairro);
-  formData.append('cidade', formValue.cidade);
-  formData.append('complemento', formValue.complemento);
-  formData.append('uf', formValue.uf);
-  formData.append('CEP', formValue.CEP);
+  if (formValue.endereco) {
+      Object.keys(formValue.endereco).forEach((key, index) => {
+        const value = formValue.endereco[key];
+        formData.append(`${'endereco'}[${key}]`, value);
+      });
+  }
+
   formData.append('profissao', formValue.profissao);
   formData.append('telefone', formValue.telefone);
   formData.append('telefoneFx', formValue.telefoneFx);
@@ -27,22 +29,18 @@ export function toFormData<T>(formValue) {
   formData.append('password2', formValue.password2);
   formData.append('nomeIg', formValue.nomeIg);
   formData.append('pastor', formValue.pastor);
-  formData.append('chekbox1Profissao', formValue.chekbox1Profissao.toString());
-  formData.append(
-    'chekbox2Intercessor',
-    formValue.chekbox2Intercessor.toString()
-  );
-  formData.append('chekbox3Cuidador', formValue.chekbox3Cuidador.toString());
-  formData.append(
-    'chekbox4CasaDescanso',
-    formValue.chekbox4CasaDescanso.toString()
-  );
-  formData.append(
-    'chekbox5Aconselhamento',
-    formValue.chekbox5Aconselhamento.toString()
-  );
+
+  if (formValue.typeVoluntary) {
+    Object.keys(formValue.typeVoluntary).forEach((key, index) => {
+      const value = formValue.typeVoluntary[key];
+      formData.append(`${'typeVoluntary'}[${key}]`, value);
+    });
+}
+
+  formData.append('chekbox5Aconselhamento',formValue.chekbox5Aconselhamento.toString());
   formData.append('especialidade', formValue.especialidade);
   formData.append('servicoOferecido', formValue.servicoOferecido);
+
   if (formValue.imgsCasaDescansoFile != null) {
     Object.keys(formValue.imgsCasaDescansoFile).forEach((element, index) => {
       formData.append(
@@ -52,6 +50,7 @@ export function toFormData<T>(formValue) {
       );
     });
   }
+
   if (formValue.imgFileCasaDescansoPrincipal != null) {
     formData.append(
       'imgFileCasaDescansoPrincipal',
@@ -61,6 +60,43 @@ export function toFormData<T>(formValue) {
   }
   formData.append('dataCad', formValue.dataCad);
   formData.append('status', formValue.status);
+  // formData.append('localDescanso', JSON.stringify(formValue.localDescanso));
+  if (formValue.localDescanso) {
+    Object.keys(formValue.localDescanso).forEach((key, index) => {
+      const value = formValue.localDescanso[key];
+      const name = `${'localDescanso'}[${key}]`;
+      if (typeof(value) === 'object'){
+        if (key === 'typeLocalDescanso'){
+          Object.keys(formValue.localDescanso.typeLocalDescanso).forEach((key, index) => {
+            const value = formValue.localDescanso.typeLocalDescanso[key];
+            formData.append(`${name}[${key}]`, value);
+          });
+        }
+        if (key === 'enderecoLocalDescanso'){
+          Object.keys(formValue.localDescanso.enderecoLocalDescanso).forEach((key, index) => {
+            const value = formValue.localDescanso.enderecoLocalDescanso[key];
+            formData.append(`${name}[${key}]`, value);
+          });
+        }
+        if ( key === 'servicosDisponibilizados'){
+          Object.keys(formValue.localDescanso.servicosDisponibilizados).forEach((key, index) => {
+            const value = formValue.localDescanso.servicosDisponibilizados[key];
+            formData.append(`${name}[${key}]`, value);
+          });
+        }
+
+
+
+
+
+
+
+
+      }
+      formData.append(name, value);
+    });
+
+}
 
   return formData;
 }

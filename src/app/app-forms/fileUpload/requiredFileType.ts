@@ -1,5 +1,4 @@
 import { FormControl } from '@angular/forms';
-import { FileImageModel } from 'src/app/shared/fileImage.model';
 
 export function requiredFileTypeImg() {
   return function (control: FormControl) {

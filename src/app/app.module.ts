@@ -41,10 +41,6 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    // ImagekitioAngularModule.forRoot({
-    //   publicKey: environment.PUBLICKEY,
-    //   urlEndpoint: environment.URL_ENDPOINT,
-    // }),
     AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
@@ -57,11 +53,11 @@ import { environment } from 'src/environments/environment';
     BrowserAnimationsModule,
     SharedModule,
     NgxMaskModule.forRoot({
-      dropSpecialCharacters: true,
+      dropSpecialCharacters: false,
     }),
   ],
   providers: [
-   
+
     VoluntaryService,
     FiltroPersonalizadoService,
     AuthService,
