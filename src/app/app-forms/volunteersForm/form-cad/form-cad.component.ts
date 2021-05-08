@@ -46,8 +46,12 @@ export class FormCadComponent implements OnInit, OnChanges {
   comercioAlimetacao = 'O local providencia algum tipo de alimentação?';
   custoAlimetacao = 'haverá algum custo de alimentação?';
 
-  hasArchive: boolean = null;
+
   isCasaDescanso: boolean;
+  disponibilidadeRoupaCama = 'O local disponibilizará roupa de cama e banho?';
+  imgFilePrincipalHaveFile: boolean;
+  imgFileCasaDescansoPrincipalHaveFile: boolean;
+  imgsCasaDescansoFileHaveFile: boolean;
 
   constructor(
     private voluntaryService: VoluntaryService,
@@ -61,6 +65,9 @@ export class FormCadComponent implements OnInit, OnChanges {
   }
 
   setMensagem(field: string): void {
+    if (field === 'roupaCama'){
+      this.disponibilidadeRoupaCama = this.roupaCama.value === true ? 'Sim, O local disponibilizará roupa de cama e banho. ' : 'Não, O local não disponibilizará roupa de cama e banho.';
+    }
     if (field === 'disponibilidadeDuranteAno') {
       this.disponibilidadeAno =
         this.formulario.value.localDescanso.disponibilidadeDuranteAno === true
@@ -227,7 +234,8 @@ export class FormCadComponent implements OnInit, OnChanges {
           roupaCama: [this.Voluntary.localDescanso.roupaCama], // switch
           qtQuartos: [this.Voluntary.localDescanso.qtQuartos], // number
           qtSuites: [this.Voluntary.localDescanso.qtSuites], // number
-          qtCamas: [this.Voluntary.localDescanso.qtCamas], // number
+          qtCamasCasal: [this.Voluntary.localDescanso.qtCamasCasal], // number
+          qtCamasSolteiro: [this.Voluntary.localDescanso.qtCamasSolteiro], // number
           servicosDisponibilizados: this.formBuilder.group({
             // todos switch
             piscina: [
@@ -414,14 +422,14 @@ export class FormCadComponent implements OnInit, OnChanges {
     //   } as AbstractControlOptions
     // );
     console.log(this.formulario.controls);
-    console.log(this.imgsCasaDescansoFile);
+    console.log(this.imgFilePrincipal);
    }
 
   async onSubmit(): Promise<void> {
     this.cleanValidationsIFLocalDescanso(); // limpa validações se local descanso false
     this.cleanValidationsIF_id(); // limpa validações se _id contido
-this.findAllErrors()
-this.findAllValid()
+    this.findAllErrors();
+    this.findAllValid();
 
     this.findErrors(this.formulario);
     this.findErrors(this.endereco);
@@ -512,7 +520,7 @@ this.findAllValid()
               `Os dados do ${this.Voluntary.nome} foram salvos com sucesso`
             );
           this.formulario.reset(); // reseta formulário
-          this.resetImg()
+          this.resetImg();
         },
         (error) => {
           this.activAlert(
@@ -558,9 +566,13 @@ this.findAllValid()
     if (event.target.files.length > 0) {
       const file = event.target.files as File;
       this.formulario.get(field).setValue(file);
-      this.hasArchive = true;
+      this.imgFilePrincipalHaveFile = field === 'imgFilePrincipal' ? true : undefined;
+      this.imgFileCasaDescansoPrincipalHaveFile = field === 'imgFileCasaDescansoPrincipal' ? true : undefined;
+      this.imgsCasaDescansoFileHaveFile = field === 'imgsCasaDescansoFile' ? true : undefined;
     } else {
-      this.hasArchive = false;
+      this.imgFilePrincipalHaveFile = field === 'imgFilePrincipal' ? false : undefined;
+      this.imgFileCasaDescansoPrincipalHaveFile = field === 'imgFileCasaDescansoPrincipal' ? false : undefined;
+      this.imgsCasaDescansoFileHaveFile = field === 'imgsCasaDescansoFile' ? false : undefined;
     }
   }
 
@@ -919,8 +931,11 @@ cleanValidationsIF_id(): void{
   get qtSuites(): AbstractControl {
     return this.formulario.get(['localDescanso', 'qtSuites']);
   }
-  get qtCamas(): AbstractControl {
-    return this.formulario.get(['localDescanso', 'qtCamas']);
+  get qtCamasCasal(): AbstractControl {
+    return this.formulario.get(['localDescanso', 'qtCamasCasal']);
+  }
+  get qtCamasSolteiro(): AbstractControl {
+    return this.formulario.get(['localDescanso', 'qtCamasSolteiro']);
   }
   get servicosDisponibilizados(): AbstractControl {
     return this.formulario.get(['localDescanso', 'servicosDisponibilizados']);

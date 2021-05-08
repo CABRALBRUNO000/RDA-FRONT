@@ -75,7 +75,8 @@ export interface VoluntaryModel {
     roupaCama: boolean;
     qtQuartos: string;
     qtSuites: string;
-    qtCamas: string;
+    qtCamasCasal: string;
+    qtCamasSolteiro: string;
     servicosDisponibilizados: {
       piscina: boolean;
       quadra: boolean;

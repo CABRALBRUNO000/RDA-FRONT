@@ -101,7 +101,8 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
         roupaCama: false,
         qtQuartos: '',
         qtSuites: '',
-        qtCamas: '',
+        qtCamasCasal: '',
+        qtCamasSolteiro: '',
         servicosDisponibilizados: {
           piscina: false,
           quadra: false,

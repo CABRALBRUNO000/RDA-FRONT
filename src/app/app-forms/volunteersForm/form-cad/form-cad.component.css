@@ -195,15 +195,15 @@ select {
 .labelTypeFile{
   display: flex;
   align-items: center;
-  font-size: 15px;
-
-}
-
-.labelTypeFile p {
+  font-size: 13px;
+  margin-bottom:-15px ;
   color: #198754;
   margin-left: 10px;
   margin-top: 5px;
+
 }
+
+
 
 fieldset {
   padding: 20px;
@@ -230,12 +230,12 @@ select, textarea {
 }
 
 [type="file"]::before {
-  content: "Selecione um arquivo";
+  content: "Adicione uma foto";
   display: inline-block;
   background-image: url(./../../../../assets/001-upload.svg);
   background-size: 15px;
   background-attachment: local;
-  background-position-x: 145px;
+  background-position-x: 135px;
   background-position-y: center;
   background-repeat: no-repeat;
   border: 1px solid rgb(185, 184, 184);
@@ -260,7 +260,7 @@ select, textarea {
   transition: 0.3s;
   color: #157347;
   font-size: smaller;
-  background-position-x: 145px;
+  background-position-x: 135px;
 }
 
 [type="file"]:hover::before {
@@ -363,6 +363,10 @@ label {
     height: 100px;
     padding-bottom: -10px;
   }
+  fieldset{
+    padding: 5px;
+  }
+
 }
 .forcedResponsiveness
 {

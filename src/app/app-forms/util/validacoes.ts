@@ -156,11 +156,7 @@ Error: any;   //#region static requiredFileTypeImg
         'enderecoLocalDescanso',
         'numeroLocalDescanso',
       ]);
-      const complementoLocalDescanso = controle.get([
-        'localDescanso',
-        'enderecoLocalDescanso',
-        'complementoLocalDescanso',
-      ]);
+
       const CEPLocalDescanso = controle.get([
         'localDescanso',
         'enderecoLocalDescanso',
@@ -217,7 +213,8 @@ Error: any;   //#region static requiredFileTypeImg
       const roupaCama = controle.get(['localDescanso', 'roupaCama']);
       const qtQuartos = controle.get(['localDescanso', 'qtQuartos']);
       const qtSuites = controle.get(['localDescanso', 'qtSuites']);
-      const qtCamas = controle.get(['localDescanso', 'qtCamas']);
+      const qtCamasCasal = controle.get(['localDescanso', 'qtCamasCasal']);
+      const qtCamasSolteiro = controle.get(['localDescanso', 'qtCamasSolteiro']);
 
       const piscina = controle.get([
         'localDescanso',
@@ -275,7 +272,6 @@ Error: any;   //#region static requiredFileTypeImg
 //#endregion
       Validating.isRequired(ruaLocalDescanso);
       Validating.isRequired(numeroLocalDescanso);
-      Validating.isRequired(complementoLocalDescanso);
       Validating.isRequired(CEPLocalDescanso);
       Validating.isRequired(bairroLocalDescanso);
       Validating.isRequired(cidadeLocalDescanso);
@@ -358,7 +354,8 @@ Error: any;   //#region static requiredFileTypeImg
       Validating.isRequired(qtSuites);
       //#endregion
       //#region qtCamas
-      Validating.isRequired(qtCamas);
+      Validating.isRequired(qtCamasCasal);
+      Validating.isRequired(qtCamasSolteiro);
       //#endregion
       //#region servicosDisponibilizados
       Validating.isRequired(servicosDisponibilizados);
@@ -427,11 +424,7 @@ Error: any;   //#region static requiredFileTypeImg
         'enderecoLocalDescanso',
         'numeroLocalDescanso',
       ]);
-      const complementoLocalDescanso = controle.get([
-        'localDescanso',
-        'enderecoLocalDescanso',
-        'complementoLocalDescanso',
-      ]);
+
       const CEPLocalDescanso = controle.get([
         'localDescanso',
         'enderecoLocalDescanso',
@@ -496,7 +489,8 @@ Error: any;   //#region static requiredFileTypeImg
       const roupaCama = controle.get(['localDescanso', 'roupaCama']);
       const qtQuartos = controle.get(['localDescanso', 'qtQuartos']);
       const qtSuites = controle.get(['localDescanso', 'qtSuites']);
-      const qtCamas = controle.get(['localDescanso', 'qtCamas']);
+      const qtCamasCasal = controle.get(['localDescanso', 'qtCamasCasal']);
+      const qtCamasSolteiro = controle.get(['localDescanso', 'qtCamasSolteiro']);
 
       const servicosDisponibilizados = controle.get([
         'localDescanso',
@@ -567,7 +561,6 @@ Error: any;   //#region static requiredFileTypeImg
       // #region Clean enderecolocalDescanso
       Validating.cleanRequired(ruaLocalDescanso);
       Validating.cleanRequired(numeroLocalDescanso);
-      Validating.cleanRequired(complementoLocalDescanso);
       Validating.cleanRequired(CEPLocalDescanso);
       Validating.cleanRequired(bairroLocalDescanso);
       Validating.cleanRequired(cidadeLocalDescanso);
@@ -616,7 +609,8 @@ Error: any;   //#region static requiredFileTypeImg
       Validating.cleanRequired(qtSuites);
       //#endregion
       //#region qtCamas
-      Validating.cleanRequired(qtCamas);
+      Validating.cleanRequired(qtCamasCasal);
+      Validating.cleanRequired(qtCamasSolteiro);
       //#endregion
       //#region servicosDisponibilizados
       Validating.cleanRequired(servicosDisponibilizados);

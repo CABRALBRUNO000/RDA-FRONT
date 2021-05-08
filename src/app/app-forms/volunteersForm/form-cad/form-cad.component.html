@@ -183,8 +183,9 @@
           <div class="col  ">
             <input type="file" class="form-control" [ngClass]="applyCss('imgFilePrincipal')"
               (change)="onFileSelect($event, 'imgFilePrincipal')" />
+               <p class="labelTypeFile">Adicione a sua foto de perfil</p>
           </div>
-          <div *ngIf="imgFilePrincipal.touched && imgFilePrincipal.errors" class="d-flex flex-wrap flex-column mt-1">
+          <div *ngIf="imgFilePrincipalHaveFile && imgFilePrincipal.errors" class="d-flex flex-wrap flex-column mt-1">
             <small class="text-formInvalid" *ngIf="imgFilePrincipal.errors.required">
               não esqueça de adicionar uma foto sua;
             </small>
@@ -307,7 +308,7 @@
         </div>
       </div>
     </fieldset>
-    <fieldset class="mt-2 fieldsetIF pb-4" *ngIf="formulario.value.chekbox1Profissao">
+    <fieldset class="mt-2 fieldsetIF pb-4" *ngIf="chekbox1Profissao.value">
       <h5 class="mb-4 ml-4">
         Para quem deseja atuar através da sua Profissão:
       </h5>
@@ -327,7 +328,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="mt-2 fieldsetIF pb-5" *ngIf="formulario.value.chekbox3Cuidador">
+    <fieldset class="mt-2 fieldsetIF pb-5" *ngIf="chekbox3Cuidador.value">
       <h5 class="mb-4 ml-4">Somente para Cuidadores:</h5>
 
       <div class="form-check form-switch mb-4">
@@ -341,10 +342,10 @@
     </fieldset>
     <fieldset class="mt-2 fieldsetIF pb-5" *ngIf=" chekbox4CasaDescanso.value">
       <h5 class="mb-4 ml-4">
-        Somente para quem deseja disponibiliar local de descanso
+        Somente para quem deseja disponibilizar local de descanso
       </h5>
 
-      <fieldset formGroupName="localDescanso" class="mb-2 d-flex flex-column" [ngClass]="applyCssGroup('localDescanso.typeLocalDescanso')">
+      <fieldset formGroupName="localDescanso" class="mb-2 d-flex flex-column deletingMarginsFromMobile" [ngClass]="applyCssGroup('localDescanso.typeLocalDescanso')">
         <div formGroupName="typeLocalDescanso">
           <h5 class="mb-4 ml-4">Local de descanso</h5>
           <div class="form-check form-switch">
@@ -448,14 +449,10 @@
               </div>
             </div>
             <div class="campo form-floating form-group col">
-              <input  [ngClass]="applyCss('localDescanso.enderecoLocalDescanso.complementoLocalDescanso')" type="text" class="form-control" id="complementoLocalDescanso"
+              <input type="text" class="form-control" id="complementoLocalDescanso"
                 formControlName="complementoLocalDescanso" placeholder="qualquer informações pertinente" />
               <label class="ml-3" for="complementoLocalDescanso">Complemento</label>
-              <div *ngIf="complementoLocalDescanso.touched && complementoLocalDescanso.errors && !complementoLocalDescanso.valid" class="mt-1" >
-                <small class="text-formInvalid" *ngIf="complementoLocalDescanso.errors.required">
-                  Informe um complemento.
-                </small>
-              </div>
+
             </div>
             <div class="campo form-floating col">
               <select [ngClass]="applyCss('localDescanso.enderecoLocalDescanso.ufLocalDescanso')" formControlName="ufLocalDescanso" id="ufLocalDescanso" class="form-select">
@@ -628,10 +625,9 @@
           <div *ngIf="custoHospedagem.value"
             class="row d-flex-wrap m-3 mb-4 form-floating col">
             <div class="form-floating campo form-group col">
-              <input [ngClass]="applyCss('localDescanso.valorHospedagem')" type="text" class="form-control"
-                id="valorHospedagem" formControlName="valorHospedagem"  mask="separator"
-                thousandSeparator="." suffix=",00" placeholder="nº" />
-              <label class="ml-3" for="valorHospedagem">Qual será o valor da Hopedagem?
+              <input [ngClass]="applyCss('localDescanso.valorHospedagem')" type="text" class="form-control heightInput"
+                id="valorHospedagem" formControlName="valorHospedagem"/>
+              <label class="ml-3" for="valorHospedagem">Qual será o valor da Diária?
               </label>
               <div *ngIf="valorHospedagem.touched && valorHospedagem.errors && !valorHospedagem.valid" class="mt-1" >
                 <small class="text-formInvalid" *ngIf="valorHospedagem.errors.required">
@@ -669,7 +665,7 @@
           <div *ngIf="formulario.value.localDescanso.custoAlimentacao"
             class="row d-flex-wrap m-3 mb-4 form-floating col">
             <div class="form-floating campo form-group col">
-              <input [ngClass]="applyCss('localDescanso.valorRefeicoes')" type="text" class="form-control"
+              <input [ngClass]="applyCss('localDescanso.valorRefeicoes')" type="text" class="form-control heightInput"
                 id="valorRefeicoes" formControlName="valorRefeicoes" mask="separator" thousandSeparator="."
                 suffix=",00" placeholder="nº"  style="padding-top: 15px !important; padding-bottom: 15px !important;"/>
               <label class="ml-3 labelText" for="valorRefeicoes">Qual será o valor das refeições (café, almoço e jantar)?
@@ -689,14 +685,13 @@
           <div class="form-check form-switch col-auto">
             <input [ngClass]="applyCss('localDescanso.roupaCama')" class="form-check-input px-3 py-2" type="checkbox" id="roupaCama" formControlName="roupaCama"
               (ngModelChange)="setMensagem('roupaCama')" />
-            <label class="form-check-label" for="roupaCama">O local disponibilizará roupa de cama e banho?</label>
+            <label class="form-check-label" for="roupaCama">{{disponibilidadeRoupaCama}}</label>
             <div *ngIf="roupaCama.touched && roupaCama.errors && !roupaCama.valid" class="mt-1" >
               <small class="text-formInvalid" *ngIf="roupaCama.errors.required">
                 Informe se será disponibilizado roupas de cama.
               </small>
             </div>
           </div>
-
           <div class="form-floating campo form-group col">
             <input [ngClass]="applyCss('localDescanso.qtQuartos')" type="number" class="form-control heightInput" id="qtQuartos" formControlName="qtQuartos"
               placeholder="nº" />
@@ -708,29 +703,47 @@
               </small>
             </div>
           </div>
-          <div class="form-floating campo form-group col">
-            <input [ngClass]="applyCss('localDescanso.qtSuites')" type="number" class="form-control heightInput" id="qtSuites" formControlName="qtSuites"
-              placeholder="nº" />
-            <label class="ml-3 labelText" for="qtSuites">O local possui quantos suítes?
-            </label>
-            <div *ngIf="qtSuites.touched && qtSuites.errors && !qtSuites.valid" class="mt-1" >
-              <small class="text-formInvalid" *ngIf="qtSuites.errors.required">
-                Informe a quantidade de suites que serãos disponibilziadas na parceria.
-              </small>
-            </div>
           </div>
-          <div class="form-floating campo form-group col">
-            <input [ngClass]="applyCss('localDescanso.qtCamas')" type="number" class="form-control heightInput" id="qtCamas" formControlName="qtCamas"
-              placeholder="nº" />
-            <label class="ml-3 labelText" for="qtCamas">O local possui quantas camas (casal/solteiro)?
-            </label>
-            <div *ngIf="qtCamas.touched && qtCamas.errors && !qtCamas.valid" class="mt-1" >
-              <small class="text-formInvalid" *ngIf="qtCamas.errors.required">
-                Informe a quantidade de camas que serãos disponibilziadas na parceria.
-              </small>
+
+          <div class="row d-flex-wrap m-3 mb-4">
+            <div class="form-floating campo form-group col">
+              <input [ngClass]="applyCss('localDescanso.qtSuites')" type="number" class="form-control heightInput" id="qtSuites" formControlName="qtSuites"
+                placeholder="nº" />
+              <label class="ml-3 labelText" for="qtSuites">O local possui quantos suítes?
+              </label>
+              <div *ngIf="qtSuites.touched && qtSuites.errors && !qtSuites.valid" class="mt-1" >
+                <small class="text-formInvalid" *ngIf="qtSuites.errors.required">
+                  Informe a quantidade de suites que serãos disponibilziadas na parceria.
+                </small>
+              </div>
             </div>
+            <div class="form-floating campo form-group col">
+              <input [ngClass]="applyCss('localDescanso.qtCamasCasal')" type="number" class="form-control heightInput" id="qtCamas" formControlName="qtCamasCasal"
+                placeholder="nº" />
+              <label class="ml-3 labelText" for="qtCamasCasal">O local possui quantas camas de casal?
+              </label>
+              <div *ngIf="qtCamasCasal.touched && qtCamasCasal.errors && !qtCamasCasal.valid" class="mt-1" >
+                <small class="text-formInvalid" *ngIf="qtCamasCasal.errors.required">
+                  Informe a quantidade de camas casal que serãos disponibilziadas na parceria.
+                </small>
+              </div>
+            </div>
+            <div class="form-floating campo form-group col">
+              <input [ngClass]="applyCss('localDescanso.qtCamasSolteiro')" type="number" class="form-control heightInput" id="qtCamasSolteiro" formControlName="qtCamasSolteiro"
+                placeholder="nº" />
+              <label class="ml-3 labelText" for="qtCamasSolteiro">O local possui quantas camas de solteiro?
+              </label>
+              <div *ngIf="qtCamasSolteiro.touched && qtCamasSolteiro.errors && !qtCamasSolteiro.valid" class="mt-1" >
+                <small class="text-formInvalid" *ngIf="qtCamasSolteiro.errors.required">
+                  Informe a quantidade de camas solteiro que serãos disponibilziadas na parceria.
+                </small>
+              </div>
+            </div>
+
           </div>
-        </div>
+
+
+
         <hr />
         <h5>O que o local de descanso disponibiliza?</h5>
         <fieldset [ngClass]="applyCssGroup('localDescanso.servicosDisponibilizados')" formGroupName="servicosDisponibilizados" class="d-flex flex-wrap">
@@ -792,12 +805,12 @@
            (change)="onFileSelect($event, 'imgFileCasaDescansoPrincipal')" />
         <div class="d-flex flex-column">
           <div class="labelTypeFile">
-            <p>
+            <p >
               Aqui, adicione a imagem principal que deja mostrar sobre a casa, é
               possivel adicionar somente uma imagem principal.
             </p>
           </div>
-          <div *ngIf="imgsCasaDescansoFile.touched && imgFileCasaDescansoPrincipal.errors" class="d-flex flex-wrap flex-column mt-1 col-6">
+          <div *ngIf="imgFileCasaDescansoPrincipalHaveFile && imgFileCasaDescansoPrincipal.errors" class="d-flex flex-wrap flex-column mt-1 col-6">
             <small class="text-formInvalid" *ngIf="imgFileCasaDescansoPrincipal.errors.required">
               não esqueça de adicionar uma foto do local de descanso;
             </small>
@@ -816,12 +829,12 @@
         <input [ngClass]="applyCss('imgsCasaDescansoFile')" class="form-control" type="file" multiple
           (change)="onFileSelect($event, 'imgsCasaDescansoFile')" />
         <div class="d-flex flex-column ">
-          <div class="labelTypeFile">
-            <p>
+
+            <p class="labelTypeFile">
               Aqui, adicione até 10 imagens da casa que deseja disponibilizar.
             </p>
-          </div>
-            <div *ngIf="imgsCasaDescansoFile.touched && imgsCasaDescansoFile.errors" class="d-flex flex-wrap flex-column mt-1">
+
+            <div *ngIf="imgsCasaDescansoFileHaveFile && imgsCasaDescansoFile.errors" class="d-flex flex-wrap flex-column mt-1">
               <small class="text-formInvalid" *ngIf="imgsCasaDescansoFile.errors.required">
                 não esqueça de adicionar algumas fotos do Local de descanso;
               </small>
@@ -848,16 +861,6 @@
       <button type="submit" class="btn btn-success btn-lg pr-5 pl-5" *ngIf="!Voluntary._id">
         Cadastrar Voluntário
       </button>
-    </div>
-
-
-    <div class="d-flex flex-column">
-      <p>VALUE</p>
-      {{ formulario.valid| json }}
-    </div>
-    <div>
-      <p>VALID</p>
-      {{ formulario.getError('servicosDisponibilizados') | json }}
     </div>
   </form>
 </div>
