@@ -1,6 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
+
 import { VoluntaryModel } from 'src/app/shared/voluntary.model';
 import { VoluntaryService } from './../../../volunteers/services/voluntary.service';
 
@@ -19,7 +21,7 @@ export class MypageComponent implements OnInit {
   transformationImg = [{ "height": "221", "width": "400" }];
   transformationImgCasaDescanso = [{ "height": "400", "width": "500" }];
 
-  slides= [] 
+  slides= []
   constructor(
     private VoluntaryService: VoluntaryService,
     private route: ActivatedRoute
@@ -29,7 +31,7 @@ export class MypageComponent implements OnInit {
     this.Voluntary = this.route.snapshot.data['voluntary'];
     console.log('o que vem do guard', this.Voluntary);
    this.slides = this.Voluntary.urlsImage.urlImgsCasaDescanso
-  
+
   }
 
 }

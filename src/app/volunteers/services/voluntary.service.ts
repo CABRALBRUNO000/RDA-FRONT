@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, retry, catchError, take } from 'rxjs/operators';
 import { VoluntaryModel } from 'src/app/shared/voluntary.model';
+
 import { toFormData } from 'src/app/app-forms/fileUpload/toFormData';
 
 @Injectable()
@@ -76,14 +77,14 @@ export class VoluntaryService {
     if (error.error instanceof ErrorEvent) {
       // Erro ocorreu no lado do client
       Object.assign(errorMessage, { ErroMensagem: error.error.message })
-     
+
     } else {
       // Erro ocorreu no lado do servidor
       Object.assign(errorMessage, { StatusCode: error.status })
           //  `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
     }
 
-    
+
     return throwError(errorMessage);
   }
 }
