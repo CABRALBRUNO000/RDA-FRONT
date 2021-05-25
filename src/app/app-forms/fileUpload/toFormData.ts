@@ -1,9 +1,10 @@
-import { VoluntaryModel } from 'src/app/shared/voluntary.model';
+import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
 
 export function toFormData<T>(formValue: VoluntaryModel): FormData {
   const formData = new FormData();
 
   formData.append('nome', formValue.nome);
+  formData.append('typeUser', formValue.typeUser);
   formData.append('dataNascimento', formValue.dataNascimento);
   formData.append('sexo', formValue.sexo);
   if (formValue.endereco) {

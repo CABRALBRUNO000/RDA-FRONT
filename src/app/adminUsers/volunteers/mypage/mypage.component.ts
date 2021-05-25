@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
-import { VoluntaryModel } from 'src/app/shared/voluntary.model';
-import { VoluntaryService } from './../../../volunteers/services/voluntary.service';
+import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
+import { UserService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-mypage',
   templateUrl: './mypage.component.html',
   styleUrls: ['./mypage.component.css'],
-  providers: [VoluntaryService],
+  providers: [UserService],
 })
 export class MypageComponent implements OnInit {
 
@@ -23,7 +23,7 @@ export class MypageComponent implements OnInit {
 
   slides= []
   constructor(
-    private VoluntaryService: VoluntaryService,
+    private VoluntaryService: UserService,
     private route: ActivatedRoute
   ) {}
 

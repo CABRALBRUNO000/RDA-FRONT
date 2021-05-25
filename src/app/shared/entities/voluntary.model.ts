@@ -1,5 +1,6 @@
 export interface VoluntaryModel {
   _id: string;
+  typeUser: string;
   nome: string;
   dataNascimento: string;
   sexo: string;

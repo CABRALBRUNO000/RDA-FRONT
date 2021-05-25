@@ -1,3 +1,4 @@
+import { httpInterceptorProviders } from './http-interceptors/';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { CommonModule } from '@angular/common';
@@ -22,13 +23,14 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 
 import { FiltroPersonalizadoService } from './app-forms/services/filtro-personalizado.service';
-import { VoluntaryService } from './volunteers/services/voluntary.service';
+import { UserService } from './services/users.service';
 
 import { AuthService } from './login/auth.service';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 
 import { SharedModule } from './shared/shared.module';
 import { environment } from 'src/environments/environment';
+import { PublicPageModule } from './public-page/public-page.module';
 
 @NgModule({
   declarations: [
@@ -55,13 +57,15 @@ import { environment } from 'src/environments/environment';
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false,
     }),
+    PublicPageModule,
   ],
   providers: [
 
-    VoluntaryService,
+    UserService,
     FiltroPersonalizadoService,
     AuthService,
     AuthGuard,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
   exports: [MainComponent, ImagekitioAngularModule],

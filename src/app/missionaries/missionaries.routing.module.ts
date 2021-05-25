@@ -2,6 +2,7 @@ import { AuthGuard } from './../shared/guards/auth.guard';
 import { MyPageMissionariesComponent } from '../adminUsers/missionaries/myPageMissionaries/myPageMissionaries.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomePageMissionaryComponent } from './home-page-missionary/home-page-missionary.component';
 
 
 const routes: Routes = [];
@@ -15,6 +16,10 @@ const routes: Routes = [];
         resolve: {
           // voluntary: FormCadVolunteersResolverGuard,
         },
+      },
+      {
+        path: 'homeMissionary/:id',
+        component: HomePageMissionaryComponent, canActivate:[AuthGuard]
       },
     ]),
   ],

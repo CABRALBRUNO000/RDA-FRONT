@@ -4,6 +4,7 @@ import { AuthGuard } from './../shared/guards/auth.guard';
 
 import { FormCadVolunteersResolverGuard } from './../shared/guards/form-cad-volunteers-resolver.guard';
 import { MypageComponent } from './../adminUsers/volunteers/mypage/mypage.component';
+import { HomePageVoluntaryComponent } from './home-page-voluntary/home-page-voluntary.component';
 
 const routes: Routes = [];
 
@@ -16,6 +17,10 @@ const routes: Routes = [];
         resolve: {
           voluntary: FormCadVolunteersResolverGuard,
         },
+      },
+      {
+        path: 'homeVoluntary/:id',
+        component: HomePageVoluntaryComponent, canActivate:[AuthGuard]
       },
     ]),
   ],

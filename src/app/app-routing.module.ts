@@ -3,7 +3,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminUsersRoutingModule } from './adminUsers/adminUsers.routing.module'; 
+import { AdminUsersRoutingModule } from './adminUsers/adminUsers.routing.module';
 import { VolunteersRoutingModule } from './volunteers/volunteers.routing.module';
 import { AppFormsRoutingModule } from './app-forms/app-forms.routing.module';
 import { MissionariesRoutingModule } from './missionaries/missionaries.routing.module';
@@ -24,11 +24,11 @@ const routes: Routes = [];
     RouterModule.forRoot(
       [
         { path: '', redirectTo: 'sideBar', pathMatch: 'full' },
-        
+
         { path: 'LoginUser', component: LoginComponent },
         { path: '**', component: Erro404Component, canActivate:[AuthGuard] },
-        
-    
+
+
       ],
       { relativeLinkResolution: 'legacy' }
     ),

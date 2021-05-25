@@ -1,3 +1,25 @@
-<p>
-  formCadAdminUsers works!
-</p>
+<main class="container-ms mt-5" >
+  <div [@torrada]="alertState" class="alert">
+    <div [ngClass]="typeStyle()" class="borderAlert"></div>
+    <p id="text"></p>
+    <button (click)="toggle('hide')" class="closebtn">x</button>
+  </div>
+  <fieldset class="mt-5" >
+  <h2 class="m-2">Cadastro de Administradores</h2>
+  <form class="m-3" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3 mt-5">
+      <input type="text" class="form-control" id="nameAdmin" placeholder="name@example.com">
+      <label for="nameAdmin">Nome Completo</label>
+    </div>
+    <div class="form-floating mb-3 mt-3">
+      <input type="email" class="form-control" id="emailAdmin" placeholder="name@example.com">
+      <label for="emailAdmin">Endereço de Email</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="passwordAdmin" placeholder="Password">
+      <label for="passwordAdmin">Senha</label>
+    </div>
+    <button type="submit" class="btn btn-primary mt-5">Cadastrar</button>
+  </form>
+</fieldset>
+</main>

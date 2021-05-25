@@ -1,38 +1,68 @@
-import { Subject } from 'rxjs';
-import { Usuario } from './usuario';
+import { environment } from './../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
+import jwt_decode from 'jwt-decode'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authenticatedUser$ = new Subject<boolean>()
-  
-  private showMenuEmitter$  = new Subject<boolean>()
+  // private authenticatedUser$ = new Subject<boolean>();
+
+  // private showMenuEmitter$  = new Subject<boolean>();
 
 
-  constructor(private router:Router) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient
+    ) {}
 
-  public authenticateUser(usuario: Usuario) {
-    if (usuario.email === 'admin' && usuario.password === '123') {
-      this.authenticatedUser$.next(true) ;
-      this.showMenuEmitter$.next(true)
-      this.router.navigate(['/'])
+   async authenticateUser(user: any): Promise<any> {
+    const result = await this.http.post<any>(`${environment.API}/login`, user.value).toPromise();
+    if (result && result.access_token) {
+      window.localStorage.setItem('token', result.access_token);
+      return true;
     }else{
-      this.authenticatedUser$.next(false)
-      this.showMenuEmitter$.next(false)
-      console.log('erro no login'); 
-      
+      return false;
     }
+  }
 
-    
-    
+  getAuthorizationToken(): any{
+    const token = window.localStorage.getItem('token');
+    return token;
   }
-  public getEmitterMenu(){
-    return this.showMenuEmitter$
+  getTypeUser(): any {
+    const decodedToken: any = jwt_decode(this.getAuthorizationToken())
+    return decodedToken
   }
-  public authenticated(){
-    return this.authenticatedUser$
+  getTokenExpirationDate(token: string): Date {
+    const decoded: any = jwt_decode(token);
+
+    if (decoded.exp === undefined) {
+      return null;
+    }
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token: string): boolean {
+    if (!token) { return true; }
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined){return false; }
+    return !(date.valueOf() > new Date().valueOf());
+  }
+
+  isUserLoggedIn(){
+    const token =  this.getAuthorizationToken();
+    if (!token) {
+      return false;
+    }else if (this.isTokenExpired(token)){
+      return false;
+    }
+    return true
   }
 }

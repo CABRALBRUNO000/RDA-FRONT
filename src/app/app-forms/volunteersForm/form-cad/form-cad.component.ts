@@ -8,19 +8,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { VoluntaryService } from 'src/app/volunteers/services/voluntary.service';
+import { UserService } from 'src/app/services/users.service';
 
 import { Validating } from '../../util/validacoes';
 import { alertAnimation } from './../../../shared/services/alert-animation';
 import { AlertService } from './../../../shared/services/alert.service';
-import { VoluntaryModel } from './../../../shared/voluntary.model';
+import { VoluntaryModel } from '../../../shared/entities/voluntary.model';
 import { UploadImageService } from './../../services/upload-image.service';
 
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
-  styleUrls: ['./form-cad.component.css'],
-  providers: [VoluntaryService],
+  styleUrls: ['./form-cad.component.css', './../../app-forms.css' ],
+  providers: [UserService],
   animations: [alertAnimation],
 })
 export class FormCadComponent implements OnInit, OnChanges {
@@ -28,7 +28,6 @@ export class FormCadComponent implements OnInit, OnChanges {
 
   public Voluntary: VoluntaryModel;
   public formulario: FormGroup; // formulario em questão
-  public formularioTESTE: FormGroup; // formulario em questãoTESTE
 
   alertSuccess = true;
   alertDanger: boolean;
@@ -54,7 +53,7 @@ export class FormCadComponent implements OnInit, OnChanges {
   imgsCasaDescansoFileHaveFile: boolean;
 
   constructor(
-    private voluntaryService: VoluntaryService,
+    private voluntaryService: UserService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private alertService: AlertService,
@@ -116,6 +115,7 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.formulario = this.formBuilder.group(
       {
         _id: this.Voluntary._id,
+        typeUser: this.Voluntary.typeUser,
         nome: [
           this.Voluntary.nome,
           [
@@ -472,7 +472,7 @@ export class FormCadComponent implements OnInit, OnChanges {
 
   public UpdateVoluntaryCTRL(VoluntaryDataFormUpdated: VoluntaryModel): void {
 
-    this.voluntaryService.updateVoluntaryID(VoluntaryDataFormUpdated).subscribe(
+    this.voluntaryService.updateUserID(VoluntaryDataFormUpdated).subscribe(
       (voluntary) => {
         this.activAlert(
           'success',
@@ -510,7 +510,7 @@ export class FormCadComponent implements OnInit, OnChanges {
       this.settingRegistrationDate();
       this.addingStatusToVolunteer();
 
-      this.voluntaryService.saveVoluntary(this.formulario.value).subscribe(
+      this.voluntaryService.saveUser(this.formulario.value).subscribe(
         (voluntary) => {
           this.activAlert(
             'success',

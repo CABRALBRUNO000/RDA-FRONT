@@ -19,11 +19,11 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: '', redirectTo: '/sideBar/Dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'LoginUser', pathMatch: 'full' },
       {
         path: 'sideBar',
         component: SideBarComponent,
-        // canActivate: [AuthGuard],
+         canActivate: [AuthGuard],
         children: [
           //ADMINISTRADORES
           {
