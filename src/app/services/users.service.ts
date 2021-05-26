@@ -1,15 +1,15 @@
-import { environment } from '../../environments/environment';
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpHeaders,
+  HttpHeaders
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { map, retry, catchError, take } from 'rxjs/operators';
-import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
-
+import { catchError, map, retry, take } from 'rxjs/operators';
 import { toFormData } from 'src/app/app-forms/fileUpload/toFormData';
+import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class UserService {
@@ -33,7 +33,7 @@ export class UserService {
       .pipe(map((resposta: any) => resposta));
   }
 
-  // Headers para fazer o post de o put
+  // Headers para fazer o post e o put
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "multipart/form-data; boundary=<--- ::::>"}),
   };

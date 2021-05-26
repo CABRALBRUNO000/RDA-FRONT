@@ -5,21 +5,22 @@ import {
   FormBuilder,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/users.service';
-
+import { VoluntaryModel } from '../../../shared/entities/voluntary.model';
+import { FormValidationControl } from '../../services/form-validation-control.service';
 import { Validating } from '../../util/validacoes';
 import { alertAnimation } from './../../../shared/services/alert-animation';
 import { AlertService } from './../../../shared/services/alert.service';
-import { VoluntaryModel } from '../../../shared/entities/voluntary.model';
 import { UploadImageService } from './../../services/upload-image.service';
+
 
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
-  styleUrls: ['./form-cad.component.css', './../../app-forms.css' ],
+  styleUrls: ['./form-cad.component.css', './../../app-forms.css'],
   providers: [UserService],
   animations: [alertAnimation],
 })
@@ -37,7 +38,6 @@ export class FormCadComponent implements OnInit, OnChanges {
   style: any;
   brandRadiosValidator: boolean = undefined;
   brandRadiosValidatorLocalDescanso: boolean = undefined;
-  samePassword: boolean = null;
   inputPasswordValidity: any;
   disponibilidadeAno = 'O local estará disponível durante todo o ano?';
   // custoHospedagem: string = 'Não, o local será disponibilizado gratuitamente';
@@ -57,14 +57,14 @@ export class FormCadComponent implements OnInit, OnChanges {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private alertService: AlertService,
-    private uploadImageService: UploadImageService
-  ) {}
+    private formValidationControl: FormValidationControl,
+  ) { }
   ngOnChanges(changes: SimpleChanges): void {
 
   }
 
   setMensagem(field: string): void {
-    if (field === 'roupaCama'){
+    if (field === 'roupaCama') {
       this.disponibilidadeRoupaCama = this.roupaCama.value === true ? 'Sim, O local disponibilizará roupa de cama e banho. ' : 'Não, O local não disponibilizará roupa de cama e banho.';
     }
     if (field === 'disponibilidadeDuranteAno') {
@@ -115,7 +115,7 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.formulario = this.formBuilder.group(
       {
         _id: this.Voluntary._id,
-        typeUser: this.Voluntary.typeUser,
+        typeUser: 'VOLUNTARY',
         nome: [
           this.Voluntary.nome,
           [
@@ -187,30 +187,30 @@ export class FormCadComponent implements OnInit, OnChanges {
           enderecoLocalDescanso: this.formBuilder.group({
             ruaLocalDescanso: [
               this.Voluntary.localDescanso.enderecoLocalDescanso
-              .ruaLocalDescanso,
+                .ruaLocalDescanso,
             ],
             numeroLocalDescanso: [
               this.Voluntary.localDescanso.enderecoLocalDescanso
-              .numeroLocalDescanso,
+                .numeroLocalDescanso,
             ],
             complementoLocalDescanso: [
               this.Voluntary.localDescanso.enderecoLocalDescanso
-              .complementoLocalDescanso,
+                .complementoLocalDescanso,
             ],
             CEPLocalDescanso: [
               this.Voluntary.localDescanso.enderecoLocalDescanso
                 .CEPLocalDescanso,
-              ],
-              bairroLocalDescanso: [
-                this.Voluntary.localDescanso.enderecoLocalDescanso
+            ],
+            bairroLocalDescanso: [
+              this.Voluntary.localDescanso.enderecoLocalDescanso
                 .bairroLocalDescanso,
-              ],
-              cidadeLocalDescanso: [
-                this.Voluntary.localDescanso.enderecoLocalDescanso
+            ],
+            cidadeLocalDescanso: [
+              this.Voluntary.localDescanso.enderecoLocalDescanso
                 .cidadeLocalDescanso,
-              ],
-              ufLocalDescanso: [
-                this.Voluntary.localDescanso.enderecoLocalDescanso
+            ],
+            ufLocalDescanso: [
+              this.Voluntary.localDescanso.enderecoLocalDescanso
                 .ufLocalDescanso,
             ],
           }),
@@ -259,7 +259,7 @@ export class FormCadComponent implements OnInit, OnChanges {
             ],
             outrosServicosOferecidosDescrito: [
               this.Voluntary.localDescanso.servicosDisponibilizados
-              .outrosServicosOferecidos,
+                .outrosServicosOferecidos,
             ], // if outros
           }),
         }),
@@ -270,71 +270,71 @@ export class FormCadComponent implements OnInit, OnChanges {
           Validating.equalPasswords,
         ],
       } as AbstractControlOptions
-      );
-      // this.formulario = this.formBuilder.group(
-        //   {
-          //     _id: this.Voluntary._id,
-          //     nome: [
-            //       'TESTE FORMULARIO',
-            //       [
-              //         Validators.required,
-              //         Validators.minLength(3),
-              //         Validators.maxLength(100),
-              //       ],
-              //     ],
-              //     dataNascimento: ['10111995', [Validators.required]],
-              //     sexo: ['M', [Validators.required]],
+    );
+    // this.formulario = this.formBuilder.group(
+    //   {
+    //     _id: this.Voluntary._id,
+    //     nome: [
+    //       'TESTE FORMULARIO',
+    //       [
+    //         Validators.required,
+    //         Validators.minLength(3),
+    //         Validators.maxLength(100),
+    //       ],
+    //     ],
+    //     dataNascimento: ['10111995', [Validators.required]],
+    //     sexo: ['M', [Validators.required]],
 
-              //     endereco: this.formBuilder.group({
-                //       rua: ['RUA TESTE'],
-                //       numero: ['TESTE'],
-                //       bairro: ['321'],
-                //       cidade: [ 'Cidade testes'],
-                //       complemento: ['perto da conclusão'],
-                //       uf: ['RO'],
-                //       CEP: ['03122010'],
-                //     }),
+    //     endereco: this.formBuilder.group({
+    //       rua: ['RUA TESTE'],
+    //       numero: ['TESTE'],
+    //       bairro: ['321'],
+    //       cidade: [ 'Cidade testes'],
+    //       complemento: ['perto da conclusão'],
+    //       uf: ['RO'],
+    //       CEP: ['03122010'],
+    //     }),
 
-                //     profissao: ['profissão teste', [Validators.required]],
-                //     telefone: ['021988734469', [Validators.required]],
-                //     telefoneFx: ['021988734469'],
-                //     EstadoCivil: ['solteiro'],
-                //     imgFilePrincipal: [null, [Validating.requiredFileTypeImg]],
-                //     email: ['teste@teste', [Validators.required, Validators.email]],
-                //     password: ['321321321'],
+    //     profissao: ['profissão teste', [Validators.required]],
+    //     telefone: ['021988734469', [Validators.required]],
+    //     telefoneFx: ['021988734469'],
+    //     EstadoCivil: ['solteiro'],
+    //     imgFilePrincipal: [null, [Validating.requiredFileTypeImg]],
+    //     email: ['teste@teste', [Validators.required, Validators.email]],
+    //     password: ['321321321'],
     //     password2: ['321321321'],
     //     nomeIg: ['teste', [Validators.required]],
     //     pastor: ['teste', [Validators.required]],
 
     //     typeVoluntary: this.formBuilder.group({
-      //       chekbox1Profissao: [true],
-      //       chekbox2Intercessor: [
-        //         this.Voluntary.typeVoluntary.chekbox2Intercessor,
-        //       ],
-        //       chekbox3Cuidador: [this.Voluntary.typeVoluntary.chekbox3Cuidador],
-        //       chekbox4CasaDescanso: [
-          //         true,
-          //       ],
-          //     }),
+    //       chekbox1Profissao: [true],
+    //       chekbox2Intercessor: [
+    //         this.Voluntary.typeVoluntary.chekbox2Intercessor,
+    //       ],
+    //       chekbox3Cuidador: [this.Voluntary.typeVoluntary.chekbox3Cuidador],
+    //       chekbox4CasaDescanso: [
+    //         true,
+    //       ],
+    //     }),
 
-          //     chekbox5Aconselhamento: [this.Voluntary.chekbox5Aconselhamento],
-          //     especialidade: ['this.Voluntary.especialidade'],
-          //     servicoOferecido: ['this.Voluntary.servicoOferecido'],
-          //     imgsCasaDescansoFile: [null, [Validating.requiredFileTypeImg]],
-          //     // imgsCasaDescansoFile: [null,  this.isCasaDescanso? Validators.required, requiredFileTypeImg():''],
-          //     imgFileCasaDescansoPrincipal: [null, [Validating.requiredFileTypeImg]],
-          //     // imgFileCasaDescansoPrincipal: [null,  this.isCasaDescanso? [Validators.required, requiredFileTypeImg()]: ''],
-          //     dataCad: [this.Voluntary.dataCad],
-          //     status: [this.Voluntary.status],
+    //     chekbox5Aconselhamento: [this.Voluntary.chekbox5Aconselhamento],
+    //     especialidade: ['this.Voluntary.especialidade'],
+    //     servicoOferecido: ['this.Voluntary.servicoOferecido'],
+    //     imgsCasaDescansoFile: [null, [Validating.requiredFileTypeImg]],
+    //     // imgsCasaDescansoFile: [null,  this.isCasaDescanso? Validators.required, requiredFileTypeImg():''],
+    //     imgFileCasaDescansoPrincipal: [null, [Validating.requiredFileTypeImg]],
+    //     // imgFileCasaDescansoPrincipal: [null,  this.isCasaDescanso? [Validators.required, requiredFileTypeImg()]: ''],
+    //     dataCad: [this.Voluntary.dataCad],
+    //     status: [this.Voluntary.status],
 
-          //     localDescanso: this.formBuilder.group({
-            //       typeLocalDescanso: this.formBuilder.group({
-              //         casaDePraia: [
-                //           this.Voluntary.localDescanso.typeLocalDescanso.casaDePraia,
-                //         ],
-                //         casaDeCampo: [
-                  //           true,
-                  //         ],
+    //     localDescanso: this.formBuilder.group({
+    //       typeLocalDescanso: this.formBuilder.group({
+    //         casaDePraia: [
+    //           this.Voluntary.localDescanso.typeLocalDescanso.casaDePraia,
+    //         ],
+    //         casaDeCampo: [
+    //           true,
+    //         ],
     //         pousada: [true],
     //         hotel: [this.Voluntary.localDescanso.typeLocalDescanso.hotel],
     //         outros: [this.Voluntary.localDescanso.typeLocalDescanso.outros],
@@ -343,40 +343,40 @@ export class FormCadComponent implements OnInit, OnChanges {
     //       nomeLocalDescanso: ['this.Voluntary.localDescanso.nomeLocalDescanso'],
     //       CNPJLocalDescanso: ['101522336'],
     //       enderecoLocalDescanso: this.formBuilder.group({
-      //         ruaLocalDescanso: [
-        //           'rua teste'
-        //         ],
-        //         numeroLocalDescanso: [
-          //           '32165161'
-          //         ],
-          //         complementoLocalDescanso: [
-            //          'complemento'
-            //         ],
-            //         CEPLocalDescanso: [
-              //           '321351651321516'
-              //         ],
-              //         bairroLocalDescanso: [
-                //           'teste'
-                //         ],
-                //         cidadeLocalDescanso: [
-                  //           'teste'
-                  //         ],
-                  //         ufLocalDescanso: [
-                    //          'RO'
-                    //         ],
-                    //       }),
-                    //       disponibilidadeDuranteAno: [
-                      //        true,
-                      //       ], // switch
-                      //       mesesNaoDisponivel: ['7'],
-                      //       mesesNaoDisponivelDescrito: [
-                        //         this.Voluntary.localDescanso.mesesNaoDisponivelDescrito,
-                        //       ], // tentar criar um select que possa selecionar mais de um ítem
-                        //       maximoDiariaPg: ['11561'], // tipo moeda
-                        //       maximoHospedesPorVez: [
-                          //         '10',
-                          //       ], // number
-                          //       qtFamiliaMes: ['10'], // number
+    //         ruaLocalDescanso: [
+    //           'rua teste'
+    //         ],
+    //         numeroLocalDescanso: [
+    //           '32165161'
+    //         ],
+    //         complementoLocalDescanso: [
+    //          'complemento'
+    //         ],
+    //         CEPLocalDescanso: [
+    //           '321351651321516'
+    //         ],
+    //         bairroLocalDescanso: [
+    //           'teste'
+    //         ],
+    //         cidadeLocalDescanso: [
+    //           'teste'
+    //         ],
+    //         ufLocalDescanso: [
+    //          'RO'
+    //         ],
+    //       }),
+    //       disponibilidadeDuranteAno: [
+    //        true,
+    //       ], // switch
+    //       mesesNaoDisponivel: ['7'],
+    //       mesesNaoDisponivelDescrito: [
+    //         this.Voluntary.localDescanso.mesesNaoDisponivelDescrito,
+    //       ], // tentar criar um select que possa selecionar mais de um ítem
+    //       maximoDiariaPg: ['11561'], // tipo moeda
+    //       maximoHospedesPorVez: [
+    //         '10',
+    //       ], // number
+    //       qtFamiliaMes: ['10'], // number
     //       custoHospedagem: [true], // switch
     //       valorHospedagem: ['500'], // if custoHospedagem
     //       alimentacao: [true], // switch
@@ -387,43 +387,43 @@ export class FormCadComponent implements OnInit, OnChanges {
     //       qtSuites: ['8'], // number
     //       qtCamas: ['20'], // number
     //       servicosDisponibilizados: this.formBuilder.group({
-      //         // todos switch
-      //         piscina: [
-        //           true,
-        //         ],
-        //         quadra: [
-          //           true
-          //         ],
-          //         restaurante: [
-            //           true
-            //         ],
-            //         TV: [this.Voluntary.localDescanso.servicosDisponibilizados.TV],
-            //         internet: [
-              //           this.Voluntary.localDescanso.servicosDisponibilizados.internet,
-              //         ],
-              //         garagem: [
-                //           true
-                //         ],
-                //         outrosServicosOferecidos: [
-                  //           this.Voluntary.localDescanso.servicosDisponibilizados.outros,
-                  //         ],
-                  //         outrosServicosOferecidosDescrito: [
-                    //           this.Voluntary.localDescanso.servicosDisponibilizados
-                    //             .outrosServicosOferecidos,
+    //         // todos switch
+    //         piscina: [
+    //           true,
+    //         ],
+    //         quadra: [
+    //           true
+    //         ],
+    //         restaurante: [
+    //           true
+    //         ],
+    //         TV: [this.Voluntary.localDescanso.servicosDisponibilizados.TV],
+    //         internet: [
+    //           this.Voluntary.localDescanso.servicosDisponibilizados.internet,
+    //         ],
+    //         garagem: [
+    //           true
+    //         ],
+    //         outrosServicosOferecidos: [
+    //           this.Voluntary.localDescanso.servicosDisponibilizados.outros,
+    //         ],
+    //         outrosServicosOferecidosDescrito: [
+    //           this.Voluntary.localDescanso.servicosDisponibilizados
+    //             .outrosServicosOferecidos,
     //         ], // if outros
     //       }),
     //     }),
     //   },
     //   {
-      //     validator: [
-        //       Validating.conditionallyRequired,
-        //       Validating.equalPasswords,
+    //     validator: [
+    //       Validating.conditionallyRequired,
+    //       Validating.equalPasswords,
     //     ],
     //   } as AbstractControlOptions
     // );
     console.log(this.formulario.controls);
     console.log(this.imgFilePrincipal);
-   }
+  }
 
   async onSubmit(): Promise<void> {
     this.cleanValidationsIFLocalDescanso(); // limpa validações se local descanso false
@@ -578,9 +578,8 @@ export class FormCadComponent implements OnInit, OnChanges {
 
   settingRegistrationDate(): void {
     const data = new Date();
-    const dataCad = `${data.getDate()}/${
-      data.getMonth() + 1
-    }/${data.getFullYear()}`;
+    const dataCad = `${data.getDate()}/${data.getMonth() + 1
+      }/${data.getFullYear()}`;
     this.formulario.controls.dataCad.setValue(dataCad);
   }
   addingStatusToVolunteer(): void {
@@ -593,10 +592,10 @@ export class FormCadComponent implements OnInit, OnChanges {
       const controlErrors: ValidationErrors = formulario.get(key).errors;
       if (controlErrors != null) {
         Object.keys(controlErrors).forEach((keyError) => {
-        console.log(`Key control: ${key}, keyError: ${keyError} ${controlErrors[keyError]}`);
+          console.log(`Key control: ${key}, keyError: ${keyError} ${controlErrors[keyError]}`);
         });
       }
-      if ( controlErrors instanceof FormGroup) {
+      if (controlErrors instanceof FormGroup) {
         this.findValid(key);
       }
 
@@ -610,12 +609,12 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.findErrors(this.typeLocalDescanso);
     this.findErrors(this.enderecoLocalDescanso);
     this.findErrors(this.servicosDisponibilizados);
-    if (this.imgsCasaDescansoFile.errors){
+    if (this.imgsCasaDescansoFile.errors) {
       console.log(`Erro imgsCasaDescansoFile ERROR ::: ${this.imgsCasaDescansoFile.errors}`);
 
     }
   }
-  findAllValid(): void{
+  findAllValid(): void {
     this.findValid(this.formulario);
     this.findValid(this.endereco);
     this.findValid(this.typeVoluntary);
@@ -632,33 +631,21 @@ export class FormCadComponent implements OnInit, OnChanges {
       if (!controlValid) {
         console.log(`Key : ${key} keyValid: ${controlValid}`
         );
-    }
-      if ( controlValid instanceof FormGroup) {
+      }
+      if (controlValid instanceof FormGroup) {
         this.findValid(key);
       }
     });
   }
 
   applyCss(campo: string): {} {
-    return {
-      'is-invalid':
-        this.formulario.get(campo).touched && this.formulario.get(campo).errors,
-      'is-valid':
-        this.formulario.get(campo).touched &&
-        !this.formulario.get(campo).errors,
-    };
+    return this.formValidationControl.showValidations(campo, this.formulario);
   }
   applyCssGroup(campo: string): {} {
-    return {
-        'is-invalidRadios':
-        this.formulario.get(campo).touched && this.formulario.get(campo).errors,
-        'is-validRadios' :
-        this.formulario.get(campo).touched &&
-        !this.formulario.get(campo).errors,
-    };
+    return this.formValidationControl.showValidationsGroup(campo, this.formulario);
   }
 
-  resetImg(): void{
+  resetImg(): void {
     this.imgFileCasaDescansoPrincipal.reset();
     this.imgFileCasaDescansoPrincipal.setValue(null);
     this.imgFilePrincipal.reset();
@@ -666,23 +653,23 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.imgsCasaDescansoFile.reset();
     this.imgsCasaDescansoFile.setValue(null);
   }
-  cleanValidationsIFLocalDescanso(): void{
-  if (!this.chekbox4CasaDescanso.value){
-    Validating.cleanRequired(this.imgsCasaDescansoFile);
-    Validating.cleanRequired(this.imgFileCasaDescansoPrincipal);
-    Validating.cleanRequired(this.enderecoLocalDescanso);
-    Validating.cleanRequired(this.localDescanso);
+  cleanValidationsIFLocalDescanso(): void {
+    if (!this.chekbox4CasaDescanso.value) {
+      Validating.cleanRequired(this.imgsCasaDescansoFile);
+      Validating.cleanRequired(this.imgFileCasaDescansoPrincipal);
+      Validating.cleanRequired(this.enderecoLocalDescanso);
+      Validating.cleanRequired(this.localDescanso);
+    }
   }
-}
-cleanValidationsIF_id(): void{
-  if (this.Voluntary._id){
-    Validating.cleanRequired(this.localDescanso);
-    Validating.cleanRequired(this.servicosDisponibilizados);
-    Validating.cleanRequired(this.imgsCasaDescansoFile);
-    this.imgsCasaDescansoFile.setErrors(null);
-    Validating.cleanRequired(this.imgFileCasaDescansoPrincipal);
-}
-}
+  cleanValidationsIF_id(): void {
+    if (this.Voluntary._id) {
+      Validating.cleanRequired(this.localDescanso);
+      Validating.cleanRequired(this.servicosDisponibilizados);
+      Validating.cleanRequired(this.imgsCasaDescansoFile);
+      this.imgsCasaDescansoFile.setErrors(null);
+      Validating.cleanRequired(this.imgFileCasaDescansoPrincipal);
+    }
+  }
   // quando o cliente clica para atualizar ou cadastrar um voluntário a aplicação chama o guard para
 
   // ______________________________________GET_________________________________________

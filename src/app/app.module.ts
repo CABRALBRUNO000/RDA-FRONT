@@ -60,7 +60,6 @@ import { PublicPageModule } from './public-page/public-page.module';
     PublicPageModule,
   ],
   providers: [
-
     UserService,
     FiltroPersonalizadoService,
     AuthService,

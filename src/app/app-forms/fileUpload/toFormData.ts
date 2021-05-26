@@ -8,10 +8,10 @@ export function toFormData<T>(formValue: VoluntaryModel): FormData {
   formData.append('dataNascimento', formValue.dataNascimento);
   formData.append('sexo', formValue.sexo);
   if (formValue.endereco) {
-      Object.keys(formValue.endereco).forEach((key, index) => {
-        const value = formValue.endereco[key];
-        formData.append(`${'endereco'}[${key}]`, value);
-      });
+    Object.keys(formValue.endereco).forEach((key, index) => {
+      const value = formValue.endereco[key];
+      formData.append(`${'endereco'}[${key}]`, value);
+    });
   }
 
   formData.append('profissao', formValue.profissao);
@@ -26,8 +26,11 @@ export function toFormData<T>(formValue: VoluntaryModel): FormData {
     );
   }
   formData.append('email', formValue.email);
-  formData.append('password', formValue.password);
-  formData.append('password2', formValue.password2);
+  if (!formValue._id) {
+    formData.append('password', formValue.password);
+    formData.append('password2', formValue.password2);
+  }
+
   formData.append('nomeIg', formValue.nomeIg);
   formData.append('pastor', formValue.pastor);
 
@@ -36,9 +39,12 @@ export function toFormData<T>(formValue: VoluntaryModel): FormData {
       const value = formValue.typeVoluntary[key];
       formData.append(`${'typeVoluntary'}[${key}]`, value);
     });
-}
+  }
 
-  formData.append('chekbox5Aconselhamento', formValue.chekbox5Aconselhamento.toString());
+  formData.append(
+    'chekbox5Aconselhamento',
+    formValue.chekbox5Aconselhamento.toString()
+  );
   formData.append('especialidade', formValue.especialidade);
   formData.append('servicoOferecido', formValue.servicoOferecido);
 
@@ -66,38 +72,36 @@ export function toFormData<T>(formValue: VoluntaryModel): FormData {
     Object.keys(formValue.localDescanso).forEach((key, index) => {
       const value = formValue.localDescanso[key];
       const name = `${'localDescanso'}[${key}]`;
-      if (typeof(value) === 'object'){
-        if (key === 'typeLocalDescanso'){
-          Object.keys(formValue.localDescanso.typeLocalDescanso).forEach((key, index) => {
-            const value = formValue.localDescanso.typeLocalDescanso[key];
-            formData.append(`${name}[${key}]`, value);
-          });
+      if (typeof value === 'object') {
+        if (key === 'typeLocalDescanso') {
+          Object.keys(formValue.localDescanso.typeLocalDescanso).forEach(
+            (key, index) => {
+              const value = formValue.localDescanso.typeLocalDescanso[key];
+              formData.append(`${name}[${key}]`, value);
+            }
+          );
         }
-        if (key === 'enderecoLocalDescanso'){
-          Object.keys(formValue.localDescanso.enderecoLocalDescanso).forEach((key, index) => {
-            const value = formValue.localDescanso.enderecoLocalDescanso[key];
-            formData.append(`${name}[${key}]`, value);
-          });
+        if (key === 'enderecoLocalDescanso') {
+          Object.keys(formValue.localDescanso.enderecoLocalDescanso).forEach(
+            (key, index) => {
+              const value = formValue.localDescanso.enderecoLocalDescanso[key];
+              formData.append(`${name}[${key}]`, value);
+            }
+          );
         }
-        if ( key === 'servicosDisponibilizados'){
-          Object.keys(formValue.localDescanso.servicosDisponibilizados).forEach((key, index) => {
-            const value = formValue.localDescanso.servicosDisponibilizados[key];
-            formData.append(`${name}[${key}]`, value);
-          });
+        if (key === 'servicosDisponibilizados') {
+          Object.keys(formValue.localDescanso.servicosDisponibilizados).forEach(
+            (key, index) => {
+              const value =
+                formValue.localDescanso.servicosDisponibilizados[key];
+              formData.append(`${name}[${key}]`, value);
+            }
+          );
         }
-
-
-
-
-
-
-
-
       }
       formData.append(name, value);
     });
-
-}
+  }
 
   return formData;
 }
