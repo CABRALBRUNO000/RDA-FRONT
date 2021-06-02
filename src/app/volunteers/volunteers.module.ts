@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 
-import { UserService } from '../services/users.service';
+import { VolunteersService } from '../adminUsers/volunteers/services/volunteers.service';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
 import { environment } from 'src/environments/environment';
 import { HomePageVoluntaryComponent } from './home-page-voluntary/home-page-voluntary.component';
@@ -23,6 +23,6 @@ import { HomePageVoluntaryComponent } from './home-page-voluntary/home-page-volu
   declarations: [ 
     HomePageVoluntaryComponent
   ],
-  providers: [UserService],
+  providers: [VolunteersService],
 })
 export class VolunteersModule {}

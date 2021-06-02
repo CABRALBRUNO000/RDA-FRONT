@@ -14,7 +14,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 import { alertAnimation } from 'src/app/shared/services/alert-animation';
 import { FormValidationControl } from '../../services/form-validation-control.service';
 import { threadId } from 'worker_threads';
-import { AdminService } from './../services/admin.service';
+import { AdminService } from '../../../adminUsers/admin.service';
 
 @Component({
   selector: 'app-formCadAdminUsers',
@@ -25,7 +25,7 @@ import { AdminService } from './../services/admin.service';
 export class FormCadAdminUsersComponent implements OnInit {
   public formulario: FormGroup; // formulario em questão
   public Adminstrator: AdministratorModel;
-  alertState: string = 'hide';
+  alertState = 'hide';
   style: any;
   imgAdminHaveFile: boolean;
 
@@ -84,7 +84,7 @@ export class FormCadAdminUsersComponent implements OnInit {
       this.settingRegistrationDate();
       this.addingStatusToAdministrators();
 
-      this.adminService.saveUser(this.formulario.value).subscribe(
+      this.adminService.saveAdministrators(this.formulario.value).subscribe(
         (adminUser) => {
           this.activAlert(
             'success',
@@ -156,11 +156,13 @@ export class FormCadAdminUsersComponent implements OnInit {
     const administrators = 'ACTIVE';
     this.formulario.controls.status.setValue(administrators);
   }
-
+// adicina a imagem ao formulario
   onFileSelect(event, field: string): void {
     if (event.target.files.length > 0) {
       const file = event.target.files as File;
-      this.formulario.get(field).setValue(file);
+      if (file.name){}
+      this.imgAdmin.setValue(file);
+      console.log(this.imgAdmin);
       this.imgAdminHaveFile = field === 'imgAdmin' ? true : undefined;
     } else {
       this.imgAdminHaveFile = field === 'imgAdmin' ? false : undefined;

@@ -7,13 +7,13 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AdministratorModel } from '../entities/administrator.model';
-import { UserService } from '../../services/users.service';
+import { VolunteersService } from '../../adminUsers/volunteers/services/volunteers.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormCadAdministratorsResolverGuard implements Resolve<AdministratorModel> {
-  constructor(private userSevice: UserService) {}
+  constructor(private userSevice: VolunteersService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -23,7 +23,7 @@ export class FormCadAdministratorsResolverGuard implements Resolve<Administrator
     console.log(idAdministrator);
 
     if (route.params && idAdministrator) {
-      return this.userSevice.getUsersPorId(idAdministrator);
+      return this.userSevice.getVolunteersPorId(idAdministrator);
     }
 
     return of({
@@ -37,6 +37,10 @@ export class FormCadAdministratorsResolverGuard implements Resolve<Administrator
       password2: '',
       dataCad: '',
       status: '',
+      imgAdmin:null,
+      urlsImage: {
+        urlImgAdmin: ''
+      }
     });
   }
 }

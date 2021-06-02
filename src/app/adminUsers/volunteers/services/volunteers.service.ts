@@ -8,25 +8,25 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry, take } from 'rxjs/operators';
 import { toFormData } from 'src/app/app-forms/fileUpload/toFormData';
 import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable()
-export class UserService {
-  private readonly API = environment.API;
+export class VolunteersService {
+  private readonly API = `${environment.API}/volunteers`;
   constructor(private http: HttpClient) {}
 
   // pega todos os voluntários
-  public getUsers(): Observable<VoluntaryModel[]> {
+  public getVolunteers(): Observable<VoluntaryModel[]> {
     return this.http.get<VoluntaryModel[]>(`${this.API}`).pipe(take(1));
   }
   // Busca os dados do voluntário pelo seu ID
-  public getUsersPorId(id: string): Observable<VoluntaryModel> {
+  public getVolunteersPorId(id: string): Observable<VoluntaryModel> {
     return this.http.get<VoluntaryModel>(`${this.API}/${id}`).pipe(take(1));
   }
 
   // CAMPO DE BUSCA na tela principal (precisa de ajuste)
-  public searchUser(termo: string): Observable<VoluntaryModel[]> {
+  public searchVolunteer(termo: string): Observable<VoluntaryModel[]> {
     return this.http
       .get(`${this.API}/voluntary?termoBusca=${termo}`)
       .pipe(retry(10))
@@ -39,7 +39,7 @@ export class UserService {
   };
 
   // CADASTRO VOLUNTÁRIOS
-  public saveUser(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
+  public saveVolunteer(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
 
     return this.http
       .post<VoluntaryModel>(
@@ -51,7 +51,7 @@ export class UserService {
   }
 
   // Atualiza um voluntário
-  public updateUserID(
+  public updateVolunteerID(
     voluntary: VoluntaryModel
   ): Observable<VoluntaryModel> {
     return this.http
@@ -64,7 +64,7 @@ export class UserService {
   }
 
   // deleta um voluntário
-  public deleteUser(voluntary: VoluntaryModel) {
+  public deleteVolunteer(voluntary: VoluntaryModel) {
     return this.http
       .delete<VoluntaryModel>(`${this.API}/${voluntary._id}`, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))

@@ -21,7 +21,7 @@ export class AuthService {
     ) {}
 
    async authenticateUser(user: any): Promise<any> {
-    const result = await this.http.post<any>(`${environment.API}/login`, user.value).toPromise();
+    const result = await this.http.post<any>(`${environment.API}/auth/login`, user.value).toPromise();
     if (result && result.access_token) {
       window.localStorage.setItem('token', result.access_token);
       return true;

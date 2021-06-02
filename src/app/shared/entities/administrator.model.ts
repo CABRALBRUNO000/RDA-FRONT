@@ -10,4 +10,7 @@ export interface AdministratorModel {
   sexo: string;
   dataNascimento: string;
   imgAdmin: File;
+  urlsImage: {
+    urlImgAdmin: string
+  }
 }

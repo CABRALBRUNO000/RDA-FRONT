@@ -1,5 +1,4 @@
 import { httpInterceptorProviders } from './http-interceptors/';
-
 import { AuthGuard } from './shared/guards/auth.guard';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,7 +22,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 
 import { FiltroPersonalizadoService } from './app-forms/services/filtro-personalizado.service';
-import { UserService } from './services/users.service';
+import { VolunteersService } from './adminUsers/volunteers/services/volunteers.service';
 
 import { AuthService } from './login/auth.service';
 import { ImagekitioAngularModule } from 'imagekitio-angular';
@@ -60,7 +59,7 @@ import { PublicPageModule } from './public-page/public-page.module';
     PublicPageModule,
   ],
   providers: [
-    UserService,
+    VolunteersService,
     FiltroPersonalizadoService,
     AuthService,
     AuthGuard,
@@ -69,4 +68,4 @@ import { PublicPageModule } from './public-page/public-page.module';
   bootstrap: [AppComponent],
   exports: [MainComponent, ImagekitioAngularModule],
 })
-export class AppModule {}
+export class AppModule { }

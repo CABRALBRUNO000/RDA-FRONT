@@ -8,20 +8,19 @@ import {
   Validators
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/users.service';
+import { VolunteersService } from 'src/app/adminUsers/volunteers/services/volunteers.service';
 import { VoluntaryModel } from '../../../shared/entities/voluntary.model';
 import { FormValidationControl } from '../../services/form-validation-control.service';
 import { Validating } from '../../util/validacoes';
 import { alertAnimation } from './../../../shared/services/alert-animation';
 import { AlertService } from './../../../shared/services/alert.service';
-import { UploadImageService } from './../../services/upload-image.service';
 
 
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
   styleUrls: ['./form-cad.component.css', './../../app-forms.css'],
-  providers: [UserService],
+  providers: [VolunteersService],
   animations: [alertAnimation],
 })
 export class FormCadComponent implements OnInit, OnChanges {
@@ -53,7 +52,7 @@ export class FormCadComponent implements OnInit, OnChanges {
   imgsCasaDescansoFileHaveFile: boolean;
 
   constructor(
-    private voluntaryService: UserService,
+    private voluntaryService: VolunteersService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private alertService: AlertService,
@@ -472,7 +471,7 @@ export class FormCadComponent implements OnInit, OnChanges {
 
   public UpdateVoluntaryCTRL(VoluntaryDataFormUpdated: VoluntaryModel): void {
 
-    this.voluntaryService.updateUserID(VoluntaryDataFormUpdated).subscribe(
+    this.voluntaryService.updateVolunteerID(VoluntaryDataFormUpdated).subscribe(
       (voluntary) => {
         this.activAlert(
           'success',
@@ -510,7 +509,7 @@ export class FormCadComponent implements OnInit, OnChanges {
       this.settingRegistrationDate();
       this.addingStatusToVolunteer();
 
-      this.voluntaryService.saveUser(this.formulario.value).subscribe(
+      this.voluntaryService.saveVolunteer(this.formulario.value).subscribe(
         (voluntary) => {
           this.activAlert(
             'success',

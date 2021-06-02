@@ -12,7 +12,7 @@ import { FormCadComponent } from './volunteersForm/form-cad/form-cad.component';
 import { environment } from 'src/environments/environment';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormValidationControl } from './services/form-validation-control.service';
-import { AdminService } from './adminUsersForm/services/admin.service';
+import { AdminService } from '../adminUsers/admin.service';
 
 @NgModule({
   imports: [

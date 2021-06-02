@@ -1,4 +1,4 @@
-import { environment } from './../../../../environments/environment'
+import { environment } from '../../environments/environment'
 import {
   HttpClient,
   HttpErrorResponse,
@@ -13,12 +13,28 @@ import { AdministratorModel } from 'src/app/shared/entities/administrator.model'
   providedIn: 'root'
 })
 export class AdminService {
-  private readonly API = environment.API;
+  private readonly API = `${environment.API}/administrators`;
+
   constructor(
     private http: HttpClient
   ) { }
+  // pega todos os administradores
+  public getAdministrators(): Observable<AdministratorModel[]> {
+    return this.http.get<AdministratorModel[]>(`${this.API}`).pipe(take(1));
+  }
+  // Busca os dados do administrador pelo seu ID
+  public getVolunteersPorId(id: string): Observable<AdministratorModel> {
+    return this.http.get<AdministratorModel>(`${this.API}/${id}`).pipe(take(1));
+  }
+  // CAMPO DE BUSCA na tela principal (precisa de ajuste)
+  public searchAdministrators(termo: string): Observable<AdministratorModel[]> {
+    return this.http
+      .get(`${this.API}/voluntary?termoBusca=${termo}`)
+      .pipe(retry(10))
+      .pipe(map((resposta: any) => resposta));
+  }
 
-  public saveUser(user: AdministratorModel): Observable<AdministratorModel> {
+  public saveAdministrators(user: AdministratorModel): Observable<AdministratorModel> {
 
     return this.http
       .post<AdministratorModel>(
@@ -26,7 +42,7 @@ export class AdminService {
         this.toFormData(user)
       )
       .pipe(retry(2), catchError(this.handleError))
-      .pipe(take(1))
+      .pipe(take(1));
   }
 
 
@@ -36,15 +52,15 @@ export class AdminService {
     for (const key of Object.keys(formValue)) {
       const value = formValue[key];
       formData.append(key, value);
-      if (formValue instanceof File) { formData.append('imgAdmin', key, value) };
     }
-    // if (formValue.imgAdmin != null) {
-    //   formData.append(
-    //     'imgAdmin',
-    //     formValue.imgAdmin[0],
-    //     formValue.imgAdmin.name
-    //   );
-    // }
+
+    if (formValue.imgAdmin != null) {
+      formData.append(
+        'imgAdmin',
+        formValue.imgAdmin[0],
+        formValue.imgAdmin.name
+      );
+    }
 
     return formData;
   }

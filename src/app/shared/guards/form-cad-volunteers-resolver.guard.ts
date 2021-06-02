@@ -7,13 +7,13 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { VoluntaryModel } from '../entities/voluntary.model';
-import { UserService } from '../../services/users.service';
+import { VolunteersService } from '../../adminUsers/volunteers/services/volunteers.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
-  constructor(private voluntaryService: UserService) {}
+  constructor(private voluntaryService: VolunteersService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -23,7 +23,7 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
     console.log(idVoluntary);
 
     if (route.params && idVoluntary) {
-      return this.voluntaryService.getUsersPorId(idVoluntary);
+      return this.voluntaryService.getVolunteersPorId(idVoluntary);
     }
 
     return of({

@@ -39,7 +39,7 @@
 
     <div class="row g-2 mb-3">
       <div class="form-floating col ">
-        <input [ngClass]="applyCss('password')" formControlName="password" type="password" class="form-control" id="password" placeholder="Password" >
+        <input [ngClass]="applyCss('password')" formControlName="password" type="password" autocomplete="off" class="form-control" id="password" placeholder="Password" >
         <label for="password">Senha</label>
         <div *ngIf="password.touched && password.errors" class="mt-1">
           <small class="text-formInvalid" *ngIf="password.errors.required">
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="form-floating col">
-        <input [ngClass]="applyCss('password2')" formControlName="password2" type="password" class="form-control" id="password2" placeholder="Password" >
+        <input [ngClass]="applyCss('password2')" formControlName="password2" autocomplete="off" type="password" class="form-control" id="password2" placeholder="Password" >
         <label for="password2">Confirme a senha</label>
         <div *ngIf="password2.touched && password2.errors" class="mt-1">
           <small class="text-formInvalid" *ngIf="password2.errors.required">
@@ -70,17 +70,20 @@
            <p class="labelTypeFile">Adicione a sua foto de perfil</p>
       </div>
       <div *ngIf="imgAdminHaveFile && imgAdmin.errors" class="d-flex flex-wrap flex-column mt-1">
-        <small class="text-formInvalid" *ngIf="imgAdmin.errors.required">
-          não esqueça de adicionar uma foto sua;
-        </small>
+        
         <small class="text-formInvalid" *ngIf="imgAdmin.errors.notImageFile">
           O arquivo selecionado não é uma foto.
         </small>
         <small class="text-formInvalid" *ngIf="imgAdmin.errors.veryLargeFile">
           A imagem selecionada é muito grande, adicione uma foto que tenha no máximo 350kb.
         </small>
-
       </div>
+      <div *ngIf="imgAdmin.touched && imgAdmin.errors" class="d-flex flex-wrap flex-column mt-1">
+        <small class="text-formInvalid" *ngIf="imgAdmin.errors.required">
+          Não esqueça de adicionar uma foto sua.
+        </small>
+      </div>
+
     </div>
     <button type="submit" class="btn btn-primary mt-5">Cadastrar</button>
   </form>

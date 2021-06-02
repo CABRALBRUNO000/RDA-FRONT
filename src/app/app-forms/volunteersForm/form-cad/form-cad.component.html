@@ -186,9 +186,7 @@
                <p class="labelTypeFile">Adicione a sua foto de perfil</p>
           </div>
           <div *ngIf="imgFilePrincipalHaveFile && imgFilePrincipal.errors" class="d-flex flex-wrap flex-column mt-1">
-            <small class="text-formInvalid" *ngIf="imgFilePrincipal.errors.required">
-              não esqueça de adicionar uma foto sua;
-            </small>
+            
             <small class="text-formInvalid" *ngIf="imgFilePrincipal.errors.notImageFile">
               O arquivo selecionado não é uma foto.
             </small>
@@ -196,6 +194,11 @@
               A imagem selecionada é muito grande, adicione uma foto que tenha no máximo 350kb.
             </small>
 
+          </div>
+          <div *ngIf="imgFilePrincipal.touched && imgFilePrincipal.errors" class="d-flex flex-wrap flex-column mt-1">
+            <small class="text-formInvalid" *ngIf="imgFilePrincipal.errors.required">
+              Não esqueça de adicionar uma foto sua;
+            </small>
           </div>
         </div>
       </div>
@@ -220,7 +223,7 @@
         </div>
 
         <div class="form-group form-floating col" *ngIf="!this.Voluntary._id">
-          <input [ngClass]="applyCss('password')" formControlName="password" type="password" class="form-control"
+          <input [ngClass]="applyCss('password')" formControlName="password" autocomplete="off" type="password" class="form-control"
             id="imputPassword" placeholder="Informe sua senha" />
           <label class="ml-3" for="imputPassword">Senha</label>
           <div *ngIf="password.touched && password.errors" class="mt-1">
@@ -233,7 +236,7 @@
           </div>
         </div>
         <div class="form-group form-floating col" *ngIf="!this.Voluntary._id">
-          <input [ngClass]="applyCss('password2')" formControlName="password2" type="password" class="form-control"
+          <input [ngClass]="applyCss('password2')" autocomplete="off" formControlName="password2" type="password" class="form-control"
             id="inputPassword2" placeholder="Informe sua senha" />
           <label class="ml-3" for="inputPassword2">Confirme a senha</label>
           <div *ngIf="password2.touched && password2.errors" class="mt-1">
@@ -810,14 +813,16 @@
             </p>
           </div>
           <div *ngIf="imgFileCasaDescansoPrincipalHaveFile && imgFileCasaDescansoPrincipal.errors" class="d-flex flex-wrap flex-column mt-1 col-6">
-            <small class="text-formInvalid" *ngIf="imgFileCasaDescansoPrincipal.errors.required">
-              não esqueça de adicionar uma foto do local de descanso;
-            </small>
             <small class="text-formInvalid" *ngIf="imgFileCasaDescansoPrincipal.errors.notImageFile">
               O arquivo selecionado não é uma foto.
             </small>
             <small class="text-formInvalid" *ngIf="imgFileCasaDescansoPrincipal.errors.veryLargeFile">
               A imagem selecionada é muito grande, adicione uma foto que tenha no máximo 350kb.
+            </small>
+          </div>
+          <div *ngIf="imgFileCasaDescansoPrincipal.touched && imgFileCasaDescansoPrincipal.errors" class="d-flex flex-wrap flex-column mt-1">
+            <small class="text-formInvalid" *ngIf="imgFileCasaDescansoPrincipal.errors.required">
+              Não esqueça de adicionar uma foto do local de descanso.
             </small>
           </div>
         </div>
@@ -835,7 +840,7 @@
 
             <div *ngIf="imgsCasaDescansoFileHaveFile && imgsCasaDescansoFile.errors" class="d-flex flex-wrap flex-column mt-1">
               <small class="text-formInvalid" *ngIf="imgsCasaDescansoFile.errors.required">
-                não esqueça de adicionar algumas fotos do Local de descanso;
+                
               </small>
               <small class="text-formInvalid" *ngIf="imgsCasaDescansoFile.errors.notImageFile">
                 O arquivo selecionado não é uma foto.
@@ -845,6 +850,11 @@
               </small>
               <small class="text-formInvalid" *ngIf="imgsCasaDescansoFile.errors.imageLimitExceeded">
                 existem mais de 10 imagens selecionadas, o limite é 10 imagens.
+              </small>
+            </div>
+            <div *ngIf="imgsCasaDescansoFile.touched && imgsCasaDescansoFile.errors" class="d-flex flex-wrap flex-column mt-1">
+              <small class="text-formInvalid" *ngIf="imgsCasaDescansoFile.errors.required">
+                Não esqueça de adicionar algumas fotos do Local de descanso.
               </small>
             </div>
         </div>

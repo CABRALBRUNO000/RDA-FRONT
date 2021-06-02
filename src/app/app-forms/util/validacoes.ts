@@ -18,7 +18,7 @@ Error: any;   //#region static requiredFileTypeImg
       [].slice
         .call(fileField)
         .forEach((element: { name: string }, index: string | number) => {
-          if (!element.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+          if (!element.name.match(/\.(jpg|jpeg|png|webp|gif)$/)) {
             // se or arquivo tiver extenção de imagens a variavel validationExtensions recebe true se não recebe false
             validationsExtensions[index] = false;
           } else {

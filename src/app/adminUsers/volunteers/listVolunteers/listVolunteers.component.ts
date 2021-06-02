@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
-import {UserService} from '../../../services/users.service'
+import {VolunteersService} from '../services/volunteers.service'
 
 
 @Component({
   selector: 'app-ListVolunteers',
   templateUrl: './listVolunteers.component.html',
   styleUrls: ['./listVolunteers.component.css'],
-  providers: [UserService]
+  providers: [VolunteersService]
 })
 export class ListVolunteersComponent implements OnInit {
 
@@ -19,21 +19,20 @@ export class ListVolunteersComponent implements OnInit {
   public voluntary: VoluntaryModel;
   public volunteersObservable: Observable<VoluntaryModel[]>;
   private subjectPesquisa: Subject<string> = new Subject<string>();
-  constructor( private VoluntaryService: UserService,
+  constructor( private VoluntaryService: VolunteersService,
     private route: ActivatedRoute) { }
 
     transformationImg = [{ "height": "300", "width": "400" }];
 
     ngOnInit(): void {
-      this.volunteers$ = this.VoluntaryService.getUsers();
-      
+      this.volunteers$ = this.VoluntaryService.getVolunteers();
 
       this.volunteersObservable = this.subjectPesquisa
         .pipe(debounceTime(1000))
         .pipe(distinctUntilChanged())
         .pipe(
           switchMap((termo: string) => {
-            return this.VoluntaryService.searchUser(termo);
+            return this.VoluntaryService.searchVolunteer(termo);
           })
         );
 
