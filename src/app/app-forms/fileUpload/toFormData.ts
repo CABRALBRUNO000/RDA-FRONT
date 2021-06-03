@@ -43,7 +43,7 @@ export function toFormData<T>(formValue: VoluntaryModel): FormData {
 
   formData.append(
     'chekbox5Aconselhamento',
-    formValue.chekbox5Aconselhamento.toString()
+    JSON.stringify(formValue.chekbox5Aconselhamento)
   );
   formData.append('especialidade', formValue.especialidade);
   formData.append('servicoOferecido', formValue.servicoOferecido);
