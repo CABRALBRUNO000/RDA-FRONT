@@ -428,7 +428,7 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.cleanValidationsIFLocalDescanso(); // limpa validações se local descanso false
     this.cleanValidationsIF_id(); // limpa validações se _id contido
     this.findAllErrors();
-    this.findAllValid();
+    // this.findAllValid();
 
     this.findErrors(this.formulario);
     this.findErrors(this.endereco);
