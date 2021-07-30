@@ -1,0 +1,210 @@
+<div class="container-fluid ">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    
+    <h1 class="h3 mb-0 text-gray-800 TitleDash">Dashboard</h1>
+    
+  </div>
+   <!-- Content Row -->
+  <div class="row">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+              >
+                Voluntários
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">350</div>
+            </div>
+            <div class="col-auto">
+              <!-- <i class="bi bi-emoji-laughing" style="font-size: 2.5rem; color: #4E73DF;"></i> -->
+              <img src="./../../assets/imgDashBoard/doctor1.svg" style="width: 70px;" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-success text-uppercase mb-1"
+              >
+                Missionarios
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">493</div>
+            </div>
+            <div class="col-auto">
+                <!-- <i class="bi bi-emoji-smile" style="font-size: 2.5rem; color: #1CC88A;"></i> -->
+                <img src="./../../assets/imgDashBoard/man2.svg" style="width: 70px;" alt="">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-info text-uppercase mb-1"
+              >
+                Parceiros
+              </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                    60
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <!-- <i class="bi bi-emoji-wink" style="font-size: 2.5rem; color:#42BDCF;"></i> -->
+              <img src="./../../assets/imgDashBoard/man1.svg" style="width: 70px;" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+              >
+                total de Usuários
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">903</div>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-emoji-sunglasses" style="font-size: 2.5rem; color:grey;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Row -->
+
+  <div class="row">
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+      <div class="card shadow mb-4">
+        <!-- Card interações entre usuários   -->
+        <interactions-between-users></interactions-between-users>
+       
+       
+      </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+        >
+          <h6 class="m-0 font-weight-bold text-primary">Aniversariantes do mês</h6>
+          <div class="dropdown no-arrow">
+            <i class="bi bi-calendar-check" style="font-size: 2.5rem; color: cornflowerblue;"></i>
+          </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <app-birthdayList> </app-birthdayList>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+    <!-- Content Column -->
+    
+
+    <div class="col-lg-3">
+      <!-- Illustrations -->
+      
+
+      <!-- Approach -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">
+            Mais de três meses sem interações  
+          </h6>
+        </div>
+        <div class="card-body">
+         <period-without-interactions></period-without-interactions>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <!-- Illustrations -->
+      
+
+      <!-- Approach -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">
+            Missionários sem interações 
+          </h6>
+        </div>
+        <div class="card-body">
+          <period-without-interactions></period-without-interactions>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <!-- Illustrations -->
+      
+
+      <!-- Approach -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">
+            Voluntários sem interações
+          </h6>
+        </div>
+        <div class="card-body">
+          <period-without-interactions></period-without-interactions>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <!-- Illustrations -->
+      
+
+      <!-- Approach -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">
+            Parceiros sem interações 
+          </h6>
+        </div>
+        <div class="card-body">
+          <period-without-interactions ></period-without-interactions>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</div>

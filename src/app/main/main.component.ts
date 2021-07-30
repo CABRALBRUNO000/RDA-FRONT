@@ -11,7 +11,7 @@ import { Component, OnInit, Injectable, Input } from '@angular/core';
 export class MainComponent implements OnInit {
 
 
-  toggledSideBar: boolean=false
+
 
   constructor(
 
@@ -26,9 +26,6 @@ export class MainComponent implements OnInit {
 
   // side bar
 
-  public openSideBar(event?:Event) {
-      event.preventDefault();
-       this.toggledSideBar = !this.toggledSideBar
-    };
+ 
 
 }

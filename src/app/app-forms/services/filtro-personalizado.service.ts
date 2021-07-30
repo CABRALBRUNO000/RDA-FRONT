@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, retry } from 'rxjs/operators';
-import { VoluntaryModel } from 'src/app/shared/voluntary.model';
+import { VoluntaryModel } from 'src/app/shared/entities/voluntary.model';
 
 @Injectable({
   providedIn: 'root',

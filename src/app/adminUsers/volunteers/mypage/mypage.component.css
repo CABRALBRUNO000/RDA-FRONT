@@ -1,0 +1,98 @@
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+img {
+  border-radius: 5px 0 0 0;
+}
+.btn {
+  width: 200px;
+}
+.dadosCabec {
+  padding: 40px;
+}
+
+.imgPrincipal {
+  max-width: 100%;
+  height: auto;
+}
+
+.divImg {
+  margin: -9px 0px -17px -17px;
+  max-width: auto;
+  max-height: 100%;
+}
+.tituloMyPage {
+  font-weight: 700;
+  margin-right: 5px;
+}
+.infoCacec{
+  font-weight: 600;
+  margin-right: 2px;
+}
+.carousel {
+  display: block;
+  height: 700px;
+  width: 100%;
+  padding: 2em;
+}
+@media (max-width: 540px) {
+  .list-group-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .dadosCabec {
+    padding: 40px 5px 40px 5px;
+    max-width: 300px;
+  }
+  .list-group-item {
+    max-width: 300px;
+  }
+
+  .divImg {
+    margin: -9px -17px -17px -17px;
+    max-width: 300px;
+    max-height: auto;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dadosHeader2 {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cabecalhoMyPage{
+  max-height:221px
+}
+@media (max-width: 1223px) {
+  .divImg {
+    margin: 1px;
+    max-width: 300px;
+    max-height: auto;
+  }
+  .list-group-item {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .dadosCabec {
+    padding: 5px 40px 5px 40px;
+    max-height: 300px;
+  }
+}
+@media (max-width: 1087px) {
+  .divImg {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}

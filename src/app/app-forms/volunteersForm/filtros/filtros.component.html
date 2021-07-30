@@ -1,5 +1,5 @@
 <div class="testeC container">
-        <h2>Construa sua busca com filtros personalizados </h2>  
+        <h2>Construa sua busca com filtros personalizados </h2>
     <div class="form-group">
         <hr>
         <fieldset>
@@ -17,12 +17,12 @@
                         <option value="true">Ativo</option>
                         <option value="false">Inativo</option>
                     </select>
-                </div>    
+                </div>
                 <div class="col-sm-4 mt-2 mb-2">
                     <label for="exampleFormControlSelect1">Digite o termo da sua busca</label>
                     <input #termo type="text" class="form-control" name="" id="" >
                 </div>
-                <button type="button" class=" col-sm-4 btn btn-success mt-2 mb-2" (click)="filtrarApi(termo.value, campo.value)">Filtrar</button> 
+                <button type="button" class=" col-sm-4 btn btn-success mt-2 mb-2" (click)="filtrarApi(termo.value, campo.value)">Filtrar</button>
             </div>
     </fieldset>
     <hr>
@@ -31,36 +31,36 @@
         <div class="form-row mb-4">
             <div class="campo col ">
                 <div class="list-group "  *ngFor="let item of filteredVolunteers" >
-                    
-                    <a [routerLink]="['/voluntary',item._id]" class="list-group-item list-group-item-action  align-items-start" >
-                        <img class="imgV card-img-top" [src]="item.imgUrlPrincipal" alt="Imagem do voluntário">
+
+                    <a [routerLink]="['/sideBar/voluntary',item._id]" class="list-group-item list-group-item-action  align-items-start" >
+                        <!-- <img class="imgV card-img-top" [src]="item.urlsImage.imgFilePrincipal" alt="Imagem do voluntário"> -->
                       <div class="d-flex flex-column w-100 justify-content-between">
                           <div class="d-flex  justify-content-between">
                               <h5 class="mb-1">{{item.nome}}, {{item.dataNascimento | dataIdade }}</h5>
-                              <small> {{item.endereco.rua}}, {{item.endereco.numero}}, {{item.endereco.cidade}} -{{item.endereco.uf}}</small> 
+                              <small> {{item.endereco.rua}}, {{item.endereco.numero}}, {{item.endereco.cidade}} -{{item.endereco.uf}}</small>
                           </div>
                         <p class="mb-1">{{item.profissao}}  | auxiliando como {{item.especialidade}}  </p>
                         <small>|{{item.nomeIg}}s</small>
                         <small>| {{item.telefone}}  |  {{item.email}}</small>
-                       
+
                       </div>
                     </a>
-                    
+
                   </div>
             </div>
         </div>
-     
+
     </fieldset>
     </div>
 </div>
-            
 
 
 
-<!-- 
+
+<!--
 
      <a href="#"   class="list-group-item list-group-item-action flex-row align-items-start ">
-        
+
         <div class="d-flex flex-column w-100 justify-content-between">
           <h5 class="mb-1">{{item.nome}}</h5>
           <small>3 dias atrás</small>
@@ -69,4 +69,3 @@
         </div>
       </a>
  -->
-            

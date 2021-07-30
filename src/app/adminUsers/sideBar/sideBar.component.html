@@ -1,0 +1,202 @@
+<div
+  id="wrapper"
+  class=""
+  [ngClass]="{ toggled: toggledSideBar == true, ' ': false }"
+>
+  <!-- Sidebar -->
+
+  <div *ngIf="toggledSideBar; then right; else left"></div>
+
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a routerLink="/sideBar/Dashboard"> Voluntary </a>
+      </li>
+      <div class="open-close-container">
+        <li class="d-flex justify-content-start">
+          <i
+            class="bi bi-speedometer2 icon"
+            routerLink="/sideBar/Dashboard"
+            style="color: cornflowerblue"
+          ></i>
+          <i class="bi bi-chevron-bar-contract" (click)="closeLists()"></i>
+          <a style="margin-top: 10px" routerLink="/sideBar/Dashboard"
+            >Dashboard</a
+          >
+        </li>
+
+        <li class="d-flex justify-content-start li" (click)="toggleVolunters()">
+          <i class="bi bi-person-fill icon" style="color: #4e73df"></i>
+
+          <div
+            *ngIf="expandableMenuVolunters; then thenBlock; else elseBlock"
+          ></div>
+
+          <a class="itemMenu">Voluntários</a>
+        </li>
+        <li
+          class="d-flex flex-column"
+          *ngIf="expandableMenuVolunters == true"
+          [@expandable]="expandableMenuVolunters ? 'closed' : 'open'"
+        >
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-card-list subIcon"
+              routerLink="/sideBar/listVolunteers"
+              style="color: #4e73df"
+            ></i>
+            <a routerLink="/sideBar/listVolunteers">Lista de Voluntários </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-menu-app subIcon"
+              routerLink="/sideBar/formCadVoluntary"
+              style="color: #4e73df"
+            ></i>
+            <a routerLink="/sideBar/formCadVoluntary">Cadastro </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-funnel subIcon"
+              routerLink="/sideBar/filtros"
+              style="color: #4e73df"
+            ></i>
+            <a routerLink="/sideBar/filtros">Filtros</a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-file-text subIcon" style="color: #dbdbdb"></i>
+            <a class="disabled">Relatórios</a>
+          </div>
+        </li>
+
+        <li
+          class="d-flex justify-content-start li"
+          (click)="toggleMissionaries()"
+        >
+          <i class="bi bi-person-fill icon" style="color: #1cc88a"></i>
+          <div
+            *ngIf="expandableMenuMissionaries; then thenBlock; else elseBlock"
+          ></div>
+
+          <a class="itemMenu">Missionários</a>
+        </li>
+        <li
+          class="d-flex flex-column"
+          *ngIf="expandableMenuMissionaries == true"
+          [@expandable]="expandableMenuMissionaries ? 'closed' : 'open'"
+        >
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-card-list subIcon"
+              routerLink="/sideBar/listMissionaries"
+              style="color: #1cc88a"
+            ></i>
+            <a routerLink="/sideBar/listMissionaries">Lista de Missionários </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-menu-app subIcon"
+              routerLink="/sideBar/formCadMissionaries"
+              style="color: #1cc88a"
+            ></i>
+            <a routerLink="/sideBar/formCadMissionaries">Cadastro </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-funnel subIcon" style="color: #dbdbdb"></i>
+            <a class="disabled">Filtros</a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-file-text subIcon" style="color: #dbdbdb"></i>
+            <a class="disabled">Relatórios</a>
+          </div>
+        </li>
+
+        <li
+          class="d-flex justify-content-start li"
+          (click)="toggleAdminUsers()"
+        >
+          <i class="bi bi-person-lines-fill icon" style="color: #6dcc36"></i>
+          <div
+            *ngIf="expandableMenuAdminUsers; then thenBlock; else elseBlock"
+          ></div>
+
+          <a class="itemMenu">Admin</a>
+        </li>
+        <li
+          class="d-flex flex-column"
+          *ngIf="expandableMenuAdminUsers == true"
+          [@expandable]="expandableMenuAdminUsers ? 'closed' : 'open'"
+        >
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-card-list subIcon"
+              routerLink="/sideBar/listAdminUsers"
+              style="color: #6dcc36"
+            ></i>
+            <a routerLink="/sideBar/listAdminUsers">Lista de Admin </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i
+              class="bi bi-menu-app subIcon"
+              routerLink="/sideBar/formCadAdminUsers"
+              style="color: #6dcc36"
+            ></i>
+            <a routerLink="/sideBar/formCadAdminUsers">Cadastro </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-funnel subIcon" style="color: #dbdbdb"></i>
+            <a class="disabled">Filtros</a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-file-text subIcon" style="color: #dbdbdb"></i>
+            <a class="disabled">Relatórios</a>
+          </div>
+        </li>
+        <div class=" mt-5"><p style="color: dimgray; font-size: small; margin-left: 10px;">Abiente {{this.ambiente}}</p></div>
+        
+      </div>
+
+      <ng-template #thenBlock>
+        <i class="bi bi-chevron-up chevron"></i>
+      </ng-template>
+      <ng-template #elseBlock>
+        <i class="bi bi-chevron-down chevron"></i>
+      </ng-template>
+
+      <ng-template #right>
+        <i
+          class="bi bi-chevron-right chevron-double"
+          (click)="openSideBar($event)"
+        ></i>
+      </ng-template>
+      <ng-template #left>
+        <i
+          class="bi bi-chevron-left chevron-double"
+          (click)="openSideBar($event)"
+        ></i>
+      </ng-template>
+
+      <!-- <li>
+        <a href="#">Events</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Services</a> 
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li> -->
+    </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="col-xs-12 ml-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

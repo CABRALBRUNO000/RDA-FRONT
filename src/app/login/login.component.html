@@ -1,4 +1,4 @@
-<body style="background-color: #666666">
+<body class="overflow-hidden" style="background-color: #666666">
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">
@@ -7,7 +7,7 @@
           [formGroup]="formulario"
           (ngSubmit)="onSubmit()"
         >
-          <div class="brand-wrapper">
+          <div class="brand-wrapper"> 
             <img src="./../../assets/imagemCIM.png" alt="logo" class="logo" />
           </div>
           <span class="login100-form-title mb-4"> Login </span>
@@ -32,7 +32,9 @@
             <span class="focus-input100"></span>
             <label for="floatingPassword">Password</label>
           </div>
-
+          <span class="text-danger mt-1">
+            {{errorLogin}}
+          </span>
           <div class="container-login100-form-btn mt-5">
             <button class="login100-form-btn">Login</button>
           </div>
@@ -55,9 +57,16 @@
         <div
           class="login100-more"
           style="
-            background-image: url('./../../assets/priscilla-du-preez-bgLogin.jpg');
+            background-image: url('./../../assets/login.jpg');
+          background-position-y:-50px ;
+            
           "
         ></div>
+
+        <!-- <div class="imgContainner" style="width: 70%; margin-left: -200px;margin-top: -50px;">
+          <img  src="./../../assets/login.jpg" alt="">
+        </div> -->
+
       </div>
     </div>
   </div>

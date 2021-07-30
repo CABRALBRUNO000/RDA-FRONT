@@ -1,8 +1,8 @@
-import { AuthGuard } from './../guards/auth.guard';
-import { MyPageMissionariesComponent } from './myPageMissionaries/myPageMissionaries.component';
-import { ListMissionariesComponent } from './listMissionaries/listMissionaries.component';
+import { AuthGuard } from './../shared/guards/auth.guard';
+import { MyPageMissionariesComponent } from '../adminUsers/missionaries/myPageMissionaries/myPageMissionaries.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomePageMissionaryComponent } from './home-page-missionary/home-page-missionary.component';
 
 
 const routes: Routes = [];
@@ -10,13 +10,16 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'listMissionaries', component: ListMissionariesComponent, canActivate:[AuthGuard] },
       {
         path: 'myPageMissionaries/:id',
         component: MyPageMissionariesComponent, canActivate:[AuthGuard],
         resolve: {
           // voluntary: FormCadVolunteersResolverGuard,
         },
+      },
+      {
+        path: 'homeMissionary/:id',
+        component: HomePageMissionaryComponent, canActivate:[AuthGuard]
       },
     ]),
   ],

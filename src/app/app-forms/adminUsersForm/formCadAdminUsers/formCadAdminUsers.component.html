@@ -1,3 +1,91 @@
-<p>
-  formCadAdminUsers works!
-</p>
+<main class="container-ms mt-5" >
+  <div [@torrada]="alertState" class="alert">
+    <div [ngClass]="typeStyle()" class="borderAlert"></div>
+    <p id="text"></p>
+    <button (click)="toggle('hide')" class="closebtn">x</button>
+  </div>
+  <fieldset class="mt-5" >
+  <h2 class="m-2">Cadastro de Administradores</h2>
+  <form class="m-3" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3 mt-5">
+      <input [ngClass]="applyCss('nome')" type="text" class="form-control" id="nameAdmin" placeholder="meu nome"  formControlName="nome">
+      <label for="nameAdmin">Nome Completo</label>
+      <div *ngIf="nome.touched && nome.errors" class="mt-1">
+        <small class="text-formInvalid" *ngIf="nome.errors.required">
+          Nome é obrigatório.
+        </small>
+        <small class="text-formInvalid" *ngIf="nome.errors.minlength">
+          Nome deve ter no mínimo 3 caracters.
+        </small>
+        <small class="text-formInvalid" *ngIf="nome.errors.maxlength">
+          Nome deve ter no máximo 100 caracters.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3 mt-3">
+      <input [ngClass]="applyCss('email')" formControlName="email" type="email" class="form-control" id="emailAdmin" placeholder="name@example.com">
+      <label for="emailAdmin">Endereço de Email</label>
+      <div *ngIf="email.touched && email.errors" class="mt-1">
+        <small class="text-formInvalid" *ngIf="email.errors.required">
+          Não se esqueça de informar seu E-mail
+        </small>
+        <small class="text-formInvalid" *ngIf="email.errors.email">
+          Não se esqueça, o email tem que ser
+          válido!
+        </small>
+      </div>
+    </div>
+
+    <div class="row g-2 mb-3">
+      <div class="form-floating col ">
+        <input [ngClass]="applyCss('password')" formControlName="password" type="password" autocomplete="off" class="form-control" id="password" placeholder="Password" >
+        <label for="password">Senha</label>
+        <div *ngIf="password.touched && password.errors" class="mt-1">
+          <small class="text-formInvalid" *ngIf="password.errors.required">
+            Senha é obrigatória.
+          </small>
+          <small class="text-formInvalid" *ngIf="password.errors.minlength">
+            Senha deve ter no mínimo 8 caracters.
+          </small>
+        </div>
+      </div>
+      <div class="form-floating col">
+        <input [ngClass]="applyCss('password2')" formControlName="password2" autocomplete="off" type="password" class="form-control" id="password2" placeholder="Password" >
+        <label for="password2">Confirme a senha</label>
+        <div *ngIf="password2.touched && password2.errors" class="mt-1">
+          <small class="text-formInvalid" *ngIf="password2.errors.required">
+            Confirme sua senha.
+          </small>
+          <small class="text-formInvalid" *ngIf="password2.errors.passwordsDoNotCoincide">
+            As senhas não coincidem.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex flex-wrap flex-column">
+      <div class="col  ">
+        <input type="file" class="form-control" [ngClass]="applyCss('imgAdmin')"
+          (change)="onFileSelect($event, 'imgAdmin')" />
+           <p class="labelTypeFile">Adicione a sua foto de perfil</p>
+      </div>
+      <div *ngIf="imgAdminHaveFile && imgAdmin.errors" class="d-flex flex-wrap flex-column mt-1">
+        
+        <small class="text-formInvalid" *ngIf="imgAdmin.errors.notImageFile">
+          O arquivo selecionado não é uma foto.
+        </small>
+        <small class="text-formInvalid" *ngIf="imgAdmin.errors.veryLargeFile">
+          A imagem selecionada é muito grande, adicione uma foto que tenha no máximo 350kb.
+        </small>
+      </div>
+      <div *ngIf="imgAdmin.touched && imgAdmin.errors" class="d-flex flex-wrap flex-column mt-1">
+        <small class="text-formInvalid" *ngIf="imgAdmin.errors.required">
+          Não esqueça de adicionar uma foto sua.
+        </small>
+      </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary mt-5">Cadastrar</button>
+  </form>
+</fieldset>
+</main>
