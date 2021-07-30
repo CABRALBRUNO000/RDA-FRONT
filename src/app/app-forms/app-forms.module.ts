@@ -18,8 +18,8 @@ import { AdminService } from '../adminUsers/admin.service';
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     PipesModule,
     ImagekitioAngularModule.forRoot({
       publicKey: environment.PUBLICKEY,
