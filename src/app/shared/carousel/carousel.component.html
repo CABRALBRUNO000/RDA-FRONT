@@ -1,20 +1,27 @@
-<!-- carousel -->
-<div class="carousel">
-  <ng-container *ngFor="let slide of slides; let i = index">
-    <!-- <img
-      *ngIf="i === currentSlide"
-      [src]="slide"
-      class="slide"
-    /> -->
-      <ik-image  *ngIf="i === currentSlide" class="slide" [src]="slide"
-    [transformation]="transformationImgCasaDescanso"></ik-image>
-  </ng-container>
 
-  <!-- controls -->
-  <button class="control prev" (click)="onPreviousClick()">
-    <span class="arrow left"></span>
-  </button>
-  <button class="control next" (click)="onNextClick()">
-    <span class="arrow right"></span>
-  </button>
+<div class="container carousel">
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="max-height: 80%;">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000" *ngFor="let slide of slides; let i = index" [ngClass] = "{'active': i === 1}">
+        <ik-image [src]="slide" [transformation]="transformationImgCasaDescanso" class="d-block h-100"></ik-image>
+        <!-- <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div> -->
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="border: none !important;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next"  style="border: none !important;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>

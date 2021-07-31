@@ -11,9 +11,9 @@
                 [transformation]="transformationImg"></ik-image>
 
             </div>
-            <div class="dadosCabec d-flex flex-column">
-              <h1 class="ml-4">{{ Voluntary.nome }}</h1>
-              <h3 class="ml-4">{{ Voluntary.dataNascimento | dataIdade }}</h3>
+            <div class="dadosCabec d-flex flex-column flex-wrap FontResponsive">
+              <h1 class="ml-4 FontResponsive">{{ Voluntary.nome }}</h1>
+              <h3 class="ml-4 FontResponsive" >{{ Voluntary.dataNascimento | dataIdade }}</h3>
               <div class="dadosHeader2 d-flex ml-4 mb-n4">
                 <small class="text-white ml-3 infoCacec">
                    {{ Voluntary.profissao }},
@@ -33,7 +33,7 @@
             <div class="d-flex w-100 justify-content-between">
               <h4 class="mb-1">Endereço</h4>
             </div>
-            <div class="d-flex">
+            <div class="d-flex flex-wrap">
              <p class="mb-1">  {{ Voluntary.endereco.rua }}</p>
              <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.endereco.numero }}</p>
              <p class="tituloMyPage">,</p><p class="mb-1">{{ Voluntary.endereco.complemento }}</p>
@@ -66,12 +66,12 @@
           <br />
 
           <div>
-            <div  class="list-group-item list-group-item-action flex-column align-items-start">
+            <div  class="list-group-item list-group-item-action d-flex flex-column align-items-start flex-wrap">
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">Outras Informações</h4>
               </div>
               <p class="mb-1">Atua como: {{ Voluntary.especialidade }}</p>
-              <p class="mb-1">Email: {{ Voluntary.email }}</p>
+              <p class="mb-1" style="word-break: break-all;">Email: {{ Voluntary.email }}</p>
               <p class="mb-1">Profissao: {{ Voluntary.profissao }}</p>
               <p class="mb-1">Celular: {{ Voluntary.telefone }}</p>
               <p  *ngIf="Voluntary.telefoneFx" class="mb-1">Telefone Fixo: {{ Voluntary.telefone }}</p>
@@ -86,15 +86,11 @@
           </div>
           <br />
 
-          <div *ngIf="Voluntary.urlsImage.urlImgsCasaDescanso.length > 0" class="carousel">
-
+          <div *ngIf="Voluntary.urlsImage.urlImgsCasaDescanso.length > 0" class="carousel" >
             <app-carousel [slides]="slides"></app-carousel>
          </div>
-
-
         </div>
-
-        <div class="button mb-5 d-flex justify-content-end">
+        <div class="button mb-5 mt-5 d-flex justify-content-end">
           <button type="submit" class="btn btn-success btn-lg"
             [routerLink]="['/sideBar/formCadVoluntary', Voluntary._id]">
             Atualizar

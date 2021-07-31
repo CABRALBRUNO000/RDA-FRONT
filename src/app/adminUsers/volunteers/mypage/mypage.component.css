@@ -31,13 +31,30 @@ img {
   font-weight: 600;
   margin-right: 2px;
 }
-.carousel {
+/* .carousel {
   display: block;
   height: 700px;
   width: 100%;
   padding: 2em;
-}
+} */
 @media (max-width: 540px) {
+  .carousel{
+    max-width: 300px;
+
+  }
+  .imgPrincipal{
+    border-radius: 5px;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+  .FontResponsive{
+    font-size: medium;
+    margin: 0;
+  }
+  .cabecalhoMyPage{
+min-height: 20rem;
+  }
   .list-group-item {
     display: flex;
     flex-direction: column;
