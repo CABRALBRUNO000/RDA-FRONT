@@ -23,6 +23,7 @@ export class ListVolunteersComponent implements OnInit {
     private route: ActivatedRoute) { }
 
     transformationImg = [{ "height": "300", "width": "400" }];
+    transformationImg2 = [{ "height": "100", "width": "100" }];
 
     ngOnInit(): void {
       this.volunteers$ = this.VoluntaryService.getVolunteers();

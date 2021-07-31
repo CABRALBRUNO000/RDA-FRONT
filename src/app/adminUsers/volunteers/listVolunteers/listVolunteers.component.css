@@ -44,6 +44,16 @@
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 }
+.divImgPrincipal{
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+.imgPrincipal{
+  margin-right: 1rem;
+  border-radius: 5%;
+  /* justify-content: space-around; */
+}
+
 
 
 
